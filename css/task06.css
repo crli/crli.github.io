@@ -290,7 +290,7 @@
 		padding: 35px 0 20px 25px;
 	}
 	.news-rt-bot-top li{
-		background: url(crli.github.io/images/task6.5.png) no-repeat 1px center;
+		background: url(images/task6.5.png) no-repeat 1px center;
 		list-style: none;
 	}
 	.news-rt-bot-top span{
@@ -356,14 +356,14 @@
 		text-indent: 3em;
 	}
 	.news-rt-bot-bot-rt p:before{
-		content:url(crli.github.io/images/task6.6.png);
+		content:url(images/task6.6.png);
 		position: absolute;
 		left:-30px;
 		top: -8px;
 
 	}
 	.news-rt-bot-bot-rt p:after{
-		content:url(crli.github.io/images/task6.7.png);
+		content:url(images/task6.7.png);
 		position: absolute;
 		bottom: 40px;
 		right: 16px;
