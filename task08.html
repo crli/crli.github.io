@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<style type="text/css">
+
+*{	margin: 0;
+	padding: 0;
+	-moz-box-sizing: border-box;  
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+/*父级没高度，清除浮动*/
+.row:before,
+.row:after{
+	display: table;
+	content: " ";	
+}
+.row:after{
+	clear: both;
+}
+@media (min-width: 769px) {
+	.col-md-1{
+		width: 8.33333333%
+	}
+	.col-md-2{
+		width: 16.6666667%
+	}
+	.col-md-3{
+		width: 25%
+	}
+	.col-md-4{
+		width: 33.33333333%
+	}
+	.col-md-6{
+		width: 50%
+	}
+}
+@media (max-width: 768px) {
+  .col-sm-2 {
+    width: 16.66667%;
+     }
+  .col-sm-3 {
+    width: 25%;
+     }
+  .col-sm-6 {
+    width: 50%;
+     }
+  .col-sm-8 {
+    width: 66.66667%;
+     }
+  .col-sm-10 {
+    width: 83.33333%;
+     }
+  .col-sm-12 {
+    width: 100%;
+     }
+}
+.wrap{
+	padding: 10px
+}
+.bian{
+	padding: 10px;
+	float: left;
+}
+/*注意加背景时候，因为背景包括padding,*/
+.en{
+	border:1px solid #999;
+	background-color: #eee;
+	height: 50px;
+}
+</style>
+<body >
+<div class="wrap">
+	<div class="row">
+		<div class="col-md-4 bian col-sm-6"><div class="en"></div></div>
+		<div class="col-md-4 bian col-sm-6"><div class="en"></div></div>
+		<div class="col-md-4 bian col-sm-12"><div class="en"></div></div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 bian col-sm-3"><div class="en"></div></div>
+		<div class="col-md-6 bian col-sm-6"><div class="en"></div></div>
+		<div class="col-md-3 bian col-sm-3"><div class="en"></div></div>
+	</div>
+	<div class="row">
+		<div class="col-md-1 bian col-sm-2"><div class="en"></div></div>
+		<div class="col-md-1 bian col-sm-2"><div class="en"></div></div>
+		<div class="col-md-2 bian col-sm-8"><div class="en"></div></div>
+		<div class="col-md-2 bian col-sm-3"><div class="en"></div></div>
+		<div class="col-md-6 bian col-sm-3"><div class="en"></div></div>
+	</div>	
+</div>
+</body>
+</html>
