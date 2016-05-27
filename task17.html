@@ -1,0 +1,271 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+  <style type="text/css">
+        .aqi-chart-wrap {
+      display: flex;
+      width: 98%;
+      height: 550px;
+      justify-content: space-around;
+      align-items: flex-end;
+      margin: 10px auto;
+      padding: 10px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px #999999;
+    }
+    @-webkit-keyframes heightAnim{
+      from{height: 0px}
+    }
+    .aqi-chart-wrap div {
+      border: 1px solid #999;
+      border-radius: 3px;
+      margin: 0 1px;
+      flex: 1;
+      animation: heightAnim .4s ease-in-out; 
+    }
+    #name{position: absolute;font-size: 30px;left: 500px;top: 140px;font-weight: bold;}
+  </style>
+<body>
+  <fieldset id="form-gra-time">
+    <legend>请选择日期粒度：</legend>
+    <label>日<input name="gra-time" value="day" type="radio" checked="checked"></label>
+    <label>周<input name="gra-time" value="week" type="radio"></label>
+    <label>月<input name="gra-time" value="month" type="radio"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>请选择查看的城市：</legend>
+    <select id="city-select">
+      <option>北京</option>
+    </select>
+  </fieldset>
+  <div id="name"><span class="name-city"></span>01-03月每<span class="name-week"></span>空气质量报告</div>
+  <div class="aqi-chart-wrap"></div>
+<script type="text/javascript">
+  /* 数据格式演示
+var aqiSourceData = {
+  "北京": {
+    "2016-01-01": 10,
+    "2016-01-02": 10,
+    "2016-01-03": 10,
+    "2016-01-04": 10
+  }
+};
+*/
+
+// 以下两个函数用于随机模拟生成测试数据
+function getDateStr(dat) {
+  var y = dat.getFullYear();
+  var m = dat.getMonth() + 1;
+  m = m < 10 ? '0' + m : m;
+  var d = dat.getDate();
+  d = d < 10 ? '0' + d : d;
+  return y + '-' + m + '-' + d;
+}
+function randomBuildData(seed) {
+  var returnData = {};
+  var dat = new Date("2016-01-01");
+  var datStr = ''
+  for (var i = 1; i < 92; i++) {
+    datStr = getDateStr(dat);
+    returnData[datStr] = Math.ceil(Math.random() * seed);
+    dat.setDate(dat.getDate() + 1);
+  }
+  return returnData;
+}
+
+var aqiSourceData = {
+  "北京": randomBuildData(500),
+  "上海": randomBuildData(300),
+  "广州": randomBuildData(200),
+  "深圳": randomBuildData(100),
+  "成都": randomBuildData(300),
+  "西安": randomBuildData(500),
+  "福州": randomBuildData(100),
+  "厦门": randomBuildData(100),
+  "沈阳": randomBuildData(500)
+};
+var formevent=document.getElementById('form-gra-time'),
+    citySelect = document.getElementById('city-select'),
+    aqiChartWrap = document.getElementsByClassName('aqi-chart-wrap')[0],
+    nameCity = document.getElementsByClassName('name-city')[0],
+    nameWeek = document.getElementsByClassName('name-week')[0];
+
+function name(){
+  nameCity.innerHTML=pageState.nowSelectCity;
+  if (pageState.nowGraTime=="day"){
+    nameWeek.innerHTML="日"
+  }else if(pageState.nowGraTime=="week"){
+    nameWeek.innerHTML="周"
+  }else{
+    nameWeek.innerHTML="月"
+  }
+}
+/**
+ * 跨浏览器事件绑定
+ */
+function addEvent(elem,type,handler){
+  if(elem.addEventListener){
+    elem.addEventListener(type,handler,false);
+  }else if(elem.attachEvent){
+    elem.attachEvent("on"+type,handler);
+  }else{
+    elem["on"+type]=handler;
+  }
+}
+// 用于渲染图表的数据
+var chartData = {};
+
+// 记录当前页面的表单选项
+var pageState = {
+  nowSelectCity: "北京",
+  nowGraTime: "day"
+}
+
+/**
+ * 渲染图表
+ */
+function renderChart() {
+var wrap=document.getElementsByClassName('aqi-chart-wrap')[0];
+var color=null,text="";
+for (var item in chartData){
+  color='#'+Math.floor(Math.random()*0xFFFFFF).toString(16);
+  text+='<div title="'+item+":"+chartData[item]+'" style="height:'+ chartData[item]+'px;background-color:'+color+'"></div>';
+}
+  wrap.innerHTML=text;
+}
+
+/**
+ * 日、周、月的radio事件点击时的处理函数
+ */
+function graTimeChange(target) {
+  pageState.nowGraTime=target.value;
+  // 设置对应数据
+  initAqiChartData();
+  // 调用图表渲染函数
+  name();
+  renderChart();
+}
+
+/**
+ * select发生变化时的处理函数
+ */
+function citySelectChange() {
+  // 确定是否选项发生了变化 
+  pageState.nowSelectCity = this.value;
+  // 设置对应数据
+  initAqiChartData();
+  // 调用图表渲染函数
+  name();
+  renderChart();
+}
+
+/**
+ * 初始化日、周、月的radio事件，当点击时，调用函数graTimeChange
+ */
+function initGraTimeForm() {
+  addEvent(formevent,"click",function(event){
+    var event=event||window.event;
+    var target=event.target||event.srcElement;
+    if(target.nodeName.toLowerCase()=="input"){
+      graTimeChange(target);
+    }
+  })
+}
+
+/**
+ * 初始化城市Select下拉选择框中的选项
+ */
+function initCitySelector() {
+  var cityList="";
+  // 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
+  for(var i in aqiSourceData){
+    cityList+='<option>'+i+'</option>'
+  }
+  citySelect.innerHTML = cityList;
+  // 给select设置事件，当选项发生变化时调用函数citySelectChange
+  addEvent(citySelect,'change',citySelectChange)
+}
+
+/**
+ * 初始化图表需要的数据格式
+ */
+function initAqiChartData() {
+  // 将原始的源数据处理成图表需要的数据格式
+  // 处理好的数据存到 chartData 中
+  var nowCityData = aqiSourceData[pageState.nowSelectCity];
+  //92天的数据数组
+  if(pageState.nowGraTime=="day"){
+    chartData=nowCityData;
+
+  }
+
+  if(pageState.nowGraTime==="week"){
+    chartData = {};
+    var week=0,sum=0,day=0;
+    for (var key in nowCityData){
+      sum+=nowCityData[key];
+      day++
+      if(new Date(key).getDay()==6){
+        week++;
+        chartData['第'+week+'周']=Math.floor(sum/day);
+        sum=0;
+        day=0;
+      }
+    }
+    if(sum!=0){
+      week++;
+      chartData['第'+week+'周']=Math.floor(sum/day);
+    }
+    console.log(chartData);
+
+  }
+
+  if(pageState.nowGraTime==="month"){
+    chartData = {};
+    var month=0,sum=0,day=0;
+    for (var key in nowCityData){
+      if(new Date(key).getMonth()==month)
+      sum+= nowCityData[key];
+      day++
+      if(new Date(key).getMonth()!=month){
+        month++;
+        chartData['第'+month+'月']=Math.floor(sum/day);
+        sum=0;
+        day=0;
+        sum=nowCityData[key];
+        day=1;
+      }
+    }
+    if(day!=1){
+      month++;
+      chartData['第'+month+'月']=Math.floor(sum/day);
+    }
+ 
+  }
+
+
+
+
+}
+
+/**
+ * 初始化函数
+ */
+function init() {
+  initGraTimeForm()
+  initCitySelector();
+  initAqiChartData();
+  name();
+  renderChart();
+}
+
+init();
+
+</script>
+</body>
+</html>
