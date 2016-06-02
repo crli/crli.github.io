@@ -1,0 +1,493 @@
+@charset "utf-8";
+/* global */
+body {
+	height: 100%;
+	font: 14px/1.5 'Helvetica Neue',Helvetica,Arial,sans-serif;	
+}
+
+a{
+	text-decoration: none;
+	color: #000;
+}
+#dowebok{
+	min-width: 1024px;
+	margin-top: 60px;
+}
+.section{
+	overflow: hidden;
+}
+@font-face {
+	font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+	cursor: pointer;
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+/* header */
+#header{
+	position: fixed;
+	top: 0;
+	left: 0 ;
+	width: 100%;
+	z-index: 20;
+	background-color: #e1e1e1;
+	min-width: 600px;
+}
+#header .logo{
+	display: block;
+	width: 60px;
+	height: 60px;
+	background: url(../images/crli.png) left top no-repeat;
+	background-size: 100%;
+	border-radius: 30px;
+	text-indent: -9999px;
+	margin-left: 30px;
+	float: left;
+}
+.header-p{
+	position: absolute;
+	top: 0;
+	left: 120px;
+	text-align: center;
+	font-size: 13px;
+}
+.header-p1{
+	width: 70px;
+	border-bottom: 1px solid #333;
+	margin: 1px 0 5px;
+	padding:5px 0; 
+}
+nav{
+	float: right;
+	height: 60px;
+	line-height: 60px;
+	margin-right: 30px;
+	font-size: 13px;
+}
+nav a{
+	-webkit-transition:color 0.4s ease-in-out;
+    -moz-transition:color 0.4s ease-in-out;
+    transition:color 0.4s ease-in-out;
+}
+
+/* common */
+nav a:after,
+#contact-panel a:after {
+	content:'|';
+	margin:0 6px 0 8px;
+	color: #888;
+}
+nav a:last-child:after,
+#contact-panel a:last-child:after{
+	content: '';
+}
+nav a:hover, nav a:active,
+#contact-panel a:hover,#contact-panel a:active{
+	color: red
+}
+#home,
+#about,
+#skill,
+#demo,
+#resume,
+#contact{
+	width: 100%;
+	height: 100%;
+}
+#home-content,
+#about-content,
+#skill-content,
+#demo-content,
+#resume-content,
+#contact-content{
+	width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+}
+#about-title h2,
+#skill-title h2,
+#demo-title h2,
+#resume-title h2,
+#contact-title h2{
+	font-size: 24px;
+	font-weight: bold;
+}
+#home-motto::before,
+#about-title h2::before,
+#skill-title h2::before,
+#demo-title h2::before,
+#resume-title h2::before,
+#contact-title h2::before{
+	content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 68px;
+    left: 0;
+    background-color: #000;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition:0.4s ease-in-out;
+}
+#about-title,
+#skill-title,
+#demo-title,
+#contact-title{
+	width: 200px;
+	margin:0 auto 30px;
+	height: 100px;
+	text-align: center;
+	line-height:100px;
+	position: relative;
+}
+#about-title h2:hover::before,
+#skill-title h2:hover::before,
+#demo-title h2:hover::before,
+#contact-title h2:hover::before {
+    visibility: visible;
+    transform: scaleX(0.5);
+}
+
+/* home */
+
+#home-head{
+	width: 200px;
+	margin: auto;
+	padding-top: 120px;
+}
+#home-head-content{
+	width: 140px;
+	height: 140px;
+	margin: auto;
+}
+#home-info{
+	text-align: center;
+	margin-top: 20px;
+}
+#home-motto{
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	position: relative;
+	height: 29px;
+}
+#home-motto::before{
+    top: 26px;
+}
+#home-motto:hover::before {
+    visibility: visible;
+    transform: scaleX(0.32);
+}
+#home-info-box p{
+	padding: 5px 0;
+}
+#img1{
+	width: 140px;
+	height: 140px;
+	border-radius: 70px;
+}
+
+/* about */
+
+
+#about-title-cont{
+	width: 800px;
+	height: 180px;
+	margin: 0 auto;
+}
+#about-edu,
+#about-age,
+#about-loc,
+#about-sta{
+	width: 200px;
+	height: 180px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+}
+.about-edu-con{
+	margin: 0 auto;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	box-shadow: 0 0 0 5px #f2f2f2;
+	-webkit-transition:all  0.4s ease-in-out;
+    -moz-transition:all 0.4s ease-in-out;
+    transition:all 0.4s ease-in-out;
+}
+#about-title-cont p{
+	font-size: 13px;
+	line-height: 35px;
+}
+
+.icon{
+	font-size: 42px;
+	line-height: 80px;
+	box-shadow: 0 0 0 5px #f2f2f2;
+	width: 200px;
+	height: 90px;
+	display: inline-block;
+	position: relative;
+	top: 0px;
+	-webkit-transition:top  0.4s ease-in-out;
+    -moz-transition:top 0.4s ease-in-out;
+    transition:top 0.4s ease-in-out;
+}
+#about-edu:hover>i,
+#about-age:hover>i,
+#about-loc:hover>i,
+#about-sta:hover>i{
+	top: -20px;
+}
+#about-edu:hover>.about-edu-con,
+#about-age:hover>.about-edu-con,
+#about-loc:hover>.about-edu-con,
+#about-sta:hover>.about-edu-con{
+	box-shadow: 0 0 0 4px #999;
+	background-color: #f7f7f7
+}
+#about-inf{
+	top: 10px;
+	width: 800px;
+	height:200px;
+	position: relative;
+}
+#about-inf p{
+	position: absolute;
+	font-size: 13px;
+	-webkit-transition:color 0.4s ease-in-out;
+    -moz-transition:color 0.4s ease-in-out;
+    transition:color 0.4s ease-in-out;
+}
+#about-inf p:hover{
+	color: red
+}
+.st1{
+	top: 0;
+	left: 340px;
+}
+.st2{
+	top: 50px;
+	left: 356px;
+}
+.st3{
+	top: 100px;
+	left: 331px;
+}
+.st4{
+	top: 150px;
+	left: 358px;
+}
+
+/* skill */
+
+#skill-box{
+	width: 50%;
+	float: left;
+}
+#skill-info{
+	width: 50%;
+	float: right;
+}
+#skill-box tr{
+	height:40px;
+	line-height: 40px;
+}
+
+#skill-box td:first-child{
+	padding-right: 10px;
+}
+#skill-box td:last-child{
+	width: 350px;
+	border-right: 2px solid red;
+}
+.proBar{
+	height:25px;
+	width: 0;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 25px;
+	text-align: right;
+	color: #fff;
+	transition: width 1.2s ease-in-out;
+	background-color: #43CD80;
+}
+#skill-info p{
+	line-height: 24px;
+	padding-left:70px;
+}
+
+/* demo */
+
+#demo-box{
+	width: 100%;
+	height: 210px;
+}
+.demo-item{
+	width: 200px;
+	margin:0 20px;
+	float: left;
+	text-align: center;
+	height: 200px;
+	border-radius: 30px;
+	border: 5px solid #e2e2e2;
+	position: relative;
+	transition: 2s background-color
+}
+.demo-item:hover{
+	background-color: rgba(238, 124, 123, 0.8)
+}
+.demo-img1,
+.demo-img2,
+.demo-img3,
+.demo-img4{
+	display: block;
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+	border:1px solid #e5e5e5;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0; 
+	margin: auto;  
+	background-size: 100%;
+	transition: box-shadow 0.5s;
+	transition: opacity 0.5s;
+	box-shadow:0 0 10px 1px #FA8072;
+}
+.demo-img1:hover,
+.demo-img2:hover,
+.demo-img3:hover,
+.demo-img4:hover{
+	box-shadow:0 0 10px 2px #4169E1;
+	opacity:0.2;
+}
+.demo-img1{
+	background: url(../images/demo1.jpg) no-repeat;
+}
+.demo-img2{
+	background: url(../images/demo2.jpg) no-repeat;
+}
+.demo-img3{
+	background: url(../images/demo3.jpg) no-repeat;
+}
+.demo-img4{
+	background: url(../images/demo4.jpg) no-repeat;
+}
+.icon1{
+	font-size: 42px;
+	width: 90px;
+	height: 90px;
+	display: inline-block;
+	position: absolute;
+	top: 73px;
+	left: 55px;
+	-webkit-transition:top  0.5s ease-in-out;
+    -moz-transition:top 0.5s ease-in-out;
+    transition:top 0.5s ease-in-out;
+}
+.icon1-info{
+	display: inline-block;
+	position: absolute;
+	top: -9999px;
+	width: 210px;
+	margin:auto;
+	bottom:0;
+	left: 0;
+	right: 0;
+	font-weight: bold;
+	font-size: 18px;
+
+}
+.demo-item:hover>.icon1-info{
+	top: 60px;
+}
+
+/* resume */
+
+#resume-content span{
+	color: red
+}
+#resume-title{
+	width: 800px;
+	margin:0 auto;
+	text-align: center;
+	margin-bottom: 20px;
+}
+#resume-title h2{
+	line-height:100px;
+}
+#resume-title p{
+	width: 800px;
+	line-height: 30px;
+	font-size: 13px
+}
+#resume-title h2:hover::before {
+    visibility: visible;
+    transform: scaleX(0.08);
+}
+.slide{
+	height: 100%
+}
+.slide-box{
+	width: 800px;
+	height: 90%;
+	margin: 0 auto;
+	background-color: #e1e1e1;
+}
+.slide-box p{
+	text-align: center;
+	line-height:30px;
+	font-size: 12px;
+}
+
+.slide-box .company-name{
+	font-size: 22px;
+	padding-top: 10px;
+}
+.slide-box .big{
+	font-size: 32px;
+	color: red
+}
+.icon2{
+	display: block;
+	text-align: center;
+
+}
+.crli{
+	font-size: 40px;
+	text-align: center;
+}
+
+/* contact */
+
+#contact-info{
+	text-align: center;
+}
+#contact-info p{
+	line-height: 30px;
+	font-size: 13px;
+}
+#contact-panel{
+	height:60px;
+	line-height: 60px;
+	font-size: 13px;
+	text-align: center;
+	padding-top:300px
+}
