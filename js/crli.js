@@ -11,7 +11,7 @@ $(function(){
             $("#home-head").css({'padding-top':'120px'});
             $("#home-motto").css({'opacity':'1'});
             $("#home-motto").next().animate({'opacity':'1'},700);
-            $("#header").animate({'opacity':'0.9'},700,function(){
+            $("#header").animate({'opacity':'1'},700,function(){
                 $("#lining").fadeIn(450,function(){
                     $(this).next().fadeIn(450,function(){
                         $(this).next().fadeIn(450,function(){
