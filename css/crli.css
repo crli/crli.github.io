@@ -371,6 +371,7 @@ nav a{
 	position: relative;
 	transition: 1s all;
 	transform: scale(0);
+	overflow: hidden;
 }
 
 .demo-item:hover{
