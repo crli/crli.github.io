@@ -24,8 +24,8 @@ a{
 #demo-content,
 #resume-content,
 #contact-content{
-	width: 980px;
-	height: auto;
+	width: 1000px;
+	height: 100%;
 	margin: 0 auto;
 }
 #about-title h2,
@@ -304,7 +304,7 @@ nav a{
 }
 .st2{
 	top: 50px;
-	left: 692px;
+	left: 712px;
 }
 .st3{
 	top: 100px;
@@ -312,13 +312,11 @@ nav a{
 }
 .st4{
 	top: 150px;
-	left: 696px;
+	left: 716px;
 }
 
 /* skill */
-#skill-content{
-	overflow: hidden;
-}
+
 #skill-box{
 	width: 50%;
 	float: left;
@@ -364,7 +362,7 @@ nav a{
 }
 .demo-item{
 	width: 200px;
-	margin:0 17.5px;
+	margin:0 20px;
 	float: left;
 	text-align: center;
 	height: 200px;
@@ -508,4 +506,9 @@ text-align: center;
 	position: absolute;
 	top:380px;
 }
-
+@media print {
+    @page {
+        size: 210mm 297mm;  /* or size: 794px 1123px;   */
+        size: 297mm 420mm;  /* or size: 1123px 1588px;  */
+    }
+}

@@ -77,28 +77,27 @@ $(function(){
                   }else{
                     clearInterval(timer)
                   }
-
+                  
                 }
             }
         } 
     })
-    var autosize=$(function(){
-        $("#home-content").css('padding-top',($('.active').height()-$("#home-content").height())/6);
-        $("#about-content").css('padding-top',($('.active').height()-$("#about-content").height())/6);
-        $("#skill-content").css('padding-top',($('.active').height()-$("#skill-content").height())/6);
-        $("#demo-content").css('padding-top',($('.active').height()-$("#demo-content").height())/6);
-        $("#resume-content").css('padding-top',($('.active').height()-$("#resume-content").height())/6);
-        $("#contact-content").css('padding-top',($('.active').height()-$("#contact-content").height())/12)
-        $("#contact-panel").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#contact-panel").css('top')));
-    })
-
-    $(window).resize(function(){
-      autosize()
-    })
+    // $(window).resize(function(){
+    //     autoScrolling();
+    //     });
+    // function autoScrolling(){
+    //     var $ww = $(window).width();
+    //     if($ww < 1024){
+    //         $.fn.fullpage.setAutoScrolling(false);
+    //     }else{
+    //         $.fn.fullpage.setAutoScrolling(true);
+    //     }
+    // }
+    // autoScrolling();
 });
 
 //底部提醒
-$("#contact-panel a:last").click(function(){
+  $("#contact-panel a:last").click(function(){
     alert("正在努力建设中...");
     return false;
   })
