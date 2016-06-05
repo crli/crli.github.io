@@ -7,7 +7,7 @@ a{
 	text-decoration: none;
 	color: #000;
 }
-@media screen and (max-width:1366px){
+/*@media screen and (max-width:1366px){*/
 /* common */
 #home,
 #about,
@@ -507,5 +507,6 @@ nav a{
 text-align: center;
 	position: absolute;
 	top:380px;
+	left: 20px;
 }
 
