@@ -82,7 +82,10 @@ $(function(){
             }
         } 
     })
-    var autosize=$(function(){
+    
+});
+//高度自适应
+var autosize=$(function(){
         $("#home-content").css('padding-top',($('.active').height()-$("#home-content").height())/6);
         $("#about-content").css('padding-top',($('.active').height()-$("#about-content").height())/6);
         $("#skill-content").css('padding-top',($('.active').height()-$("#skill-content").height())/6);
@@ -95,7 +98,6 @@ $(function(){
     $(window).resize(function(){
       autosize()
     })
-});
 
 //底部提醒
 $("#contact-panel a:last").click(function(){
