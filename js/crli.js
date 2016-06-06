@@ -81,8 +81,23 @@ $(function(){
     })  
 });
 //高度自适应
-if(navigator.userAgent.match(/(iPhone|iPod|Android|ios|Windows Phone)/i)){
-    var autosize=$(function(){
+(function(doc, win) {
+    var screenWidth = 0, size = 'M';
+    if (window.screen && screen.width) {
+        screenWidth = screen.width;
+        if (screenWidth > 1920) {
+            // 超大屏，例如iMac
+            size = 'L';
+        } else if (screenWidth < 480) {
+            // 小屏，如手机
+            size = 'S';
+        }
+    }
+    // 标记JS
+    win.SIZE = size;        
+})(document, window);
+if (window.SIZE == 'S') {
+   $(function(){
         $("#home-content").css('padding-top',($('.active').height()-$("#home-content").height())/6);
         $("#about-content").css('padding-top',($('.active').height()-$("#about-content").height())/6);
         $("#skill-content").css('padding-top',($('.active').height()-$("#skill-content").height())/6);
@@ -91,10 +106,7 @@ if(navigator.userAgent.match(/(iPhone|iPod|Android|ios|Windows Phone)/i)){
         $("#contact-content").css('padding-top',($('.active').height()-$("#contact-content").height())/12)
         $("#contact-panel").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#contact-panel").css('top')));
     });
-    $(window).resize(function(){
-      autosize();
-    });   
-}
+};
 //底部提醒
 $("#contact-panel a:last").click(function(){
     alert("正在努力建设中...");
