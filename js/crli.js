@@ -1,4 +1,17 @@
 $(function(){
+    $.ajax({
+        type:"GET",
+        url:"cr.html",
+        dataType:"html",
+        success: function(data){
+            var about=$(data).find(".cr1").html();
+            $("#about-inf").append(about);
+            var skill=$(data).find(".cr2").html();
+            $("#skill-info").append(skill);
+            var rbi=$(data).find(".cr3").html();
+            $(".resume-box-info").append(rbi);
+        }
+    })
     $('#dowebok').fullpage({
         resize:true,
         css3: true,
