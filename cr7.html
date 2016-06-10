@@ -3,11 +3,8 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Cristiano Ronaldo</title>
-	<link rel="stylesheet" type="text/css" href="css/cr7.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/cr7.css"> -->
 </head>
-<style type="text/css">
-	a{display: block;width: 100%;text-align: center;font-size: 24px}
-</style>
 <body>
 	<div class="main">
 		<a href="http://github.com/crli/html-css3-drawing-CR7">View on GitHub </a>
@@ -76,10 +73,47 @@
 			<div class="shoes left-shoes"></div>
 			<div class="shoes right-shoes"></div>
 			<div class="sole left-sole"></div>
-			<div class="sole right-sole"></div>
-			<div class="haha"></div>
-			<div class="hahaha">我是C罗，我整容了。。。</div>
+			<div class="sole right-sole"></div>	
 		</div>
+		<div class="haha"></div>
+		<div class="hahaha">我是C罗，我整容了。。。</div>
+		<button style="width: 200px;height: 40px">观看制作过程</button>
 	</div>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+(function($) {
+		$.ajax({
+    type:"GET",
+    url:"ajaxcr7.html",
+    dataType:"html",
+    success: function(data){
+        $("head").append($(data));
+    }
+})
+	$.fn.typecss = function() {
+		this.each(function() {
+			var $ele = $(this), str = $ele.html(), progress = 0;
+			$ele.html('');
+			var timer = setInterval(function() {
+				var current = str.substr(progress, 1);
+				progress++;
+				$ele.html(str.substring(0, progress));
+				if (progress >= str.length) {
+					clearInterval(timer);
+					$("button").show()
+				}
+			}, 1);
+		});
+		return this;
+	};
+})(jQuery);
+$("button").on("click",function(){
+	$("button").hide();
+	// $("link").remove();
+$("style").typecss();
+})
+
+</script>
+
 </body>
 </html>
