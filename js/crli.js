@@ -52,7 +52,7 @@ $(function(){
                 });
             }
             if(index==3){
-                var arr=[90,65,85,75,70,80,70];
+                var arr=[90,65,90,85,70,85,70];
                 for(var key in arr){
                     var color='#'+Math.floor(Math.random()*0xffffff).toString(16);
                     $(".proBar").eq(key).attr('style','width:'+arr[key]+'%').css('background-Color',color).html(arr[key]+'%'); 
@@ -79,18 +79,24 @@ $(function(){
                 $("#resume-box").css({'margin-top':'60px'});
             }
             if(index==6){
-                var number=0;
-                var word=$("#contact-info-none").html();
-                var timer=setInterval(t,70);
+                var word=$(".contact-tip").html().replace(/\_*$/,""),number=0;
+                $(".contact-tip").html("");
+                clearInterval(timer);
+                var timer=setInterval(t,150);
                 function t(){
-                    if(number!=word.length){
-                        $("#contact-info").html(word.substring(0,number++));
+                    var current=word.substr(number,1);
+                    if(current=="<"){
+                        number=word.indexOf(">",number)+1;
                     }else{
-                        clearInterval(timer)
+                        number++
+                    }
+                    $(".contact-tip").html(word.substring(0,number)+(number&1?"_":" "));
+                    if (number>= word.length) {
+                        clearInterval(timer);
                     }
                 }
             }
-        }  
+        }
     })  
 });
 //高度自适应
