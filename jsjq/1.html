@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>控制div属性</title>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<style>
+#outer{width:500px;margin:0 auto;padding:0;text-align:center;}
+#div1{width:200px;height:200px;background:black;margin:10px auto;display:block;}
+</style>
+<script>
+// js方法
+// var changeStyle = function (elem, attr, value)
+// {
+// 	elem.style[attr] = value
+// };
+// window.onload = function ()
+// {
+// 	var oBtn = document.getElementsByTagName("input");
+// 	var oDiv = document.getElementById("div1");
+// 	var oAtt = ["width","height","background","display","display"];
+// 	var oVal = ["200px","200px","red","none","block"];
+
+// 	for (var i = 0; i < oBtn.length; i++)
+// 	{
+// 		oBtn[i].index = i;
+// 		oBtn[i].onclick = function ()
+// 		{
+// 			if(this.index==4){
+// 				oDiv.style = ""
+// 			}
+// 			changeStyle(oDiv, oAtt[this.index], oVal[this.index])
+// 		}	
+// 	}
+// };
+// 
+// 
+// jq方法
+$(function(){
+	$("input").eq(0).on("click",function(){
+		$("#div1").css("width","300")
+	})
+	$("input").eq(1).on("click",function(){
+		$("#div1").css("height","300")
+	})
+	$("input").eq(2).on("click",function(){
+		$("#div1").css("backgroundColor","red")
+	})
+	$("input").eq(3).on("click",function(){
+		$("#div1").css("display","none")
+	})
+	$("input").eq(4).on("click",function(){
+		$("#div1").removeAttr("style");
+		$("#div1").css("display","block")
+	})
+})
+
+</script>
+</head>
+<body>
+<div id="outer">
+<input type="button" value="变宽" />
+<input type="button" value="变高" />
+<input type="button" value="变色" />
+<input type="button" value="隐藏" />
+<input type="button" value="重置" />
+<div id="div1"></div>
+</div>
+</body>
+</html>
