@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8" />
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <title>读取数据形成列表</title>
+    <style type="text/css">
+		#table-tb{margin: 40px auto; width: 500px;text-align: center;font-size: 16px;border-collapse:collapse; }
+		#table-tb th,#table-tb td{padding: 5px 10px;border: 1px solid #888;}
+		#table-tb th{background-color: #f0f0f0}
+
+    </style>
+</head>
+<body>
+  <table id="table-tb">
+   	<caption><h2>学生资料</h2></caption>
+	<thead>
+		<tr>
+			<th style="width:35px">序号</th>
+			<th>姓名</th>
+			<th>性别</th>
+			<th>年龄</th>
+			<th>身高</th>
+			<th>体重</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="6"><button id="btn">读取数据</button></td>
+		</tr>
+	</tbody>
+  </table>
+<script type="text/javascript">
+    var json=[{"Name":"大傻","Sex":"男","Age":"10","Height":"155","Weight":"200"},
+              {"Name":"二傻","Sex":"男","Age":"12","Height":"145","Weight":"210"},
+              {"Name":"三傻","Sex":"女","Age":"15","Height":"185","Weight":"100"},
+              {"Name":"四傻","Sex":"男","Age":"16","Height":"175","Weight":"130"},
+              {"Name":"五傻","Sex":"男","Age":"10","Height":"155","Weight":"200"},
+              {"Name":"六傻","Sex":"男","Age":"12","Height":"145","Weight":"210"},
+              {"Name":"七傻","Sex":"女","Age":"15","Height":"185","Weight":"100"},
+              {"Name":"八傻","Sex":"男","Age":"16","Height":"175","Weight":"130"},
+              {"Name":"十傻","Sex":"女","Age":"17","Height":"105","Weight":"140"}];
+// js方法
+    var tbody=document.getElementsByTagName('tbody')[0],
+        btn=document.getElementById('btn'),
+        trs=document.getElementsByTagName('tr');
+        btn.onclick=function(){
+            tbody.innerHTML="";
+            for (var key in json){
+                tbody.insertRow(key);
+                tbody.rows[key].insertCell(0);
+                tbody.rows[key].cells[0].appendChild(document.createTextNode(key));
+                tbody.rows[key].insertCell(1);
+                tbody.rows[key].cells[1].appendChild(document.createTextNode(json[key].Name));
+                tbody.rows[key].insertCell(2);
+                tbody.rows[key].cells[2].appendChild(document.createTextNode(json[key].Sex));
+                tbody.rows[key].insertCell(3);
+                tbody.rows[key].cells[3].appendChild(document.createTextNode(json[key].Age));
+                tbody.rows[key].insertCell(4);
+                tbody.rows[key].cells[4].appendChild(document.createTextNode(json[key].Height));
+                tbody.rows[key].insertCell(5);
+                tbody.rows[key].cells[5].appendChild(document.createTextNode(json[key].Weight));
+            }
+            for(var key in trs){
+                trs[key].onmouseover=function(){
+                    this.style.backgroundColor="#f0f0f0";
+                }
+                trs[key].onmouseout=function(){
+                    this.style.backgroundColor="#fff";
+                }
+            }
+        }
+// jq方法
+    // $(function(){
+    //     $("#btn").on("click",function(){
+    //         $("tbody").html("");
+    //         $.each(json,function(index,data){
+    //             $("tbody").append("<tr><td>"+parseInt(index+1)+"</td><td>"
+    //                                         +data.Name+"</td><td>"
+    //                                         +data.Sex+"</td><td>"
+    //                                         +data.Age+"</td><td>"
+    //                                         +data.Height+"</td><td>"
+    //                                         +data.Weight+"</td></tr>");                 
+    //         })
+    //         $("tr").on("mouseover",function(){
+    //             $(this).css("background-color","#f0f0f0");  
+    //         })
+    //         $("tr").on("mouseout",function(){
+    //             $(this).css("background-color","#fff"); 
+    //         })              
+    //     })
+    // })
+
+
+</script>
+</body>
+</html>

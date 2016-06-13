@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+<title>传参数，改变属性</title>
+<style>
+.out{margin-bottom: 10px;}
+#div1{width: 100px;height: 100px;border: 1px solid #000;}
+</style>
+<script>
+window.onload=function(){
+	var t1=document.getElementById('t1'),
+	t2=document.getElementById('t2'),
+	btn=document.getElementById('btn'),
+	div1=document.getElementById('div1');
+	btn.onclick=function(){
+		div1.style[t1.value]=t2.value;
+	}
+	btn1.onclick=function(){
+		div1.removeAttribute("style");
+	}
+}
+
+</script>
+</head>
+<body>
+<div class="out">
+	<label>属性名：<input type="text" id="t1" value="color"></input></label>
+	<label>属性值：<input type="text" id="t2" value="#000"></input></label>
+	<button id="btn">确定</button>
+	<button id="btn1">重置</button>
+</div>
+	<div id="div1">哈哈哈哈哈哈哈哈哈哈</div>
+</body>
+</html>

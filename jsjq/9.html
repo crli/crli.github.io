@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+<title>复选框</title>
+<style>
+*{margin:0;padding:0;}
+body{font-size:12px;line-height:40px }
+label,input,a{vertical-align:middle;}
+label{padding:0 10px;}
+a{text-decoration:none;color: red}
+dl{width:120px;margin:10px auto;padding:10px 20px;border-radius:10px;background:#e5e5e5;}
+dt{padding-bottom:10px;border-bottom:1px solid #666;}
+</style>
+</head>
+<body>
+<dl>
+    <dt><input type="checkbox" id="checkAll" /><label>全选</label><a href="javascript:;">反选</a></dt>
+    <dd>
+        <p><input type="checkbox" name="item" /><label>选项（一）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（二）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（三）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（四）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（五）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（六）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（七）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（八）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（九）</label></p>
+        <p><input type="checkbox" name="item" /><label>选项（十）</label></p>
+    </dd>    
+</dl>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+// jq方法
+
+//全选/全不选
+$("#checkAll").on('click',function(){
+	$("p input").attr("checked",$(this).prop("checked"));
+	isCheckAll()
+})
+//反选
+$("dt a").on('click',function(){
+	$("dd input").each(function(){
+		$(this).attr("checked",!$(this).prop("checked"));
+		isCheckAll()
+	})
+})
+$("dd input").on('click',function(){
+	isCheckAll()
+})
+var isCheckAll=function(){
+	var i=0;
+	$("dd input").each(function(){
+		if($(this).prop("checked")){
+			i++;
+		}
+		if(i==$("dd input").length){
+			$("#checkAll").attr("checked","checked");
+			$("dt label").html("全不选")
+		}else{
+			$("#checkAll").attr("checked",false);
+			$("dt label").html("全选")
+		}
+	})
+//	for(var i=1,n=0;i<oInput.length;i++){
+// 			if(oInput[i].checked){
+// 				n++;
+// 			}
+// 			if(n==oInput.length-1){
+// 				oInput[0].checked=true;
+// 				oLabel.innerHTML="全不选"
+// 			}else{
+// 				oInput[0].checked=false;
+// 				oLabel.innerHTML="全选"
+// 			}
+// 		}	
+}
+// js方法
+// window.onload = function ()
+// {
+// 	var oA = document.getElementsByTagName("a")[0];	
+// 	var oInput = document.getElementsByTagName("input");
+// 	var oLabel = document.getElementsByTagName("label")[0];
+// 	var isCheckAll = function (){
+// 		for(var i=1,n=0;i<oInput.length;i++){
+// 			if(oInput[i].checked){
+// 				n++;
+// 			}
+// 			if(n==oInput.length-1){
+// 				oInput[0].checked=true;
+// 				oLabel.innerHTML="全不选"
+// 			}else{
+// 				oInput[0].checked=false;
+// 				oLabel.innerHTML="全选"
+// 			}
+// 		}	
+// 	};
+// 	//全选/全不选
+// 	oInput[0].onclick = function ()
+// 	{
+// 		for (var i = 1; i < oInput.length; i++)
+// 		{
+// 			oInput[i].checked = this.checked;	
+// 		}
+// 		isCheckAll()
+// 	};
+// 	//反选
+// 	oA.onclick = function ()
+// 	{
+// 		for (var i = 1; i < oInput.length; i++)
+// 		{
+// 			oInput[i].checked = !oInput[i].checked
+// 		}
+// 		isCheckAll()
+// 	};
+// 	//根据复选个数更新全选框状态
+// 	for (var i = 1; i < oInput.length; i++)
+// 	{
+// 		oInput[i].onclick = function ()
+// 		{
+// 			isCheckAll()
+// 		}	
+// 	}	
+// }
+</script>
+</body>
+</html>

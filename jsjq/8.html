@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+<title>鼠标移过，改变图片路径</title>
+<style>
+*{margin:0;padding:0;}
+#box{width:464px;border:5px solid #e1e1e1;overflow:hidden;zoom:1;background:#fff;border-radius:5px;margin:40px auto;padding:0 0 3px 3px;}
+#box li,#box li img{float:left;width:113px;height:100px;border:0;border-radius:3px;}
+#box li{list-style:none;margin:3px 3px 0 0;}
+#box li:not(:first-child):hover{opacity: 0.5;filter: alpha(opacity=50)}
+#box li:first-child{position:relative;}
+#box li:first-child,#box li:first-child img{width:345px;height:306px;}
+#box li:first-child div{position:absolute;top:0;left:0;width:345px;height:306px;display:none;opacity:0.5;filter:alpha(opacity=50);background:#fff url(images/loading.gif) 50% 50% no-repeat;}
+</style>
+</head>
+<body>
+<ul id="box">
+    <li><img src="images/1.jpg"><div></div></li>
+    <li><a href="javascript:;"><img src="images/1.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/2.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/3.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/4.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/5.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/6.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/7.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/8.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/9.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/10.jpg"></a></li>
+    <li><a href="javascript:;"><img src="images/11.jpg"></a></li>
+</ul>
+<script type="text/javascript">
+var oImg = document.getElementById("box").getElementsByTagName("img");
+var oDiv = document.getElementsByTagName("div")[0];
+for (var i = 1; i < oImg.length; i++){
+	oImg[i].onmouseover = function ()
+	{						
+		var img = new Image();
+		img.src = oImg[0].src=this.src;
+		oDiv.style.display = "block";
+		if(img.complete){
+			oDiv.style.display="none"
+		}
+	}	
+}
+</script>
+</body>
+</html>
