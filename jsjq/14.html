@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>时钟</title>
+<style type="text/css">
+*{margin:0; padding:0;}
+#clock{width: 300px;height: 300px;margin: 150px auto;border: 1px solid #aaa;border-radius: 50%;position: relative;background-color: #e5e5e5;box-shadow: 0 0 150px 100px #ff0000}
+.p{position: absolute;left: 150px;transform-origin: left center;-ms-transform-origin: left center;}
+.hour{width: 60px;height: 12px;background: #faa;top: 144px;}
+.minute{width: 100px;height: 8px;background: #aaf;top: 146px;}
+.second{width: 120px;height: 4px;background: #000;top: 148px;}
+span{position: absolute;font-size: 30px;display: inline-block;width: 215px;height: 215px;border-radius: 50%; left:40px;top: 40px}
+span b{transform: rotate(-45deg);-ms-transform: rotate(-45deg);display:inline-block;position: absolute;z-index: 1}
+</style>
+</head>
+<body>
+<div id="clock">
+<div class="p hour"></div>
+<div class="p minute"></div>
+<div class="p second"></div>
+ <span><b>12</b></span><span><b>1</b></span> <span><b>2</b></span> <span><b>3</b></span> <span><b>4</b></span> <span><b>5</b></span> <span><b>6</b></span> <span><b>7</b></span> <span><b>8</b></span> <span><b>9</b></span> <span><b>10</b></span> <span><b>11</b></span>
+</div>
+<script>
+  var hpointer = document.getElementsByTagName('div')[1], 
+      mpointer = document.getElementsByTagName('div')[2],
+      spointer = document.getElementsByTagName('div')[3],
+      oSpan=document.getElementsByTagName('span');
+  for(var i=0;i<oSpan.length;i++){
+    oSpan[i].style.transform = 'rotate('+(i*30+45)+'deg)';
+    oSpan[i].style.msTransform = 'rotate('+(i*30+45)+'deg)';
+  }
+  function drawClock(){
+    var now = new Date(),
+        h = now.getHours() % 12,
+        m = now.getMinutes(),
+        s = now.getSeconds();
+    hpointer.style.transform = 'rotate('+(h*30-90)+'deg)';
+    hpointer.style.msTransform = 'rotate('+(h*30-90)+'deg)';
+    mpointer.style.transform = 'rotate('+(m*6-90)+'deg)';   
+    mpointer.style.msTransform = 'rotate('+(m*6-90)+'deg)';  
+    spointer.style.transform = 'rotate('+(s*6-90)+'deg)';
+    spointer.style.msTransform = 'rotate('+(s*6-90)+'deg)';
+  }
+  drawClock();
+  window.setInterval(drawClock, 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>用户登录</title>
+  <style>
+   *{margin:0;padding:0;}
+     .head{font-size:12px;padding:6px 0 0 10px;}
+     #loginBox{width:500px;height:300px;background:#eee;border:1px solid #ccc;position:absolute;left:50%;top:50%;margin-left:-250px;margin-top:-150px;display:none;}
+     #loginBox p{height:20px;border-bottom:1px solid #ccc;font-size:12px;padding:6px 0 0 5px;font-weight:bold;}
+     #close{position:absolute;right:10px;top:6px;cursor: pointer;}
+  </style>
+</head>
+<body>
+  <div class="head">亲，您好！<input type="button" value="登 录" id="login"></div>
+  <div id="loginBox">
+    <p>用户登录</p><span id="close" type="button" value="关闭">X</span>
+  </div>
+  <script>
+      window.onload=function(){
+        var loginbtn=document.getElementById('login'),
+            loginBox=document.getElementById('loginBox'),
+            close=document.getElementById('close');
+        function addEvent(ele,type,hander){
+            if(ele.addEventListener){
+                ele.addEventListener(type,hander,false);
+            }else if(ele.attachEvent){
+                ele.attachEvent('on'+type,hander);   
+            }else{
+                ele['on'+type]=hander;   
+            }
+        };
+        function showLogin(){
+           loginBox.style.display='block'; 
+           document.body.style.backgroundColor="#353535";
+        };
+        function hideLogin(){
+          loginBox.style.display='none';
+          document.body.style.backgroundColor="#fff";
+        };
+        addEvent(loginbtn,'click',showLogin); 
+        addEvent(close,'click',hideLogin);
+    }
+  </script>
+</body>
+</html>

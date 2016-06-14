@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>简易选菜</title>
+  <style type="text/css">
+    fieldset{width: 500px;padding: 30px;margin: 20px;}
+    .dish,.choosedish{border: 1px solid #aaa;width:100px;padding: 10px;margin-right: 15px;float: left;text-align: center;}
+    .choosedish{position: relative;background-color: #aaa;}
+    .choosedish span{position:absolute;top: 5px;right: 5px;background-color: #fff;cursor: pointer;}
+  </style>
+</head>
+<body>
+    <fieldset>
+        <legend>可选</legend>
+        <div id="dish01" class="dish"><input type="checkbox" onclick="choose('01')">鱼香肉丝</input></div>
+        <div id="dish02" class="dish"><input type="checkbox" onclick="choose('02')">锅包肉</input></div>
+        <div id="dish03" class="dish"><input type="checkbox" onclick="choose('03')">溜肉段</input></div>
+    </fieldset>
+    <fieldset id="lai">
+        <legend>已选</legend>
+<!--         <div id="choose01" class="choosedish">鱼香肉丝<span onclick="cancelChoose('01')">x</span></div> -->
+    </fieldset>
+</body>
+<script type="text/javascript">
+    function choose(id){
+        var div=document.querySelector("#dish"+id);
+        var input=div.getElementsByTagName("input")[0];
+        if(input.checked){
+            var newDiv=document.createElement("div");
+            newDiv.id="choose"+id;
+            newDiv.className="choosedish";
+            newDiv.innerHTML=input.nextSibling.nodeValue;
+            var span=document.createElement("span");
+            span.setAttribute("onclick",'cancelChoose(\''+id+'\')');//注意引号
+            span.innerHTML="x";
+            newDiv.appendChild(span);
+            document.getElementById("lai").appendChild(newDiv);
+        }else{
+            cancelChoose(id);
+        }
+    }
+    function cancelChoose(id){
+        var cancela=document.getElementById("choose"+id); 
+        cancela.parentNode.removeChild(cancela);
+        document.querySelector("#dish"+id).firstChild.checked=false;
+    }
+</script>
+</html>
