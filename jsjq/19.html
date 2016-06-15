@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>验证码</title>
+</head>
+<style type="text/css">
+	.wrap{width: 200px;overflow: hidden;zoom:1;margin: 50px auto;border: 1px solid #e1e1e1;background-color: #f1f1f1}
+	#code{width: 100px;height: 40px;background-color: #d1d1d1;margin: 0 auto;text-align: center;line-height: 40px;color: #000;display: none;}
+	.wrap input{width: 100px;margin: 10px 0 10px 50px;display: none;}
+	#btn,#subm{margin: 10px 50px;width: 100px}
+	#subm{display: none;}
+</style>
+<body>
+	<div class="wrap">
+		<button id="btn">点击验证</button>
+		<div id="code"></div>
+	 	<input type="text"></input>
+	 	<button id="subm">点击提交</button>
+ 	</div>
+<script type="text/javascript">
+	var codes=[],
+		btn=document.getElementById("btn"),
+		oCode=document.getElementById("code"),
+		oInput=document.querySelector("input"),
+		oSubmit=document.getElementById("subm"),
+		reg=/^[a-zA-Z0-9]{4}$/;
+	for(var i=48;i<=57;codes.push(i),i++);
+	for(var i=65;i<=90;codes.push(i),i++);
+	for(var i=97;i<=122;codes.push(i),i++);
+	function getcode(){
+	    var arr=[];
+	    for(i=0;i<4;i++){
+	        var index=Math.floor(Math.random()*(61-0+1)+0);
+	        var char=String.fromCharCode(codes[index]);
+	        arr.push(char);
+	    }
+	    return arr.join("");
+	}
+	btn.onclick=function(){
+		var code=getcode();
+      		oCode.innerHTML=code;
+      		oCode.style.display="block";
+      		oInput.style.display="block";
+      		oSubmit.style.display="block";
+	}
+	oSubmit.onclick=function(){
+		if(reg.test(oInput.value)){//如果输入的是4位数字字母验证码
+       		if(oInput.value.toLowerCase()==oCode.innerHTML.toLowerCase()){//如果输入的验证码正确
+          		alert("登陆成功")
+        	}else{//验证码错误	
+          		alert("验证码错误");
+        	}
+      	}else{//输入的不是4数字字母位验证码
+      		alert("验证码格式错误");      		
+      	}
+      	var code=getcode();
+      	oCode.innerHTML=code;
+	}
+	oCode.onclick=function(){
+		var code=getcode();
+      	oCode.innerHTML=code;
+	}
+</script> 
+</body>
+</html>
+</body>
+</html>

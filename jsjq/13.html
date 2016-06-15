@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+<title>网页计算器</title>
+<style>
+*{margin:0;padding:0;}
+ul{list-style-type:none;}
+span{color:#fff;}
+body{font:700 24px/1.5 Arial;}
+#calc{position:relative;width:300px;background:#000;margin:80px auto;border:1px solid #000;}
+#calc .big{border:0;width:290px;height:84px;text-align:right;font:700 50px/84px Arial;padding:0 5px;background-color: #fff}
+#small{position:absolute;top:0;border:0;font:700 12px/1.5 Arial;width:280px;padding:3px 15px 0 5px;text-align:right;}
+#calc ul{position:relative;overflow:hidden;zoom:1;background-color: #123456;padding:0 0 17px 8px;}
+#calc ul li{float:left;width:63px;height:41px;margin:17px 10px 0 0;}
+#calc ul li span{display:block;width:63px;height:41px;line-height:41px;text-align:center;background-color: #f18111;border-radius: 10px;cursor: pointer;}
+#calc ul li.btn2{position:absolute;top:174px;right:0;height:99px;}
+#calc ul li.btn2 span{height:99px;line-height:99px;}
+#calc ul li.btn3{width:136px;}
+#calc ul li.btn3 span{width:136px;}
+#calc ul li span:hover{background-color:red;box-shadow: 0 0 1px 1px}
+</style>
+</head>
+<body>
+<div id="calc">
+    <input class="big" type="text" readonly="readonly" maxlength="9" value="0" />
+    <input id="small" type="text" readonly="readonly" value="" />
+    <ul>
+        <li class="btn1"><span>c</span></li>
+        <li class="btn1"><span>%</span></li>
+        <li class="btn1"><span>÷</span></li>
+        <li class="btn1"><span>×</span></li>
+        <li><span>7</span></li>
+        <li><span>8</span></li>
+        <li><span>9</span></li>
+        <li class="btn1"><span>-</span></li>
+        <li><span>4</span></li>
+        <li><span>5</span></li>
+        <li><span>6</span></li>
+        <li class="btn1"><span>+</span></li>
+        <li><span>1</span></li>
+        <li><span>2</span></li>
+        <li><span>3</span></li>
+        <li class="btn2"><span>=</span></li>
+        <li class="btn3"><span>0</span></li>
+        <li><span>.</span></li>
+    </ul> 
+</div>
+<script>
+window.onload = function (){
+	var calc = document.getElementById("calc"),
+		oSpan = calc.getElementsByTagName("span"),
+		oInput = calc.getElementsByTagName("input")[0],
+		oSmall = document.getElementById("small"),
+		flag = false;
+	for (var i = 0; i < oSpan.length; i++){
+		oSpan[i].onclick = function (){
+			switch(this.innerHTML){
+				case "c":
+					oInput.value =  0;
+					oSmall.value = "";
+					break;
+				case "%":
+					count("%")
+					break;
+				case "÷":
+					count("/")
+					break;
+				case "×":
+					count("*")
+					break;
+				case "-":
+					count("-")
+					break;
+				case "+":
+					count("+")
+					break;
+				case "=":
+					flag || (oSmall.value += oInput.value);
+					if(oSmall.value.search(/[\.\/\*\-\+]$/)>-1){
+						oInput.value="错误";
+					}else if(oSmall.value.slice(-1)==="%"){
+						oSmall.value=0.01*eval(oSmall.value.slice(0,oSmall.value.length-2))
+						oInput.value=eval(oSmall.value)
+					}else{
+						oSmall.value=eval(oSmall.value)
+						oInput.value = eval(oSmall.value);
+					}
+
+					oInput.value = oInput.value.substr(0,10);
+					flag = true;
+					break;
+				case ".":
+					if(oInput.value.search(/[\.\%\/\*\-\+]/) != -1)//不能输入+.等样式
+					break;
+				default:
+					flag && (oInput.value = 0, oSmall.value = "", flag = false);//如果等于后按数字则先清空
+					if(oInput.value.length < 10){
+						oInput.value = (oInput.value + this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/,"$1");//防止出现+6等样式出现在输入框
+					}
+			}
+		}
+	}
+	
+	function count(a){
+		if(flag){
+			oSmall.value = oInput.value + a;
+			oInput.value = a;	
+			flag = false;
+		}else{
+			/[\%\/\*\-\+]$/.test(oInput.value) || (oSmall.value += oInput.value);
+			oInput.value = a;
+			if(/[\%\/\*\-\+]$/.test(oSmall.value)){
+				/[\%\/\*\-\+]$/.test(oSmall.value)
+			}else{
+				(oSmall.value += oInput.value);
+			}
+		}
+	}
+}
+</script>
+</body>
+</html>
