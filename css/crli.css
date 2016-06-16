@@ -50,7 +50,9 @@ a{
     background-color: #000;
     visibility: hidden;
     transform: scaleX(0);
+    -ms- transform: scaleX(0);
     transition:0.4s ease-in-out;
+    -ms-transition:0.4s ease-in-out;
 }
 #about-title,
 #skill-title,
@@ -70,6 +72,7 @@ a{
 #contact-title h2:hover::before {
     visibility: visible;
     transform: scaleX(0.5);
+    -ms-transform: scaleX(0.5);
 }
 #dowebok{
 	margin-top: 60px;
@@ -134,7 +137,8 @@ nav a:hover, nav a:active,
 	text-indent: -9999px;
 	margin-left: 30px;
 	float: left;
-	transition: 0.3s
+	transition: 0.3s;
+	-ms-transition: 0.3s
 }
 #header .logo:hover{
 	background-image: url(../images/demo4.jpg);
@@ -166,6 +170,7 @@ nav a{
 	-webkit-transition:color 0.4s ease-in-out;
     -moz-transition:color 0.4s ease-in-out;
     transition:color 0.4s ease-in-out;
+    -ms-transition:color 0.4s ease-in-out;
 }
 /* home */
 
@@ -174,6 +179,7 @@ nav a{
 	margin: auto;
 	padding-top:300px;
 	transition: padding-top 2s ease-in-out;
+	-ms-transition: padding-top 2s ease-in-out;
 }
 #home-head-content{
 	width: 140px;
@@ -193,6 +199,7 @@ nav a{
 	height: 29px;
 	opacity: 0;
 	transition: opacity 2s ease-in-out;
+	-ms-transition: opacity 2s ease-in-out;
 }
 #home-motto:before, #home-motto:after{
 	width: 10px;
@@ -251,6 +258,7 @@ nav a{
 	box-shadow: 0 0 0 5px #f2f2f2;
 	-webkit-transition:all  0.4s ease-in-out;
     -moz-transition:all 0.4s ease-in-out;
+    -ms-transition:all 0.4s ease-in-out;
     transition:all 0.4s ease-in-out;
 }
 #about-title-cont p{
@@ -268,6 +276,7 @@ nav a{
 	top: 0px;
 	-webkit-transition:top  0.4s ease-in-out;
     -moz-transition:top 0.4s ease-in-out;
+    -ms-transition:top 0.4s ease-in-out;
     transition:top 0.4s ease-in-out;
 }
 #about-edu:hover>i,
@@ -293,6 +302,7 @@ nav a{
 	position: absolute;
 	-webkit-transition:color 0.4s ease-in-out;
     -moz-transition:color 0.4s ease-in-out;
+    -ms-transition:color 0.4s ease-in-out;
     transition:color 0.4s ease-in-out;
 }
 #about-inf p:hover{
@@ -349,6 +359,7 @@ nav a{
 	text-align: right;
 	color: #fff;
 	transition: width 1.2s ease-in-out;
+	-ms-transition: width 1.2s ease-in-out;
 	background-color: #43CD80;
 }
 #skill-info p{
@@ -372,7 +383,9 @@ nav a{
 	border: 5px solid #e2e2e2;
 	position: relative;
 	transition: 1s all;
+	-ms-transition: 1s all;
 	transform: scale(0);
+	-ms-transform: scale(0);
 	overflow: hidden;
 }
 
@@ -393,7 +406,9 @@ nav a{
 	margin: auto;  
 	background-size: 100%;
 	transition: box-shadow 1s;
+	-ms-transition: box-shadow 1s;
 	transition: opacity 1s;
+	-ms-transition: opacity 1s;
 	box-shadow:0 0 10px 1px #FA8072;
 }
 
@@ -427,6 +442,7 @@ nav a{
 	left: 55px;
 	-webkit-transition:top  0.5s ease-in-out;
     -moz-transition:top 0.5s ease-in-out;
+    -ms-transition:top 0.5s ease-in-out;
     transition:top 0.5s ease-in-out;
 }
 
@@ -442,6 +458,7 @@ nav a{
 	font-weight: bold;
 	font-size: 18px;
 	transition: 0.5s ease-in-out;
+	-ms-transition: 0.5s ease-in-out;
 
 }
 /* resume */
@@ -471,7 +488,8 @@ nav a{
 	background-color: #e1e1e1;
 	background: url(../images/slide.jpg)no-repeat center;
 	border-radius: 20px;
-	transition: 1s
+	transition: 1s;
+	-ms-transition: 1s;
 }
 .resume-box-info{
 	width: 50%;
