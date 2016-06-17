@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+<title>定时器setTimeout</title>
+<style>
+body,div,ul,li,p{margin:0;padding:0;}
+body{font:12px/1.5 Arial;}
+ul{list-style-type:none;}
+#nav,#nav ul,#nav ul li,#nav ul li a:hover,#nav .subnav,#nav .subnav p,#nav .subnav p span,#nav .subnav .arrow{background:url(images/nav0.png) no-repeat;}
+#nav{position:relative;width:910px;background-position:0 -36px;margin:10px auto;}
+#nav ul{height:36px;line-height:36px;margin-left:10px;padding-right:10px;overflow:hidden;background-position:right -72px;}
+#nav ul li{float:left;width:110px;margin-left:-2px;background-position:0 -108px;}
+#nav ul li a{font-size:14px;color:#fff;width:102px;display:block;text-align:center;text-decoration:none;margin:0 2px 0 4px;}
+#nav ul li a:hover{font-weight:700;background-position:-3px -144px;}
+#nav .subnav{display:none;position:absolute;top:41px;width:auto!important;white-space:nowrap;min-width:110px;height:27px;line-height:27px;background-position:0 -180px;}
+#nav .subnav p{margin-left:10px;padding-right:10px;background-position:right -234px;}
+#nav .subnav p span{display:block;color:#fff;background-repeat:repeat-x;background-position:0 -207px;}
+#nav .subnav p a{font-size:12px;display:inline;color:#fff;text-decoration:none;margin:0 5px;padding:0 2px;}
+#nav .subnav p a:hover{font-weight:400;background-image:none;border-bottom:2px solid;}
+#nav .subnav .arrow{position:absolute;top:-4px;display:block;width:11px;height:5px;background-position:0 -261px;}
+</style>
+
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li><a href="javascript:;">首页</a></li>
+        <li>
+            <a href="javascript:;">中超</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">超级比赛日</a>
+                        <a href="javascript:;">集锦</a>
+                        <a href="javascript:;">赛程</a>
+                        <a href="javascript:;">积分</a>
+                        <a href="javascript:;">射手</a>
+                        <a href="javascript:;">竞猜</a>
+                        <a href="javascript:;">主场</a>
+                        <a href="javascript:;">球队</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">中国足球</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">国足</a>
+                        <a href="javascript:;">女足</a>
+                        <a href="javascript:;">亚冠</a>
+                        <a href="javascript:;">足协杯</a>
+                        <a href="javascript:;">中甲</a>
+                        <a href="javascript:;">中国校园足球频道</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">欧洲杯</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">赛程</a>
+                        <a href="javascript:;">积分</a>
+                        <a href="javascript:;">射手</a>
+                        <a href="javascript:;">数据</a>
+                        <a href="javascript:;">集锦</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">篮球</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">NBA</a>
+                        <a href="javascript:;">CBA</a>
+                        <a href="javascript:;">CUBA</a>
+                        <a href="javascript:;">NCAA</a>
+                        <a href="javascript:;">中国男篮</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">电竞</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">英雄联盟</a>
+                        <a href="javascript:;">DOTA2</a>
+                        <a href="javascript:;">FIFA Online3</a>
+                        <a href="javascript:;">CS</a>
+                        <a href="javascript:;">移动电竞</a>
+                        <a href="javascript:;">暴雪电竞</a>
+                        <a href="javascript:;">WCG</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">主场</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">广州恒大</a>
+                        <a href="javascript:;">上海上港</a>
+                        <a href="javascript:;">河北华夏</a>
+                        <a href="javascript:;">江苏苏宁</a>
+                        <a href="javascript:;">北京国安</a>
+                        <a href="javascript:;">山东鲁能</a>
+                        <a href="javascript:;">河南建业</a>
+                        <a href="javascript:;">辽宁宏运</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">综合体育</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">乒乓球</a>
+                        <a href="javascript:;">羽毛球</a>
+                        <a href="javascript:;">跳水</a>
+                        <a href="javascript:;">摔跤</a>
+                        <a href="javascript:;">体操</a>
+                        <a href="javascript:;">举重</a>
+                        <a href="javascript:;">排球</a>
+                        <a href="javascript:;">玻璃球</a>
+                    </span>
+                </p>
+            </div>
+        </li>        
+    </ul>    
+</div>
+<script type="text/javascript">
+var get={
+  	byId:function(id){
+    	return document.getElementById(id);
+  	},
+  	byClass:function(oParent,sClass){
+    	if(oParent.getElementsByClass){
+      		retuen (oParent||document).getElementsByClass(sClass);
+    	}else{
+      		var aClass=[];
+      		var reClass=new  RegExp("(^| )"+sClass+"( |$)");
+      		var aElem=this.byTag(oParent,"*");
+      		for(var i=0;i<aElem.length;i++){
+        		if(reClass.test(aElem[i].className)){
+          			aClass.push(aElem[i]);
+        		}
+      		}
+      		return aClass;
+    	}
+  	},
+  	byTag:function(obj,elem){
+    	return (obj||document).getElementsByTagName(elem);
+ 	}
+}
+window.onload = function ()
+{
+	var oNav = get.byId("nav");
+	var aLi = get.byTag(oNav, "li");
+	var aSubNav = get.byClass(oNav,"subnav");
+	var oSubNav = oEm = timer = null;
+	var i = 0;
+	
+	for (i = 1; i < aLi.length; i++){
+		aLi[i].onmouseover = function (){
+			for (i = 0; i < aSubNav.length; i++){
+				aSubNav[i].style.display = "none";
+			}
+			oSubNav = get.byClass(this,"subnav" )[0];
+			oEm = get.byTag(this,"em")[0];
+			//显示该项下的子菜单
+			oSubNav.style.display = "block";
+			//判断显示区域
+			if(oNav.offsetWidth - this.offsetLeft > oSubNav.offsetWidth){
+				//如果在显示范围居左显示
+				oSubNav.style.left = this.offsetLeft + "px"
+			}else{
+				//超出显示范围居右显示
+				oSubNav.style.right = 0;
+			}	
+			//计算指标箭头显示位置
+			oEm.style.left =this.offsetLeft- oSubNav.offsetLeft + 50 + "px";
+			clearTimeout(timer);
+		};
+		
+		aLi[i].onmouseout = function (){
+			timer = setTimeout(function () {
+				oSubNav.style.display = "none"
+			},300)	
+		}
+	}
+};
+</script>
+</body>
+</html>
