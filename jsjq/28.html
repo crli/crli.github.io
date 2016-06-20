@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>数组操作</title>
+</head>
+<style type="text/css">
+  span{
+    display: inline-block;
+    height: 30px;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 30px;
+    background-color: red;
+    color: #fff;
+    margin: 1px 5px;}
+</style>
+<body>
+
+<input id="input" type="text" />
+<button id="lfIn">左入</button>
+<button id="rtIn">右入</button>
+<button id="lfOut">左出</button>
+<button id="rtOut">右出</button>
+<button id="concat">复制</button>
+<button id="reverse">复制还原</button>
+<button id="splice">替换2,3项</button>
+<div id="arr">
+</div>
+<script type="text/javascript">
+var num=index=0;
+  var $=function(id){
+    return document.getElementById(id)
+  };
+  var arr=[];
+  function inHtml(){
+    $("arr").innerHTML="";
+    for (var key in arr){
+      $("arr").innerHTML+='<span>'+arr[key]+'</span>';
+    }
+  }
+ 
+ function text(){ 
+    var reg=/^\d+$/;
+    var text=$("input").value;
+    return reg.exec(text)
+  }
+
+  $("lfIn").onclick=function(){
+    if(text()!=null){
+      arr.unshift(text());
+      num++;
+      index=num;
+      inHtml();
+    }else{
+       alert("请输入数字");
+    }
+    
+  }
+  $("rtIn").onclick=function(){
+    if(text()!=null){
+      arr.push(text());
+      num++;
+      index=num;
+      inHtml();
+    }else{
+       alert("请输入数字");
+    } 
+    
+  }
+  $("lfOut").onclick=function(){
+    alert(arr.shift(text()));
+    num--;
+    index=num;
+    inHtml()
+  }
+  $("rtOut").onclick=function(){
+    alert(arr.pop(text()));
+    num--;
+    index=num;
+    inHtml()
+  }
+  $("concat").onclick=function(){
+    arr=arr.concat(arr);
+    num*=2;
+    inHtml()
+  }
+  $("reverse").onclick=function(){ 
+    if(num==index){
+      return
+    }else{
+      num/=2;
+      arr.length=num;
+      inHtml()
+    }  
+  }
+  $("splice").onclick=function(){
+    arr.splice(1,2,"100","200")
+    inHtml()
+  }
+</script>
+</body>
+</html>

@@ -11,7 +11,9 @@
 .minute{width: 100px;height: 8px;background: #aaf;top: 146px;}
 .second{width: 120px;height: 4px;background: #000;top: 148px;}
 span{position: absolute;font-size: 30px;display: inline-block;width: 215px;height: 215px;border-radius: 50%; left:40px;top: 40px}
-span b{transform: rotate(-45deg);-ms-transform: rotate(-45deg);display:inline-block;position: absolute;text-shadow:1px 2px 8px #000;}
+span b{transform: rotate(-45deg);-ms-transform: rotate(-45deg);display:inline-block;position: absolute;text-shadow:1px 2px 8px #000;-ms-transition:all .8s ease-in;transition:all .8s ease-in;}
+
+.animal{-ms-transform:rotate(315deg);transform: rotate(315deg);}
 </style>
 </head>
 <body>
@@ -25,11 +27,13 @@ span b{transform: rotate(-45deg);-ms-transform: rotate(-45deg);display:inline-bl
   var hpointer = document.getElementsByTagName('div')[1], 
       mpointer = document.getElementsByTagName('div')[2],
       spointer = document.getElementsByTagName('div')[3],
-      oSpan=document.getElementsByTagName('span');
-  for(var i=0;i<oSpan.length;i++){
-    oSpan[i].style.transform = 'rotate('+(i*30+45)+'deg)';
-    oSpan[i].style.msTransform = 'rotate('+(i*30+45)+'deg)';
+      aSpan=document.getElementsByTagName('span');
+      aB=document.getElementsByTagName('b');
+  for(var i=0;i<aSpan.length;i++){
+    aSpan[i].style.transform = 'rotate('+(i*30+45)+'deg)';
+    aSpan[i].style.msTransform = 'rotate('+(i*30+45)+'deg)';
   }
+  var n=0,sum=0,j=0;
   function drawClock(){
     var now = new Date(),
         h = now.getHours() % 12,
@@ -41,6 +45,21 @@ span b{transform: rotate(-45deg);-ms-transform: rotate(-45deg);display:inline-bl
     mpointer.style.msTransform = 'rotate('+(m*6-90)+'deg)';  
     spointer.style.transform = 'rotate('+(s*6-90)+'deg)';
     spointer.style.msTransform = 'rotate('+(s*6-90)+'deg)';
+    // 12点开始执行
+    if(s*6==sum){
+      aB[n].className="animal";
+      n++;
+      sum+=30;
+      if(sum==360){
+        sum=0;
+        n=0;
+      }
+    }else{
+      for(j=0;j<aB.length;j++){
+        aB[j].className="";
+      }
+    }
+    
   }
   drawClock();
   window.setInterval(drawClock, 1000);
