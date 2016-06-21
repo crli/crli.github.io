@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>可视化图表排序</title>
+</head>
+<style type="text/css">
+  ul{display: flex;width: 98%;height: 550px;justify-content: flex-start;align-items: flex-end;margin: 10px auto;padding: 10px;border: 2px solid #000;border-radius: 5px;box-shadow: 0px 0px 5px #999999;list-style: none;}
+  li{color:#FFF;text-align: center;background-color: #ff4545;border-radius: 5px;border: 1px solid #999;margin: 0 1px;width: 23px}
+
+</style>
+<body>
+  <input type="text">
+  <button id="add">添加数据(10-100的数)数据最多50个</button>
+  <button id="random">随机生成50个10-100的数的表格</button>
+  <button id="sortdata">排序</button>
+  <input type="text" value="25ms" style="width: 50px"> 单击单个表格可删除数据
+  <ul>
+  </ul>
+<script type="text/javascript">
+  	var oRand=document.getElementById("random"),
+		oSort=document.getElementById("sortdata"),
+		add=document.getElementById("add"),
+		oInput=document.getElementsByTagName('input')[0],
+		oSpped=document.getElementsByTagName('input')[1],
+		oUl=document.getElementsByTagName('ul')[0],
+		n=j=len=0,
+		k=1,
+		aLi=timer=null,
+		flag=true;
+	function addEvent(elem,type,hander){
+		if(elem.addEventListener){
+			elem.addEventListener(type,hander,false)
+		}else if(elem.attachEvent){
+			elem.attachEvent("on"+type,hander)
+		}else{
+			elem["on"+type]=hander
+		}
+	}    
+	var data=[];
+    
+/**
+ * [for description]随机生成数据放到data
+ */
+	function randomData(){
+		for(i=0;i<50;i++){
+	  		data[i]=Math.floor(Math.random()*91+10)
+		}
+		updata();
+	}
+/**
+ * 渲染数据
+ */
+	function updata(){
+		var oHtml="";
+		for(var item in data){
+		  	oHtml+='<li style="height: '+data[item]*4+'px"title="'+data[item]+'px"></li>';
+		}
+		oUl.innerHTML=oHtml;
+	}
+
+	function upcolor(n){
+		aLi=document.getElementsByTagName("li");
+		aLi[n+1].style.backgroundColor="blue";
+	}
+
+/**
+ * 删除被选li数据
+ */
+
+	function del(target){
+		if(flag){
+	  		aLi=document.getElementsByTagName("li");
+	  			for(var i=0;i<aLi.length;i++){
+	    			if(aLi[i]==target){
+	      			data.splice(i,1)
+	    		}
+	  		}
+	  		updata()
+	  	}else{
+	  		return
+	  	}
+	}
+
+
+/**
+ * 添加数据
+ */
+
+	function addTo(){
+	  	if(data.length<50){
+	    	if(oInput.value>100||oInput.value<10){
+	      		alert("请输入10-100之间整数")
+	      		oInput.value='';
+	      		return
+	    	}else{
+	      		data.unshift(oInput.value)
+	      		updata();
+	    	}
+	  	}else{
+	    	alert("数够了");
+	    	return
+	  	}
+	}
+
+	function oChange(){
+	  	oInput.value = oInput.value.replace(/[^\d]/,"");
+	}
+/**
+ * 排序运算
+ */
+	function sort(){
+		flag=false;
+		var spped=oSpped.value.split("ms")[0];
+		add.disabled=true;
+		oSort.disabled=true;
+		oRand.disabled=true;
+		clearInterval(timer);
+		len = data.length;
+		timer = setInterval(run,spped);
+		function run() {
+			if (k < len) {
+				if (n < len-k) {
+					if (data[n] > data[n+1]) {
+						j = data[n];
+						data[n] = data[n+1];
+						data[n+1] = j;
+						updata();
+						upcolor(n);
+					}
+					n++;
+				} else {
+					k++;
+					n=0;
+				}
+			} else {
+				clearInterval(timer);
+				k=0;
+				oSort.disabled=false;
+				oRand.disabled=false;
+				add.disabled=false;
+				flag=true;
+				return;
+			}		
+		}
+	}
+/**
+ * 事件绑定
+ */
+	addEvent(oRand,"click",randomData);
+	addEvent(oSort,"click",sort);
+	addEvent(oInput,"keyup",oChange)
+	addEvent(add,"click",addTo);
+	addEvent(oUl,"click",function(e){
+    	var e=e||window.event;
+    	var target=e.target||e.srcElment;
+    	if(target.nodeName==="LI"){
+      		del(target)
+    	}
+  	});
+</script>
+</body>
+</html>
