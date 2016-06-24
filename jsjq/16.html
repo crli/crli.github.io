@@ -5,14 +5,14 @@
   <title>用户登录</title>
   <style>
    *{margin:0;padding:0;}
-     .head{font-size:12px;padding:6px 0 0 10px;}
-     #loginBox{width:500px;height:300px;background:#eee;border:1px solid #ccc;position:absolute;left:50%;top:50%;margin-left:-250px;margin-top:-150px;}
-     #loginBox p{height:20px;border-bottom:1px solid #ccc;font-size:12px;padding:6px 0 0 5px;font-weight:bold;}
-     #close{position:absolute;right:10px;top:6px;cursor: pointer;}
-     #mask{display: none;width: 100%;height: 100%;position: fixed;top: 0px;left: 0px;background-color:#000;opacity: 0.3;filter:alpha(opacity=30);}
+     .head{font-size:12px;padding:6px 0 0 10px;background-color: #e1e1e1}
+     #loginBox{width:500px;height:300px;position:fixed;z-index:2000;background:#eee;border:1px solid #ccc;}
+     #loginBox p{height:20px;border-bottom:1px solid #ccc;font-size:12px;padding:6px 0 0 5px;font-weight:bold;color: #000}
+     #close{cursor: pointer;position: absolute;right: 0;top: 0;font-size: 20px}
+     #mask{background:rgba(100,100,100,0.15);position:fixed;z-index:1000;top:0;}
   </style>
 </head>
-<body>
+<body style="min-height: 2000px">
   <div class="head">亲，您好！<input type="button" value="登 录" id="login"></div>
   <div id="mask">
     <div id="loginBox">
@@ -20,40 +20,64 @@
       <span id="close" type="button" value="关闭">X</span>
     </div>
   </div>
-  <script>
-      window.onload=function(){
-        var loginbtn=document.getElementById('login'),
-            mask=document.getElementById("mask"),
-            loginBox=document.getElementById('loginBox'),
-            close=document.getElementById('close');
-        function addEvent(ele,type,hander){
-            if(ele.addEventListener){
-                ele.addEventListener(type,hander,false);
-            }else if(ele.attachEvent){
-                ele.attachEvent('on'+type,hander);   
-            }else{
-                ele['on'+type]=hander;   
-            }
-        };
-        function showMask(){
-          loginBox.style.display='block';
-           mask.style.display='block'; 
-        };
-        function hideMask(){
-          mask.style.display='none';
-        };
-        function hidebox(){
-          loginBox.style.display="none";
-        }
-        function hid(e){
-          if(e.target==e.currentTarget){
-            mask.style.display='none';
-          }
-        }
-        addEvent(loginbtn,'click',showMask);
-        addEvent(close,'click',hidebox);  
-        addEvent(mask,'click',hid);
-    }
-  </script>
+<script>
+window.onload=function(){      
+  autoCenter(loginBox);
+  fillToBody(mask);
+}
+var loginbtn=document.getElementById('login'),
+    mask=document.getElementById("mask"),
+    loginBox=document.getElementById('loginBox'),
+    close=document.getElementById('close'); 
+
+function addEvent(ele,type,hander){
+  if(ele.addEventListener){
+      ele.addEventListener(type,hander,false);
+  }else if(ele.attachEvent){
+      ele.attachEvent('on'+type,hander);   
+  }else{
+      ele['on'+type]=hander;   
+  }
+}
+
+function showMask(){
+  loginBox.style.display='block';
+   mask.style.display='block'; 
+}
+
+function hideMask(){
+  mask.style.display='none';
+}
+
+function hidebox(){
+  loginBox.style.display="none";
+}
+//单击关闭按钮不会关闭mask
+function hid(e){
+  if(e.target==e.currentTarget){
+    mask.style.display='none';
+  }
+}
+
+function autoCenter(ele) {
+    var bodyW = document.documentElement.clientWidth;
+    var bodyH = document.documentElement.clientHeight;
+    console.log(bodyW);
+    console.log(bodyH);
+    var eleW = ele.offsetWidth;
+    var eleH = ele.offsetHeight;
+    ele.style.left = (bodyW - eleW) / 2 + "px";
+    ele.style.top = (bodyH - eleH) / 2 + "px";
+}
+
+function fillToBody(ele) {
+    ele.style.width = document.documentElement.clientWidth + "px";
+    ele.style.height = document.documentElement.clientHeight + "px";
+}
+
+addEvent(loginbtn,'click',showMask);
+addEvent(close,'click',hidebox);  
+addEvent(mask,'click',hid);
+</script>
 </body>
 </html>
