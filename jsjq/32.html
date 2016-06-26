@@ -62,13 +62,17 @@ var BFindex = 0;//广度优先遍历自增标识符
  * @param  {[type]} nodeList  [description]节点列表
  *@param  {[type]} foundText [description]查找的节点
  */
-function traverseRender(nodeList,foundText){
+function traverseRender(nodeList,foundText,index){
   lock=true;
   for(var i=0;i<nodeList.length;i++){
     nodeList[i].className="default"
   }
   var j=0,len=nodeList.length;
-  if(foundText.length>0){
+  if((index==2||index==3)&&(foundText=="")){    
+    alert("请输入查找节点名");
+    lock = false;
+    return;
+  }else{
     if(nodeList[j].firstChild.nodeValue.trim()==foundText){
       nodeList[j++].className="found";
     }else{
@@ -93,9 +97,6 @@ function traverseRender(nodeList,foundText){
         clearInterval(timer);
       }
     },500) 
-  }else{
-    alert("请输入查找节点名")
-    lock = false;
   }
 }
 
@@ -141,7 +142,7 @@ function traverse(index){
             traverseBF(rootNode,nodeList);
     break;
   }
-  setTimeout(traverseRender(nodeList,foundText),500);
+  setTimeout(traverseRender(nodeList,foundText,index),500);
 }
 
 /**
