@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>界面交互拖拽</title>
+</head>
+<style type="text/css">
+*{margin: 0;padding: 0}
+.cl{zoom:1;}
+.cl::after{content: ""; display: block;clear: both;}
+#wrap{width: 1000px;height: 600px; margin: 20px auto;border: 1px solid #000}
+#item{position: relative;height: 100%}
+#item-lf,#item-rt{width: 100px;height: 300px;border: 1px solid #000;float: left;margin: 100px}
+a{position: absolute; display: block;width: 100px;height: 50px;box-sizing: border-box;border: 1px solid #fff;background: #000}
+.hover{opacity:0.3;filter: alpha(opacity=30)}
+</style>
+<body>
+    <div id="wrap">
+        <div id="item" class=" cl">
+            <div id="item-lf">
+                <a></a><a></a><a></a>
+            </div>
+            <div id="item-rt">
+                <a></a><a></a><a></a>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+var oItem=document.getElementById('item'),
+    itemLf=document.getElementById("item-lf"),
+    itemRt=document.getElementById("item-rt"),
+    num=i=x=y=maxW=maxH=lf=tp=pXl=pXr=pYt=pYb=0,
+    flag=false;
+  
+function addEvent(elem,type,hander){
+    if(elem.addEventListener){
+        elem.addEventListener(type,hander,false)
+    }else if(elem.attachEvent){
+        elem.attachEvent("on"+type,hander)
+    }else{
+        elem["on"+type]=hander
+    }
+}  
+
+function delegateEvent(elem,tag,type,hander){
+    addEvent(elem, type, function(event){
+        var target = event.target || event.srcElement;
+        if(target.tagName.toLowerCase() == tag.toLowerCase()) {
+            hander.call(target, event);
+        }
+    });
+}
+
+function grag(e){
+    flag=true;
+    var event=e||window.event;
+    var target=event.target||event.srcElement;
+    x=event.clientX-target.offsetLeft-oItem.offsetLeft;
+    y=event.clientY-target.offsetTop-oItem.offsetTop;
+    maxW=oItem.offsetWidth-target.offsetWidth;
+    maxH=oItem.offsetHeight-target.offsetHeight;
+    var oParent=target.parentNode;
+    var itemrt=itemRt.offsetLeft;
+    target.className="hover";
+    document.onmousemove=function(e){
+        var event=e||window.event;
+        if(flag){
+            oParent.removeChild(target);
+            oItem.appendChild(target);
+            flag=false;
+            return
+        }
+        
+        lf=event.clientX-oItem.offsetLeft-x;
+        tp=event.clientY-oItem.offsetTop-y;
+        if(lf>=maxW||lf<=0||tp>=maxH||tp<=0){
+            target.parentNode.removeChild(target);
+            oParent.appendChild(target);
+            if(oParent.id.indexOf("item-lf")!=-1){
+                target.style.left = 101 + "px";
+            }else if (oParent.id.indexOf("item-rt")!=-1){
+                target.style.left = itemrt+1+"px";
+            }
+            target.className="";
+            posT(oParent);
+            document.onmousemove=null;
+        }else{
+            target.style.left=lf+"px";
+            target.style.top=tp+"px";             
+        }
+    }
+    document.onmouseup=function(e){
+        document.onmousemove=null;
+        document.onmouseup=null;
+        var event=e||window.event;
+
+        target.parentNode.removeChild(target);
+        if(range(event.clientX, event.clientY, itemLf)){
+            itemLf.appendChild(target);
+            target.style.left = 101 + "px";
+            target.className="";
+            posT(itemLf);
+        }else if(range(event.clientX, event.clientY, itemRt)) {
+            itemRt.appendChild(target);
+            target.style.left = itemrt+1+"px";
+            target.className="";
+            posT(itemRt);
+        }else{
+            oParent.appendChild(target);
+            if (oParent.id.indexOf("item-lf")!=-1){
+                target.style.left = 101 + "px";
+            }else if(oParent.id.indexOf("item-rt")!=-1){
+                target.style.left = itemrt+1+"px";
+            }
+            target.className="";
+            posT(oParent);
+        }
+    }
+    return false;
+}
+/**
+ * 子元素高度定位
+ */
+function posT(oParent){
+    for(i=0;i<oParent.children.length;i++){
+        oParent.children[i].style.top=50*i+101+"px";
+    }
+}
+/**
+ * 鼠标范围检测
+ */
+function range(poX,poY,elem) {
+    pXl=elem.getBoundingClientRect().left+document.body.scrollLeft+document.documentElement.scrollLeft;
+    pXr=elem.getBoundingClientRect().left+document.body.scrollLeft+document.documentElement.scrollLeft+elem.offsetWidth;
+    pYt=elem.getBoundingClientRect().top+document.body.scrollTop+document.documentElement.scrollTop;
+    pYb=elem.getBoundingClientRect().top+document.body.scrollTop+document.documentElement.scrollTop+elem.offsetHeight;
+    return (poX>pXl&&poX<pXr&&poY>pYt&&poY<pYb)
+}
+
+function init(){
+    posT(itemLf);
+    posT(itemRt);
+}
+init()
+delegateEvent(itemLf,"a","mousedown",grag);
+delegateEvent(itemRt,"a","mousedown",grag);
+</script>
+</body>
+</html>
