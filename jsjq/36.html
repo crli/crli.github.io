@@ -44,7 +44,10 @@ ol {list-style: none;}
   box-sizing: border-box;
   background-color: red;
   z-index: 2;
-  transition: all .5s;
+  text-align: center;
+  transition: all .3s;
+  color: #fff;
+  font-size: 20px
 }
 /*.oColumn b {
   position: absolute;
@@ -84,6 +87,8 @@ span{position: absolute;top: 50px;left: 50px}
 </head>
 <body>
 <span>A S D W控制运动 身体还没有写</span>
+<span style="position: absolute;left: 50px;top: 200px;">第&nbsp;<b id="tip" style="color: red;font-weight: bold;"></b>&nbsp;关&nbsp;加油！！！</span>
+<span style="position: absolute;left: 50px;top: 250px;">时速&nbsp;<b id="kw" style="color: red">50</b>&nbsp;kw/h</span>
 <div class="content">
   <ol class="oRow" id="oRow">
   </ol>
@@ -95,8 +100,11 @@ span{position: absolute;top: 50px;left: 50px}
 var oRow = document.getElementById('oRow');
 var oColumn = document.getElementById('oColumn');
 var block = document.getElementById('block');
+var tip=document.getElementById('tip');
+var kwh=document.getElementById('kw');
 var timer=timer1=timer2=timer3=null;
-var lf=0,tp=0,index=0;
+var lf=0,tp=0,index=0,k=0,num=1,kw=50;
+var speed=300;
 var move = {
 /**
  * 移动动画
@@ -109,12 +117,14 @@ var move = {
         var timer=setInterval(function(){
           if(block.style.top==='30px'){
             clearInterval(timer);
+            alert("你输了");
+            creatBlock();
             return false
           } 
           change(tp,lf,d);
           block.style.top = (parseInt(block.style.top) - 30) +'px';
           
-        },200)  
+        },speed)  
         break;
       }
 
@@ -123,11 +133,13 @@ var move = {
         var timer1=setInterval(function(){
           if(block.style.left==='570px'){
             clearInterval(timer1);
+            alert("你输了");
+            creatBlock();
             return false
           }
           change(tp,lf,d);
           block.style.left = (parseInt(block.style.left) + 30) +'px';
-        },200)  
+        },speed)  
         break;
       }
 
@@ -136,11 +148,13 @@ var move = {
         var timer2=setInterval(function(){
           if(block.style.top==='600px'){
             clearInterval(timer2);
+            alert("你输了");
+            creatBlock();
             return false
           }
           change(tp,lf,d); 
           block.style.top = (parseInt(block.style.top) + 30) +'px';
-        },200)  
+        },speed)  
         break;
       }
 
@@ -149,11 +163,13 @@ var move = {
         var timer3=setInterval(function(){
           if(block.style.left==='0px'){
             clearInterval(timer3);
+            alert("你输了");
+            creatBlock();
             return false
           } 
           change(tp,lf,d);
           block.style.left = (parseInt(block.style.left) - 30) +'px';
-        },200) 
+        },speed) 
         break;
       }
     }
@@ -231,13 +247,22 @@ function init(){
       row[i].appendChild(div);
     }
   }
-
+  creatBlock();
+}
+function creatBlock() {
+  num=1;
+  kw=50;
+  speed=300;
+  k=0;
+  tip.innerHTML=num;
+  kwh.innerHTML=kw;
+  block.innerHTML=k;
+  speed=300;
   block.style.left = Math.ceil(Math.random()*19)*30+"px";
   block.style.top = Math.ceil(Math.random()*19)*30+"px";
-  block.style.transform = "rotateZ(0deg)";
+  block.style.transform = "rotateZ(0deg)"; 
   creat();
 }
-
 
 /**
  * 增加身体
@@ -265,7 +290,18 @@ function change(tp,lf,d){
 
     // // 身体动画
     // aBody();
-    
+    k++;
+    block.innerHTML=k;
+    if(k==4){
+      block.innerHTML=0;
+      speed-=50;
+      num++;
+      kw+=50;
+      tip.innerHTML=num;
+      kwh.innerHTML=kw;
+      k=0;
+      clear();  
+    }
     creat();
   } 
 }
@@ -276,7 +312,7 @@ function change(tp,lf,d){
 
 
 /**
- * 随机创建实物
+ * 随机创建食物
  */
 function creat(){
   var aDiv=oColumn.getElementsByTagName('div');
