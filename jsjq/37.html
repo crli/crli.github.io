@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 1px solid red;display: block; margin: 20px auto"></canvas>
+	<div id="control"style="width: 200px;height:30px;margin: 50px auto;background: #b1e1e1;text-align: center;line-height: 30px" >
+		<button>暂停</button>
+		<button>变背景色</button>
+	</div>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext("2d");
+	var aControl = document.getElementsByTagName('button');
+	var ball =[];
+	var flag = true;
+	var flagStyle = false;
+	window.onload = function(){
+		canvas.width = 800;
+		canvas.height = 500;	
+		render(context);
+		setInterval(function(){	 
+			draw(context);
+			if(flag){
+				update();
+			}	
+		},50)
+
+		canvas.addEventListener("mouseover",increment);
+		canvas.addEventListener("mouseout",reduce);
+		
+		function render(cxt) { 	
+			for(var i = 0;i <70; i++){
+				var R = Math.floor((Math.random()*255));
+				var B = Math.floor((Math.random()*255));
+				var G = Math.floor((Math.random()*255));
+				var pcor ="rgb("+R+","+G+","+B+")";
+				var pox = Math.random()*canvas.width;
+				var poy = Math.random()*canvas.height;
+				var por = Math.random()*30;
+				var vx = Math.pow(-1,parseInt(Math.random()*10))*3;
+				var vy = Math.pow(-1,parseInt(Math.random()*10))*4;
+				ball.push([pox,poy,por,vx,vy,3,pcor])		
+			}
+			// console.log(ball[0]);
+			
+		}
+
+
+		function draw(cxt){
+			cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height);
+			cxt.save();
+			if(flagStyle){
+				cxt.fillStyle = "black";
+			}else{
+				cxt.fillStyle = "#fff";
+			}			
+			cxt.fillRect(0,0,canvas.width,canvas.height);
+			cxt.restore();
+		 	for(var i = 0;i <70; i++){
+
+			 	cxt.beginPath();
+				cxt.arc(ball[i][0],ball[i][1],ball[i][2],0,2*Math.PI);
+				
+				cxt.shadowColor = "yellow";
+				cxt.shadowBlur = 20;
+				cxt.fillStyle = ball[i][6];
+				cxt.fill();
+			}
+		}
+
+		function update() {
+			for(var i = 0; i <70; i++){
+				ball[i][0]+=ball[i][3];
+				ball[i][1]+=ball[i][4];
+				// ball[i][4]+=ball[i][5];
+				// if(ball[i][5]>9){
+				// 	ball[i][4]-=ball[i][5];
+				// }
+				// if(ball[i][5]<4){
+				// 	ball[i][4]+=ball[i][5];
+				// }
+				if(ball[i][1]>=canvas.height-ball[i][2]){
+					ball[i][1]=canvas.height-ball[i][2];
+					ball[i][4]=-ball[i][4]
+				}
+				if(ball[i][0]<=ball[i][2]){
+					ball[i][0]=ball[i][2];
+					ball[i][3]=-ball[i][3]
+				}
+				if(ball[i][0]>=canvas.width-ball[i][2]){
+					ball[i][0]=canvas.width-ball[i][2];
+					ball[i][3]=-ball[i][3]
+				}
+				if(ball[i][1]<=ball[i][2]){
+					ball[i][1]=ball[i][2];
+					ball[i][4]=-ball[i][4]
+				}
+			}
+		}
+
+		function increment(evnet){
+			// var x = event.clientX - canvas.getBoundingClientRect().left;
+			// var y = event.clientY - canvas.getBoundingClientRect().top;
+			for(var i = 0; i <70; i++){		
+				ball[i][3]=Math.pow(-1,parseInt(Math.random()*10))*30;
+				ball[i][4]=Math.pow(-1,parseInt(Math.random()*10))*40;
+			}
+		}
+		function reduce(event){
+			for(var i = 0; i <70; i++){
+				ball[i][3]=Math.pow(-1,parseInt(Math.random()*10))*3;
+				ball[i][4]=Math.pow(-1,parseInt(Math.random()*10))*4;		
+			}
+		}
+
+		aControl[0].onclick = function(){
+			flag = flag == true ? false:true;
+			this.innerHTML = this.innerHTML == "暂停"?"继续":"暂停";
+		}
+		aControl[1].onclick = function(){
+			flagStyle = flagStyle == false ? true:false;
+			this.innerHTML = this.innerHTML == "变背景色"?"还原":"变背景色";
+		}
+
+	}
+</script>
+</html>
