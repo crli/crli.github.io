@@ -1,0 +1,22 @@
+CACHE MANIFEST
+#version 0.0.1
+
+CACHE:
+css/reset.css
+css/crli.css
+css/jquery.fullPage.css
+css/iconfont.woff
+js/jquery-1.8.3.min.js
+js/crli.js
+js/jquery.fullPage.min.js
+images/crli.png
+images/demo1.jpg
+images/demo2.jpg
+images/demo3.jpg
+images/demo4.jpg
+images/me11.jpg
+images/slide.jpg
+
+
+NETWORK:
+*

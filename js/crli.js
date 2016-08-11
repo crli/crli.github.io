@@ -1,4 +1,5 @@
 $(function(){
+
     $.ajax({
         type:"GET",
         url:"cr.html",
@@ -132,7 +133,12 @@ $("#contact-panel a:last").click(function(){
     return false;
 });
 
-
+window.onload = function(){
+    window.applicationCache.onupdateready = function(){
+        window.applicationCache.swapCache();
+        window.location.reload();
+    }
+}
 
    
 
