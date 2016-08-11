@@ -53,7 +53,7 @@ $(function(){
                 });
             }
             if(index==3){
-                var arr=[90,65,90,85,70,85,70];
+                var arr=[90,80,90,85,80,85,75];
                 for(var key in arr){
                     var color='#'+Math.floor(Math.random()*0xffffff).toString(16);
                     $(".proBar").eq(key).attr('style','width:'+arr[key]+'%').css('background-Color',color).html(arr[key]+'%'); 
@@ -133,12 +133,12 @@ $("#contact-panel a:last").click(function(){
     return false;
 });
 
-window.onload = function(){
-    window.applicationCache.onupdateready = function(){
-        window.applicationCache.swapCache();
-        window.location.reload();
+window.applicationCache.addEventListener('updateready',function(e){
+    if(window.applicationCache.status == window.applicationCache.UPDATEREADY){
+        window.applicationCache.swapCache();       
+        window.location.reload()
     }
-}
+},false)   
 
    
 
