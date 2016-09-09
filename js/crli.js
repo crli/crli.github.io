@@ -22,10 +22,11 @@ $(function(){
         scrollingSpeed: 400,
         anchors: ["page1","page2","page3","page4","page5","page6"],
         afterRender:function(){
+            $("#fp-nav").css({'display':'none'});
             $("#home-head").css({'padding-top':'120px'});
             $("#home-motto").css({'opacity':'1'});
             $("#home-motto").next().animate({'opacity':'1'},700);
-            $("#header").animate({'opacity':'0.9'},700,function(){
+            $("#header").animate({'opacity':'1'},700,function(){
                 $("#lining").fadeIn(450,function(){
                     $(this).next().fadeIn(450,function(){
                         $(this).next().fadeIn(450,function(){
@@ -41,7 +42,7 @@ $(function(){
         },
         afterLoad:function(anchorLink,index){
             if(index==1){
-              $("#header").animate({'opacity':'1'},400);
+              return
             }
             if(index==2){
                 $("#about-inf").find("p").each(function(){
@@ -53,7 +54,7 @@ $(function(){
                 });
             }
             if(index==3){
-                var arr=[90,80,90,85,80,85,75];
+                var arr=[90,85,90,85,80,85,75];
                 for(var key in arr){
                     var color='#'+Math.floor(Math.random()*0xffffff).toString(16);
                     $(".proBar").eq(key).attr('style','width:'+arr[key]+'%').css('background-Color',color).html(arr[key]+'%'); 
@@ -63,7 +64,7 @@ $(function(){
                 $(".demo-item").css({'transform':'scale(1)'});
                 $(".demo-item >a").hover(function(){
                   $(this).prev().prev().css('top',73);
-                  $(this).prev().css('top',60);
+                  $(this).prev().css('top',-60);
                 },function(){
                   $(this).prev().prev().css('top',1000);
                   $(this).prev().css('top',-2000);
@@ -80,17 +81,12 @@ $(function(){
                 $("#resume-box").css({'margin-top':'60px'});
             }
             if(index==6){
-                var word=$(".contact-tip").html().replace(/\_*$/,""),number=0;
+                var word="热爱前端、专注前端！",number=0;
                 $(".contact-tip").html("");
                 clearInterval(timer);
                 var timer=setInterval(t,150);
                 function t(){
-                    var current=word.substr(number,1);
-                    if(current=="<"){
-                        number=word.indexOf(">",number)+1;
-                    }else{
-                        number++
-                    }
+                    number++;
                     $(".contact-tip").html(word.substring(0,number)+(number&1?"_":" "));
                     if (number>= word.length) {
                         clearInterval(timer);
@@ -127,12 +123,8 @@ if (window.SIZE == 'S') {
         $("#contact-panel").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#contact-panel").css('top')));
     });
 };
-//底部提醒
-$("#contact-panel a:last").click(function(){
-    alert("正在努力建设中...");
-    return false;
-});
 
+//缓存
 window.applicationCache.addEventListener('updateready',function(e){
     if(window.applicationCache.status == window.applicationCache.UPDATEREADY){
         window.applicationCache.swapCache();       
