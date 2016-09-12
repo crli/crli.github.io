@@ -119,7 +119,8 @@ if (window.SIZE == 'S') {
         $("#skill-content").css('padding-top',($('.active').height()-$("#skill-content").height())/6);
         $("#demo-content").css('padding-top',($('.active').height()-$("#demo-content").height())/6);
         $("#resume-content").css('padding-top',($('.active').height()-$("#resume-content").height())/6);
-        $("#contact-content").css('padding-top',($('.active').height()-$("#contact-content").height())/12)
+        $("#contact-content").css('padding-top',($('.active').height()-$("#contact-content").height())/12);
+        $("#downpdf").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#downpdf").css('top')));
         $("#contact-panel").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#contact-panel").css('top')));
     });
 };
