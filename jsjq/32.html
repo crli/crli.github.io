@@ -1,166 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>多叉树遍历</title>
-<style type="text/css">
-  html, body {width: 80%;height: 100%;text-align: center;}
-  button {padding: 5px; margin:20px 5px;}
-  div {float: left; padding: 10px; margin: 10px;border: 1px solid #000;background-color: #fff;color: #000;}
-  .default{background-color: #fff;color: black;}
-  .active {background-color: blue;color: #fff;}
-  .found {background-color: red;color: #fff;}
-</style>
+    <meta charset="UTF-8">
+    <title>多叉树遍历</title>
+    <style type="text/css">
+        html, body {width: 80%;height: 100%;text-align: center;}
+        button {padding: 5px; margin:20px 5px;}
+        div {float: left; padding: 10px; margin: 10px;border: 1px solid #000;background-color: #fff;color: #000;}
+        .default{background-color: #fff;color: black;}
+        .active {background-color: blue;color: #fff;}
+        .found {background-color: red;color: #fff;}
+    </style>
 </head>
 <body>
-  <button>深度优先遍历</button>
-  <button>广度优先遍历</button>
-  <input />
-  <button>深度优先搜索</button>
-  <button>广度优先搜索</button>
-  <section>
-    <div id="root">root
-        <div>1
-          <div>1.1
-            <div>1.1.1</div>
-            <div>1.1.2</div>
-            <div>1.1.3</div>
-            <div>1.1.4</div>
-          </div>
-          <div>1.2</div>
-          <div>
-            <div>1.3.1</div>
-            <div>1.3.2</div>
-          </div>
-        </div>
-        <div>2
-          <div>2.1
-            <div>2.2</div>
-            <div>2.1.2</div>
-            <div>2.1.3</div>
-          </div>
-          <div>2.2
-            <div>2.2.1
-              <div>2.2.1.1</div>
+    <button>深度优先遍历</button>
+    <button>广度优先遍历</button>
+    <input value="2.2" />
+    <button>深度优先搜索</button>
+    <button>广度优先搜索</button>
+    <section>
+        <div id="root">root
+            <div>1
+                <div>1.1
+                    <div>1.1.1</div>
+                    <div>1.1.2</div>
+                    <div>1.1.3</div>
+                    <div>1.1.4</div>
+                </div>
+                <div>1.2</div>
+                <div>1.3
+                    <div>1.3.1</div>
+                    <div>1.3.2</div>
+                </div>
             </div>
-            <div>2.2.2</div>
-          </div>
+            <div>2
+                <div>2.1
+                    <div>2.2</div>
+                    <div>2.1.2</div>
+                    <div>2.1.3</div>
+                </div>
+                <div>2.2
+                    <div>2.2.1
+                        <div>2.2.1.1</div>
+                    </div>
+                    <div>2.2.2</div>
+                </div>
+            </div>
+            <div>3</div>
         </div>
-        <div>3</div>
-    </div>
-  </section>
+    </section>
 
 <script type="text/javascript">
-var timer = null;
-var oBtns = document.getElementsByTagName("button");
-var rootNode = document.getElementById("root");
-var lock = false;
-var BFindex = 0;//广度优先遍历自增标识符
+    var timer = null,
+        aBtn = document.getElementsByTagName("button"),
+        rootNode = document.getElementById("root"),
+        lock = false,
+        BFindex = 0;//广度优先遍历自增标识符
 
 /**
- * 渲染动画，有文本传入则可执行搜索
- * @param  {[type]} nodeList  [description]节点列表
- *@param  {[type]} foundText [description]查找的节点
- */
+* 渲染动画，有文本传入则可执行搜索
+* @param  {[type]} nodeList  [description]节点列表
+* @param  {[type]} foundText [description]查找的节点
+*/
 function traverseRender(nodeList,foundText,index){
-  lock=true;
-  for(var i=0;i<nodeList.length;i++){
-    nodeList[i].className="default"
-  }
-  var j=0,len=nodeList.length;
-  if((index==2||index==3)&&(foundText=="")){    
-    alert("请输入查找节点名");
-    lock = false;
-    return;
-  }else{
-    if(nodeList[j].firstChild.nodeValue.trim()==foundText){
-      nodeList[j++].className="found";
-    }else{
-      nodeList[j++].className="active";
+    lock=true;
+    for(var i=0;i<nodeList.length;i++){
+        nodeList[i].className="default"
     }
-    
-    timer=setInterval(function(){
-      if(j<len){
-        if(nodeList[j-1].className!="found"){
-          nodeList[j-1].className="default"
-        }
-        if(nodeList[j].firstChild.nodeValue.trim()==foundText){
-          nodeList[j++].className="found";
-        }else{
-          nodeList[j++].className="active";
-        }
-      }else{
-        if( nodeList[j-1].className!="found"){
-           nodeList[j-1].className="default";
-        }   
+    var j=0,len=nodeList.length;
+    if((index==2||index==3)&&(foundText=="")){    
+        alert("请输入查找节点名");
         lock = false;
-        clearInterval(timer);
-      }
-    },500) 
-  }
-}
-
-/**
- * 深度优先遍历
- */
-function traverseDFS(rootNode,nodeList){
-  if(rootNode){
-    nodeList.push(rootNode);
-    for(var i=0;i<rootNode.children.length;i++){
-      traverseDFS(rootNode.children[i],nodeList)
+        return;
+    }else if(nodeList[j].firstChild.nodeValue.trim()==foundText){
+        nodeList[j++].className="found";
+    }else{
+        nodeList[j++].className="active";
     }
-  }
-}
-/**
- * 广度优先遍历
- */
-function traverseBF(rootNode,nodeList){
-  if(rootNode){
-    nodeList.push(rootNode);
-    traverseBF(rootNode.nextElementSibling,nodeList);
-    rootNode=nodeList[BFindex++];
-    traverseBF(rootNode.firstElementChild,nodeList);
-  }
-}
-/**
- * [traverse description]函数选择，参数选择，开始调用函数
- * @param  {[type]} index [description]按钮下标
- */
-function traverse(index){
-  var nodeList=[];
-  switch (index){
-    case 0: traverseDFS(rootNode,nodeList);
-    break;
-    case 1: BFindex=0;
-            traverseBF(rootNode,nodeList);
-    break;
-    case 2: var foundText=document.getElementsByTagName("input")[0].value;
-            traverseDFS(rootNode,nodeList);
-    break;
-    case 3: BFindex=0;
-            var foundText=document.getElementsByTagName("input")[0].value;
-            traverseBF(rootNode,nodeList);
-    break;
-  }
-  setTimeout(traverseRender(nodeList,foundText,index),500);
+    timer=setInterval(function(){
+        if(j<len){
+            if(nodeList[j-1].className!="found"){
+                nodeList[j-1].className="default"
+            }
+            if(nodeList[j].firstChild.nodeValue.trim()==foundText){
+                nodeList[j++].className="found";
+            }else{
+                nodeList[j++].className="active";
+            }
+        }else{
+            if( nodeList[j-1].className!="found"){
+                nodeList[j-1].className="default";
+            }   
+            lock = false;
+            clearInterval(timer);
+        }
+    },500) 
 }
 
 /**
- * [init description]绑定事件
- * 遍历阶段单击无效
- */
-function init(){
-  for(var i=0;i<oBtns.length;i++){
-    (function(i){
-      oBtns[i].onclick=function(){
-        if(lock){
-          alert("正在遍历中")
-        }else{
-          traverse(i)
+* 深度优先遍历
+*/
+function traverseDFS(rootNode,nodeList){
+    if(rootNode){
+        nodeList.push(rootNode);
+        for(var i=0;i<rootNode.children.length;i++){
+            traverseDFS(rootNode.children[i],nodeList)
         }
-      }
-    })(i)
-  }
+    }
+}
+/**
+* 广度优先遍历
+*/
+function traverseBF(rootNode,nodeList){
+    if(rootNode){
+        nodeList.push(rootNode);
+        traverseBF(rootNode.nextElementSibling,nodeList);
+        rootNode=nodeList[BFindex++];
+        traverseBF(rootNode.firstElementChild,nodeList);
+    }
+}
+/**
+* [traverse description]函数选择，参数选择，开始调用函数
+* @param  {[type]} index [description]按钮下标
+*/
+function traverse(index){
+    var nodeList=[];
+    switch (index){
+        case 0: traverseDFS(rootNode,nodeList);
+        break;
+        case 1: BFindex=0;
+        traverseBF(rootNode,nodeList);
+        break;
+        case 2: var foundText=document.getElementsByTagName("input")[0].value;
+        traverseDFS(rootNode,nodeList);
+        break;
+        case 3: BFindex=0;
+        var foundText=document.getElementsByTagName("input")[0].value;
+        traverseBF(rootNode,nodeList);
+        break;
+    }
+    setTimeout(traverseRender(nodeList,foundText,index),500);
+}
+
+/**
+* [init description]绑定事件
+* 遍历阶段单击无效
+*/
+function init(){
+    for(var i=0;i<aBtn.length;i++){
+        (function(i){
+            aBtn[i].onclick=function(){
+                if(lock){
+                    alert("正在遍历中")
+                }else{
+                    traverse(i)
+                }
+            }
+        })(i)
+    }
 }
 
 init()

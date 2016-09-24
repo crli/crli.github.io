@@ -10,25 +10,15 @@ ul{list-style: none;}
 a {color: #333;text-decoration: none;}
 a:hover {color: #ff0000;}
 #banner {width: 399px;border: 5px solid #ff8888;border-radius: 15px;margin: 50px auto 0;}
-#bannerBox {height: 144px;width: 335px;margin-left: 25px;margin-top: 10px;overflow: hidden;/*注意*/}
-#banner ul li {height: 24px;}
-#banner ul li a {width: 180px;float: left;display: block;text-indent: 15px;height: 24px;overflow: hidden;/*注意*/}
+#bannerBox {width: 335px;margin-left: 25px;margin-top: 10px;overflow: hidden;/*注意*/}
+#banner ul li a {width: 200px;float: left;display: block;text-indent: 15px;height: 24px;overflow: hidden;/*注意*/}
 #banner ul li span {float: right;color: #999;}
 </style>
 </head>
 <body>
 <div  id="banner"> 
 	<div  id="bannerBox">
-	    <ul id="con1">
-	        <li><a href="#">元旦：1月1日至3日放假三天。</a><span>2016-0-0</span></li>
-	        <li><a href="#">春节：2月2日至8日放假7天。</a><span>2016-0-0</span></li>
-	        <li><a href="#">清明节：4月3日至5日放假3天。</a><span>2016-0-0</span></li>
-	        <li><a href="#">劳动节：4月30日至5月2日放假3天。</a><span>2016-0-0</span></li>
-	        <li><a href="#">端午节：6月4日至6日放假3天。</a><span>2016-0-0</span></li>
-	        <li><a href="#">小暑：7月7日小暑。不放假。</a><span>2016-0-0</span></li>
-	        <li><a href="#">七夕节：8月6日七夕节。不放假。</a><span>2016-0-0</span></li>
-	        <li><a href="#">中秋节：9月10日至12日放假3天。</a><span>2016-0-0</span></li>
-	        <li><a href="#">国庆节：10月1日至7日放假7天。</a><span>2016-0-0</span></li>
+	    <ul id="con1">	       
 	    </ul>
 	    <ul id="con2">
 	    </ul>
@@ -36,41 +26,65 @@ a:hover {color: #ff0000;}
 </div>
 
 <script type="text/javascript">
-var area=document.getElementById('bannerBox'),
-	con1=document.getElementById('con1'),
-	con2=document.getElementById('con2'),
-	scrollTop=0,
-	speed=50,
-	liHeight=24,
-	delay=350,
-	time=null,
-	myScrolla=null;
-con2.innerHTML=con1.innerHTML;	
+var json = [{"jname":"元旦：1月1日至3日放假三天。","jtime":"2016-0-0"},
+			{"jname":"春节：2月2日至8日放假7天。","jtime":"2016-0-0"},
+			{"jname":"清明节：4月3日至5日放假3天。","jtime":"2016-0-0"},
+			{"jname":"劳动节：4月30日至5月2日放假3天。","jtime":"2016-0-0"},
+			{"jname":"端午节：6月4日至6日放假3天。","jtime":"2016-0-0"},
+			{"jname":"小暑：7月7日小暑。不放假。","jtime":"2016-0-0"},
+			{"jname":"七夕节：8月6日七夕节。不放假。","jtime":"2016-0-0"},
+			{"jname":"中秋节：9月10日至12日放假3天。","jtime":"2016-0-0"},
+			{"jname":"国庆节：10月1日至7日放假7天。","jtime":"2016-0-0"}];
+
+var area = document.getElementById('bannerBox'),
+	con1 = document.getElementById('con1'),
+	con2 = document.getElementById('con2'),
+	time = null,
+	myScrolla = null;
+
+var dValue = {
+	speed : 50,
+	liHeight : 24,
+	delay : 350,		
+	n : 6 
+};
+	
+function Render() {
+ 	for(var i = 0,html = "",num = json.length; i<num ;i++){
+ 		html += '<li style="height:'+dValue.liHeight+'px"><a href="#">'+json[i].jname+'</a><span>'+json[i].jtime+'</span></li>'
+ 	}
+ 	area.style.height = dValue.n*dValue.liHeight +"px";
+ 	con2.innerHTML = con1.innerHTML = html;
+}
+
 function move(){
  	area.scrollTop++;
- 	time=setInterval('scrollup()',speed);
- }
- function scrollup() {
- 	
- 	if(area.scrollTop%liHeight==0){
- 		clearInterval(time);
- 		myScrolla=setTimeout('move()',delay);
- 	}else{
- 		area.scrollTop++;
- 		if(area.scrollTop>=con1.offsetHeight){
- 			area.scrollTop=0;
- 		}
- 	}
- }
- setTimeout('move()',delay);
- area.onmouseover=function(){
- 	clearInterval(time);
- 	clearTimeout(myScrolla);
- }
- area.onmouseout=function(){
- 	clearInterval(time);
- 	myScrolla=setTimeout('move()',delay);
- }
+ 	time = setInterval(scrollup,dValue.speed);
+}
+function scrollup() {
+	if(area.scrollTop % dValue.liHeight == 0){
+		clearInterval(time);
+		myScrolla = setTimeout(move,dValue.delay);
+	}else{
+		area.scrollTop ++;
+		if(area.scrollTop >= con1.offsetHeight){
+			area.scrollTop = 0;
+		}
+	}
+}
+window.onload = function () {
+	Render();
+	setTimeout(move,dValue.delay);
+}
+
+area.onmouseover = function(){
+	clearInterval(time);
+	clearTimeout(myScrolla);
+}
+area.onmouseout = function(){
+	clearInterval(time);
+	myScrolla = setTimeout(move,dValue.delay);
+}
  </script>
 </body>
 </html>

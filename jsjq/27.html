@@ -27,6 +27,8 @@ ul{list-style: none;}
 .back{left: 0;top: 0;}
 .forward{right: 0;top: 0;}
 #itemList li .activeImg{border: 2px solid red}
+.block{display: block !important}
+.none{display: none !important}
 </style>
 <body>
 	<div id="wrap">
@@ -86,10 +88,7 @@ for(var i=0;i<aLi.length;i++){
 	(function(i){
 		i.onmouseover=function(){
 			var activeImg=document.querySelector('.activeImg');
-			if(activeImg==null){
-				this.className="activeImg";
-				maskImg.src=this.src;
-			}else if(activeImg!=this){
+			if(activeImg!=this){
 				activeImg.removeAttribute("class");
 				this.className="activeImg";
 				maskImg.src=this.src;
@@ -145,17 +144,17 @@ function maskMove(event){
 }
 
 function maskOver(){
-	oMask.style.display="block";
-	oMaskBig.style.display="block";
+	oMask.className="block";
+	oMaskBig.className="block";
 	oBigImg.src=maskImg.src;
 	oBigImg.onload = function(){
-		oLoad.style.display = 'none';
-		this.style.display = 'block';
+		oLoad.className = 'none';
+		this.className = 'block';
 	}
 }
 function maskOut(){
-	oMask.style.display = 'none';
-	oMaskBig.style.display="none";
+	oMask.className = 'none';
+	oMaskBig.className="none";
 }
 addEvent(aA[0],"click",backChange);
 addEvent(aA[1],"click",forwordChange);

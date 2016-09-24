@@ -29,76 +29,86 @@
 <div id="arr">
 </div>
 <script type="text/javascript">
-var num=index=0;
-  var $=function(id){
-    return document.getElementById(id)
-  };
-  var arr=[];
-  function inHtml(){
-    $("arr").innerHTML="";
-    for (var key in arr){
-      $("arr").innerHTML+='<span>'+arr[key]+'</span>';
+    var num = 0,
+        index = 0,
+        txt = null;
+    var $ = function(id){
+        return document.getElementById(id)
+    };
+    var arr = [];
+    function inHtml(){
+        $("arr").innerHTML="";
+        for (var key in arr){
+            $("arr").innerHTML += '<span>'+ arr[key] +'</span>';
+        }
     }
-  }
  
- function text(){ 
-    var reg=/^\d+$/;
-    var text=$("input").value;
-    return reg.exec(text)
-  }
-
-  $("lfIn").onclick=function(){
-    if(text()!=null){
-      arr.unshift(text());
-      num++;
-      index=num;
-      inHtml();
-    }else{
-       alert("请输入数字");
+    function text(){ 
+        var reg = /^\d+$/;
+        var text = $("input").value;
+        return reg.exec(text)
     }
-    
-  }
-  $("rtIn").onclick=function(){
-    if(text()!=null){
-      arr.push(text());
-      num++;
-      index=num;
-      inHtml();
-    }else{
-       alert("请输入数字");
-    } 
-    
-  }
-  $("lfOut").onclick=function(){
-    alert(arr.shift(text()));
-    num--;
-    index=num;
-    inHtml()
-  }
-  $("rtOut").onclick=function(){
-    alert(arr.pop(text()));
-    num--;
-    index=num;
-    inHtml()
-  }
-  $("concat").onclick=function(){
-    arr=arr.concat(arr);
-    num*=2;
-    inHtml()
-  }
-  $("reverse").onclick=function(){ 
-    if(num==index){
-      return
-    }else{
-      num/=2;
-      arr.length=num;
-      inHtml()
-    }  
-  }
-  $("splice").onclick=function(){
-    arr.splice(1,2,"100","200")
-    inHtml()
-  }
+
+    $("lfIn").onclick = function(){
+        txt = text();
+        if(txt != null){
+            arr.unshift(txt);
+            num++;
+            index = num;
+            inHtml();
+        }else{
+            alert("请输入数字");
+        }
+    }
+    $("rtIn").onclick = function(){
+        txt = text();
+        if(txt != null){
+          arr.push(txt);
+          num++;
+          index = num;
+          inHtml();
+        }else{
+           alert("请输入数字");
+        } 
+    }
+    $("lfOut").onclick = function(){
+        if(arr.length>0){
+            alert(arr.shift());
+            num--;
+            index = num;
+            inHtml()
+        }else{
+            alert("没了");
+        }      
+    }
+    $("rtOut").onclick = function(){
+        if(arr.length>0){
+            alert(arr.pop());
+            num--;
+            index = num;
+            inHtml()
+        }else{
+            alert("没了");
+        }
+    }
+    $("concat").onclick = function(){
+        arr = arr.concat(arr);
+        num *= 2;
+        inHtml()
+    }
+    $("reverse").onclick = function(){ 
+        if(num == index){
+            return
+        }else{
+            num /= 2; 
+            arr.length = num;
+            inHtml()
+        }  
+    }
+    $("splice").onclick = function(){
+        arr.splice(1,2,"100","200")
+        inHtml()
+    }
 </script>
 </body>
 </html>

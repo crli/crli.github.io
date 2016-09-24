@@ -48,20 +48,19 @@ window.onload=function(){
 	oBox.appendChild(oCount);
 	aNum=oCount.getElementsByTagName("li");
 /**
- * 切换按钮
+ * 手动切换按钮
  */
  	for(i=0;i<aNum.length;i++){
  		aNum[i].index=i;
  		aNum[i].onmouseover=function(){
- 			index=this.index;
- 			countover()
+ 			countover(this.index)
  		}
  	}
 
 /**
- * 设置按钮，目标
+ * 控制按钮，目标
  */
- 	function countover(){
+ 	function countover(index){
  		for(i=0;i<aNum.length;i++){
  			aNum[i].className="";
  		}
@@ -90,7 +89,7 @@ window.onload=function(){
 		}		
  	}
 /**
- * 方向控制找index控制显示
+ * 自动控制
  */
  	function play(){
  		flag?index++:index--;
@@ -103,7 +102,7 @@ window.onload=function(){
 			index=0
 			flag=true;
 		}
- 		countover()
+ 		countover(index)
  	}
  	star=setInterval(play,2000)
 /**

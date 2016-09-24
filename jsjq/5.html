@@ -49,34 +49,31 @@ var oArray = [
 			"中秋节：9月10日至12日放假3天。",
 			"国庆节：10月1日至7日放假7天。",
 			"立冬：11月8日立冬。不放假。",
-			"艾滋病日:12月1日<br />废除奴隶制国际日:12月2日。"
+			"艾滋病日:12月1日。"
 		];
 // jq方法
-$("#calendar li").on('mouseover',function(){
-	$("#calendar li").removeAttr("class");
-	$(this).addClass("current");
-	$("#tip strong").html($(this).index()+1);
-	$("#tip p").html(oArray[$(this).index()]);
-})
+// $("#calendar li").on('mouseover',function(){
+// 	$("#calendar li").removeAttr("class");
+// 	$(this).addClass("current");
+// 	$("#tip strong").html($(this).index()+1);
+// 	$("#tip p").html(oArray[$(this).index()]);
+// })
 // js方法
-// window.onload = function ()
-// {
-// 	var oLi = document.getElementById("calendar").getElementsByTagName("li"),
-// 		otip = document.getElementById("tip"),
-// 		oP = otip.getElementsByTagName("p")[0],
-// 		oStrong = otip.getElementsByTagName("strong")[0];
-// 	for(var i = 0; i < oLi.length; i++)
-// 	{
-// 		oLi[i].index = i;
-// 		oLi[i].onmouseover = function ()
-// 		{
-// 			for(var n = 0; n < oLi.length; n++) oLi[n].className = "";
-// 			this.className = "current";
-// 			oP.innerHTML = oArray[this.index];
-// 			oStrong.innerHTML = this.index + 1;
-// 		}	
-// 	}	
-// }
+window.onload = function (){
+	var aLi = document.getElementById("calendar").getElementsByTagName("li"),
+		otip = document.getElementById("tip"),
+		oP = otip.getElementsByTagName("p")[0],
+		oStrong = otip.getElementsByTagName("strong")[0];
+	for(var i = 0; i < aLi.length; i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function (){
+			for(var n = 0; n < aLi.length; n++) aLi[n].className = "";
+			this.className = "current";
+			oP.innerHTML = oArray[this.index];
+			oStrong.innerHTML = this.index + 1;
+		}	
+	}	
+}
 </script>
 </body>
 </html>

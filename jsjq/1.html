@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,50 +10,48 @@
 </style>
 <script>
 // js方法
-// var changeStyle = function (elem, attr, value)
-// {
-// 	elem.style[attr] = value
-// };
-// window.onload = function ()
-// {
-// 	var oBtn = document.getElementsByTagName("input");
-// 	var oDiv = document.getElementById("div1");
-// 	var oAtt = ["width","height","background","display","display"];
-// 	var oVal = ["200px","200px","red","none","block"];
+function changeStyle(elem, attr, value){
+	elem.style[attr] = value
+};
+window.onload = function (){
+	var aInput = document.getElementsByTagName("input");
+	var oDiv = document.getElementById("div1");
+	var aAttr = ["width","height","background","display","display"];
+	var aVal = ["300px","300px","red","none","block"];
 
-// 	for (var i = 0; i < oBtn.length; i++)
-// 	{
-// 		oBtn[i].index = i;
-// 		oBtn[i].onclick = function ()
-// 		{
-// 			if(this.index==4){
-// 				oDiv.style = ""
-// 			}
-// 			changeStyle(oDiv, oAtt[this.index], oVal[this.index])
-// 		}	
-// 	}
-// };
-// 
-// 
+	for (var i = 0 , num = aInput.length; i < num ; i++){
+		aInput[i].index = i;
+		aInput[i].onclick = function (){
+			if(this.index == 4){
+				oDiv.style = ""
+			}
+			changeStyle(oDiv, aAttr[this.index], aVal[this.index])
+		}	
+	}
+};
+
+
 // jq方法
-$(function(){
-	$("input").eq(0).on("click",function(){
-		$("#div1").css("width","300")
-	})
-	$("input").eq(1).on("click",function(){
-		$("#div1").css("height","300")
-	})
-	$("input").eq(2).on("click",function(){
-		$("#div1").css("backgroundColor","red")
-	})
-	$("input").eq(3).on("click",function(){
-		$("#div1").css("display","none")
-	})
-	$("input").eq(4).on("click",function(){
-		$("#div1").removeAttr("style");
-		$("#div1").css("display","block")
-	})
-})
+// $(function(){
+// 	var aInput = $("input"),
+// 		oDiv1 =  $("#div1");
+// 	aInput.eq(0).on("click",function(){
+// 		oDiv1.css("width","300")
+// 	})
+// 	aInput.eq(1).on("click",function(){
+// 		oDiv1.css("height","300")
+// 	})
+// 	aInput.eq(2).on("click",function(){
+// 		oDiv1.css("backgroundColor","red")
+// 	})
+// 	aInput.eq(3).on("click",function(){
+// 		oDiv1.css("display","none")
+// 	})
+// 	aInput.eq(4).on("click",function(){
+// 		oDiv1.removeAttr("style");
+// 		oDiv1.css("display","block")
+// 	})
+// })
 
 </script>
 </head>

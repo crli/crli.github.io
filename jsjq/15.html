@@ -1,95 +1,112 @@
 
 <!DOCTYPE>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>表格动态添加数据</title>
 </head>
 <style type="text/css">
-#wrap-la{width: 200px; margin: 5px auto}
-#wrap-la input{margin-bottom: 10px}
-#add-btn{margin-top: 20px;width: 175px}
-#aqi-table{margin: 40px auto; width: 500px;text-align: center;font-size: 16px;border-collapse:collapse;}
-#aqi-table th,#aqi-table td{padding: 5px 10px;border: 2px solid #888;}
+    #wrap-la{width: 200px; margin: 5px auto}
+    #wrap-la input{margin-bottom: 10px}
+    #add-btn{margin-top: 20px;width: 175px}
+    #aqi-table{margin: 40px auto; width: 500px;text-align: center;font-size: 16px;border-collapse:collapse;}
+    #aqi-table td{padding: 5px 10px;border: 2px solid #888;}
 </style>
 <body>
   <div id="wrap-la">
     <label>城市名称：<input id="aqi-city-input" type="text"></label><br>
     <label>空气质量指数：<input id="aqi-value-input" type="text"></label><br>
     <button id="add-btn">确认添加</button>
-  </div>
-  <table id="aqi-table" "width:100px"></table>
+</div>
+<table id="aqi-table"></table>
 <script type="text/javascript">
-var inputcity=document.getElementById('aqi-city-input'),
+    var inputcity=document.getElementById('aqi-city-input'),
     inputaqi=document.getElementById('aqi-value-input'),
     addbtn=document.getElementById('add-btn'),
     table=document.getElementById('aqi-table');
-function addEvent(elm,type,handler){
-  if(elm.addEventListener){
-    elm.addEventListener(type,handler,false)
-  }else if(elm.attachEvent){
-    elm.attachEvent("on"+type,handler)
-  }else{
-    elm["on"+type]=handler
-  }
-}
-function trim(str){
-  return str.replace(/^(\s+)|(\s+)$/);
-}
-
-function addBtnHandle() {
-  addAqiData();
-  renderAqiList();
-}
-var aqiData = {};
-
-
-function addAqiData() {
-    var city=trim(inputcity.value),
-        aqi=trim(inputaqi.value);
-    if(city==""){
-      alert("城市名不为空");
-      return
+    function addEvent(elm,type,handler){
+        if(elm.addEventListener){
+            elm.addEventListener(type,handler,false)
+        }else if(elm.attachEvent){
+            elm.attachEvent("on"+type,handler)
+        }else{
+            elm["on"+type]=handler
+        }
     }
-    if(!city.match(/^[A-Za-z\u4E00-\u9FA5]+$/)){
-      alert("城市名必须为中英文字符！");
-      return
+    function trim(str){
+        return str.replace(/(^\s*)|(\s*$)/g,"");
     }
-    if(aqi==""){
-      alert("空气质量不为空");
-      return
+/**
+ * [addBtnHandle description]控制
+ */
+    function addBtnHandle() {
+        addAqiData();
+        renderAqiList();
     }
-    if(!aqi.match(/^\d+$/)){
-      alert("空气质量指数必须为整数！");
-      return
-  }
-  aqiData[city]=aqi;
-}
+    var aqiData = {};
 
-function renderAqiList() {
-  var items = "<tr><td>城市</td><td>空气质量</td><td>操作</td></tr>";
-  for(var city in aqiData){
-    items+="<tr><td>"+city+"</td><td>"+aqiData[city]+"</td><td><button data-city='"+city+"'>删除</button></td></tr>"
-  }
-  table.innerHTML=city ? items : "";
-}
-
-
-function delBtnHandle(city) {
-  delete aqiData[city]
-  renderAqiList();
-}
-
-function init() {
-  addEvent(addbtn,"click",addBtnHandle);
-  addEvent(table,"click",function(event){
-    if(event.target.nodeName.toLowerCase()==="button"){
-      delBtnHandle.call(this,event.target.dataset.city)
+/**
+ * [addAqiData description]检测
+ */
+    function addAqiData() {
+        var city = trim(inputcity.value),
+            aqi = trim(inputaqi.value);
+        if(city==""){
+            alert("城市名不为空");
+            return
+        }
+        if(!city.match(/^[A-Za-z\u4E00-\u9FA5]+$/)){
+            alert("城市名必须为中英文字符！");
+            return
+        }
+        if(aqi==""){
+            alert("空气质量不为空");
+            return
+        }
+        if(!aqi.match(/^\d+$/)){
+            alert("空气质量指数必须为整数！");
+            return
+        }
+        aqiData[city]=aqi;
     }
-  });
-}
+/**
+ * [renderAqiList description]渲染
+ * @return {[type]} [description]
+ */
+    function renderAqiList() {
+        var items = "<tr><td>城市</td><td>空气质量</td><td>操作</td></tr>";
+        for(var city in aqiData){
+            items+="<tr><td>"+city+"</td><td>"+aqiData[city]+"</td><td><button data-city="+city+">删除</button></td></tr>"
+        }
+        table.innerHTML = city ? items : "";
+    }
 
-init();
+/**
+ * [delBtnHandle description]删除数据
+ * @param  {[type]} city [description]
+ * @return {[type]}      [description]
+ */
+    function delBtnHandle(city) {
+        delete aqiData[city]
+        renderAqiList();
+    }
+/**
+ * [init description]初始化，事件绑定
+ * @return {[type]} [description]
+ */
+    function init() {
+        addEvent(addbtn,"click",addBtnHandle);
+        addEvent(table,"click",function(event){
+            var event = event || window.event;
+            var target = event.target || event.srcElement
+            if(target.nodeName.toLowerCase()==="button"){
+                delBtnHandle.call(this,target.dataset.city)
+            }
+        });
+    }
+
+    init();
+
 </script>
 </body>
 </html>

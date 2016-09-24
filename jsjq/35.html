@@ -37,23 +37,21 @@ window.onload=function(){
 				['延边富德',13,14,3,4,7,13,17,-4,14],
 				['长春亚泰',14,15,3,4,8,11,23,-12,13],
 				['杭州绿城',15,15,3,3,9,8,18,-10,12],
-				['山东鲁能',16,14,2,4,8,13,22,-9,10],
-			     ]
-
-	}
-	var tdList=[],
-		arr=[],
-		newArr=[],
-		trList=[],
-		arrTmpt=null,
-		thNode=null,
-		tdNode=null,
-		oDiv=null,
-		trNode=null,
-		item=null,
-		temp=null,
-		itemNum=0,
-		index=0;
+				['山东鲁能',16,14,2,4,8,13,22,-9,10]]
+		}
+	var tdList = [],
+		arr = [],
+		newArr = [],
+		trList = [],
+		arrTmpt = null,
+		thNode = null,
+		tdNode = null,
+		oDiv = null,
+		trNode = null,
+		item = null,
+		temp = null,
+		itemNum = 0,
+		index = 0;
 	function addEvent(elem,type,hander){
 		if(elem.addEventListener){
 			elem.addEventListener(type,hander,false)
@@ -71,29 +69,29 @@ window.onload=function(){
 * 渲染表格
 */
 	function addTh(){
-		thNode=document.createElement("tr");
-		thNode.style.background=ln.thBgc;
-		thNode.style.color="#fff";
-		thNode.style.fontWeight="bold";
+		thNode = document.createElement("tr");
+		thNode.style.background = ln.thBgc;
+		thNode.style.color = "#fff";
+		thNode.style.fontWeight = "bold";
 		addTd(thNode,ln.thContent);
 		tab.appendChild(thNode);
 	}
 
 	function addTd(thNode,content){		
-		for(var i=0;i<ln.colNum;i++){
-			tdNode=document.createElement("td");
-			tdNode.style.width=ln.tdWidth;
-			tdNode.style.height=ln.tdHeight;
-			tdNode.style.border=ln.tdboder;
-			tdNode.innerHTML=content[i];
-			tdNode.style.position="relative";
+		for(var i = 0;i<ln.colNum;i++){
+			tdNode = document.createElement("td");
+			tdNode.style.width = ln.tdWidth;
+			tdNode.style.height = ln.tdHeight;
+			tdNode.style.border = ln.tdboder;
+			tdNode.innerHTML = content[i];
+			tdNode.style.position = "relative";
 			thNode.appendChild(tdNode)
 
 		}
 		return thNode;
 	}
 	function addUp(tdNode){			
-		oDiv=document.createElement("div");
+		oDiv = document.createElement("div");
 		oDiv.style.width = "0px";
 		oDiv.style.height = "0px";
 		oDiv.style.borderLeft ="6px solid transparent";
@@ -101,13 +99,13 @@ window.onload=function(){
 		oDiv.style.borderBottom ="8px solid #fff";		
 		oDiv.style.cursor ="pointer";
 		oDiv.style.position = "absolute";
-		oDiv.style.right =parseInt(ln.tdWidth)*0.1+'px';
-		oDiv.style.top =parseInt(ln.tdHeight)*0.25+'px';
+		oDiv.style.right = parseInt(ln.tdWidth)*0.1+'px';
+		oDiv.style.top = parseInt(ln.tdHeight)*0.25+'px';
 		tdNode.appendChild(oDiv);
 		addClick(oDiv,false);
 	}
 	function addDown(tdNode){
-		oDiv=document.createElement("div");
+		oDiv = document.createElement("div");
 		oDiv.style.width = "0px";
 		oDiv.style.height = "0px";
 		oDiv.style.borderLeft ="6px solid transparent";
@@ -115,19 +113,19 @@ window.onload=function(){
 		oDiv.style.borderTop ="8px solid #fff";		
 		oDiv.style.cursor ="pointer";
 		oDiv.style.position = "absolute";
-		oDiv.style.right =parseInt(ln.tdWidth)*0.1+'px';
-		oDiv.style.top =parseInt(ln.tdHeight)*0.55+'px';
+		oDiv.style.right = parseInt(ln.tdWidth)*0.1+'px';
+		oDiv.style.top = parseInt(ln.tdHeight)*0.55+'px';
 		tdNode.appendChild(oDiv);
 		addClick(oDiv,true);
 	}
 	function addTr(){
-		for(var i=0;i<ln.rowNum-1;i++){
-			trNode=document.createElement("tr");
+		for(var i = 0;i < ln.rowNum - 1;i++){
+			trNode = document.createElement("tr");
 			addTd(trNode,ln.trContent[i]);
 			tab.appendChild(trNode);
 		}		
 		tdList = thNode.childNodes;
-		for(var i = 1;i<ln.colNum;i++){
+		for(var i = 1;i < ln.colNum;i++){
 			addUp(tdList[i]);
 			addDown(tdList[i]);
 		}
@@ -138,48 +136,50 @@ window.onload=function(){
 */
 	function addClick(oDiv,flag){
 		addEvent(oDiv,'click',function(event){
-			var event=event||window.event;
-			item=event.target.parentNode.innerHTML.split("<")[0];
-			itemNum=ln.thContent.indexOf(item);
+			var event = event ||window.event;
+			item = event.target.parentNode.innerHTML.split("<")[0];
+			itemNum = ln.thContent.indexOf(item);
 			trList = tab.childNodes;
-			arr=[];
-			newArr=[];
+			arr = [];
+			newArr = [];
 
-			//获得单击项排序前，排序后数组
-			for(var i=1;i<ln.rowNum;i++){
+			//单击项排序后数组
+			for(var i = 1;i < ln.rowNum;i++){
 				arr.push(trList[i].childNodes[itemNum].innerHTML)
 			}
-			newArr=arr.sort(compare);
+			newArr = arr.sort(compare);
 			if(!flag){
 				newArr = newArr.reverse();
 			}
-			arr=[];
-			for(var i=1;i<ln.rowNum;i++){
+			//单击项排序前数组
+			arr = [];
+			for(var i = 1;i < ln.rowNum;i++){
 				arr.push(trList[i].childNodes[itemNum].innerHTML)
 			}
 
 			//改变位置
-			temp=document.createElement("tr");
-			for(var i=0;i<arr.length;i++){
-				if(arr[i]!==newArr[i]){
+			temp = document.createElement("tr"); 1,2,3,4
+											   1,3,2,4
+			for(var i = 0;i<arr.length;i++){
+				if(arr[i] !== newArr[i]){
 					//找在原来数组中的位置
-					index=arr.indexOf(newArr[i])
-					//更新内容
-					temp.innerHTML=trList[i+1].innerHTML;
-					trList[i+1].innerHTML=trList[index+1].innerHTML;
-					trList[index+1].innerHTML=temp.innerHTML;
+					index = arr.indexOf(newArr[i])
+					
 					//更新数组数据
 					arrTmpt = arr[index];
 					arr[index] = arr[i];
 					arr[i] = temp;
+
+					//更新内容
+					temp.innerHTML = trList[i+1].innerHTML;
+					trList[i+1].innerHTML = trList[index+1].innerHTML;
+					trList[index+1].innerHTML = temp.innerHTML;
 				}
 			}
 		})
-/**
-* 鼠标滑动
-*/
+		//鼠标滑动
 		trList = tab.childNodes;
-		for(var i=1;i<trList.length;i++){
+		for(var i = 1;i < trList.length;i++){
 			(function(i){
 				i.onmouseover=function(){
 					i.style.background = ln.trBgc;
@@ -189,10 +189,9 @@ window.onload=function(){
 				}
 			})(trList[i])			
 		}
-
 	}
 	function compare(a,b){
-		return a-b;
+		return a - b;
 	}
 }
 </script>

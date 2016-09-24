@@ -21,7 +21,7 @@
     </div>
   </div>
 <script>
-window.onload=function(){      
+window.onload = window.onresize=function(){      
   autoCenter(loginBox);
   fillToBody(mask);
 }
@@ -40,9 +40,10 @@ function addEvent(ele,type,hander){
   }
 }
 
-function showMask(){
-  loginBox.style.display='block';
+function showMask(){ 
    mask.style.display='block'; 
+   loginBox.style.display='block';
+   autoCenter(loginBox);
 }
 
 function hideMask(){
@@ -51,10 +52,12 @@ function hideMask(){
 
 function hidebox(){
   loginBox.style.display="none";
+  hideMask()
 }
-//单击关闭按钮不会关闭mask
+
 function hid(e){
-  if(e.target==e.currentTarget){
+  var event = e||window.event;
+  if(e.target.id==="mask"){
     mask.style.display='none';
   }
 }
@@ -62,8 +65,6 @@ function hid(e){
 function autoCenter(ele) {
     var bodyW = document.documentElement.clientWidth;
     var bodyH = document.documentElement.clientHeight;
-    console.log(bodyW);
-    console.log(bodyH);
     var eleW = ele.offsetWidth;
     var eleH = ele.offsetHeight;
     ele.style.left = (bodyW - eleW) / 2 + "px";

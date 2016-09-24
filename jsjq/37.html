@@ -6,9 +6,11 @@
 </head>
 <body>
 	<canvas id="canvas" style="border: 1px solid red;display: block; margin: 20px auto"></canvas>
-	<div id="control"style="width: 200px;height:30px;margin: 50px auto;background: #b1e1e1;text-align: center;line-height: 30px" >
+	<div id="control"style="width: 320px;height:30px;margin: 50px auto;background: #b1e1e1;text-align: center;line-height: 30px" >
 		<button>暂停</button>
 		<button>变背景色</button>
+		<button>运动1(默认)</button>
+		<button>运动2</button>
 	</div>
 </body>
 <script>
@@ -21,18 +23,21 @@
 	window.onload = function(){
 		canvas.width = 800;
 		canvas.height = 500;	
-		render(context);
+		render();
 		setInterval(function(){	 
 			draw(context);
 			if(flag){
 				update();
 			}	
-		},50)
+		},30)
 
 		canvas.addEventListener("mouseover",increment);
 		canvas.addEventListener("mouseout",reduce);
-		
-		function render(cxt) { 	
+/**
+ * [render description]数据
+ * @return {[type]} [description]ball[x坐标，y坐标，半径，x速度，y速度，加速度，背景色]
+ */
+		function render() { 	
 			for(var i = 0;i <70; i++){
 				var R = Math.floor((Math.random()*255));
 				var B = Math.floor((Math.random()*255));
@@ -41,15 +46,17 @@
 				var pox = Math.random()*canvas.width;
 				var poy = Math.random()*canvas.height;
 				var por = Math.random()*30;
-				var vx = Math.pow(-1,parseInt(Math.random()*10))*3;
-				var vy = Math.pow(-1,parseInt(Math.random()*10))*4;
-				ball.push([pox,poy,por,vx,vy,3,pcor])		
-			}
-			// console.log(ball[0]);
-			
+				var vx = Math.pow(-1,parseInt(Math.random()*10))*2;
+				var vy = Math.pow(-1,parseInt(Math.random()*10))*3;
+				ball.push([pox,poy,por,vx,vy,3,pcor])	
+			}		
 		}
 
-
+/**
+ * [draw description] 描绘图形
+ * @param  {[type]} cxt [description]画布
+ * @return {[type]}     [description]
+ */
 		function draw(cxt){
 			cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height);
 			cxt.save();
@@ -61,28 +68,23 @@
 			cxt.fillRect(0,0,canvas.width,canvas.height);
 			cxt.restore();
 		 	for(var i = 0;i <70; i++){
-
 			 	cxt.beginPath();
-				cxt.arc(ball[i][0],ball[i][1],ball[i][2],0,2*Math.PI);
-				
+				cxt.arc(ball[i][0],ball[i][1],ball[i][2],0,2*Math.PI);			
 				cxt.shadowColor = "yellow";
 				cxt.shadowBlur = 20;
 				cxt.fillStyle = ball[i][6];
 				cxt.fill();
 			}
 		}
-
+/**
+ * [update description]位置更新
+ * @return {[type]} [description]
+ */
 		function update() {
 			for(var i = 0; i <70; i++){
 				ball[i][0]+=ball[i][3];
 				ball[i][1]+=ball[i][4];
-				// ball[i][4]+=ball[i][5];
-				// if(ball[i][5]>9){
-				// 	ball[i][4]-=ball[i][5];
-				// }
-				// if(ball[i][5]<4){
-				// 	ball[i][4]+=ball[i][5];
-				// }
+
 				if(ball[i][1]>=canvas.height-ball[i][2]){
 					ball[i][1]=canvas.height-ball[i][2];
 					ball[i][4]=-ball[i][4]
@@ -101,22 +103,27 @@
 				}
 			}
 		}
-
-		function increment(evnet){
-			// var x = event.clientX - canvas.getBoundingClientRect().left;
-			// var y = event.clientY - canvas.getBoundingClientRect().top;
+/**
+ * [increment description]速度控制
+ * @return {[type]}       [description]
+ */
+		function increment(){
 			for(var i = 0; i <70; i++){		
-				ball[i][3]=Math.pow(-1,parseInt(Math.random()*10))*30;
-				ball[i][4]=Math.pow(-1,parseInt(Math.random()*10))*40;
+				ball[i][3] *= 10;
+				ball[i][4] *= 10;
 			}
 		}
-		function reduce(event){
+		function reduce(){
 			for(var i = 0; i <70; i++){
-				ball[i][3]=Math.pow(-1,parseInt(Math.random()*10))*3;
-				ball[i][4]=Math.pow(-1,parseInt(Math.random()*10))*4;		
+				ball[i][3] /= 10;
+				ball[i][4] /= 10;		
 			}
 		}
 
+/**
+ * [onclick description]背景及状态控制
+ * @return {[type]} [description]
+ */
 		aControl[0].onclick = function(){
 			flag = flag == true ? false:true;
 			this.innerHTML = this.innerHTML == "暂停"?"继续":"暂停";
@@ -125,7 +132,18 @@
 			flagStyle = flagStyle == false ? true:false;
 			this.innerHTML = this.innerHTML == "变背景色"?"还原":"变背景色";
 		}
-
+		aControl[2].onclick = function() {
+			for(var i = 0; i <70; i++){		
+				ball[i][3] = Math.pow(-1,parseInt(Math.random()*10))*2;
+				ball[i][4] = Math.pow(-1,parseInt(Math.random()*10))*3;
+			}
+		}
+		aControl[3].onclick = function() {
+			for(var i = 0; i <70; i++){		
+				ball[i][3] = parseInt(Math.random()*5);
+				ball[i][4] = parseInt(Math.random()*10);
+			}
+		}
 	}
 </script>
 </html>

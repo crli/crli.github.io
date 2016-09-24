@@ -27,7 +27,7 @@ for(var i=0;i<s.length;i++){
 sheng.appendChild(fragment);
 sheng.onchange=function(){
     if (this.value==-1){
-        return
+        return false;
     }else{
         citys.innerHTML="";
         console.log(this.value);

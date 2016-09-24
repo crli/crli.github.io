@@ -10,13 +10,13 @@
 <script>
 window.onload=function(){
 	var t1=document.getElementById('t1'),
-	t2=document.getElementById('t2'),
-	btn=document.getElementById('btn'),
-	div1=document.getElementById('div1');
-	btn.onclick=function(){
+		t2=document.getElementById('t2'),
+		btn=document.getElementById('btn'),
+		div1=document.getElementById('div1');
+	btn.onclick = function(){
 		div1.style[t1.value]=t2.value;
 	}
-	btn1.onclick=function(){
+	btn1.onclick = function(){
 		div1.removeAttribute("style");
 	}
 }

@@ -1,108 +1,103 @@
-
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>可选下拉菜单</title>
-	<style type="text/css">
-body,ul,li{ margin:0; padding:0; font-size:13px;}
-ul,li{list-style:none;}
-#divselect{width:186px; margin:80px auto; position:relative; z-index:10000;}
-#divselect cite{width:150px; height:24px;line-height:24px; display:block; color:#807a62; cursor:pointer;font-style:normal;
-padding:0 30px 0 4px;border:1px solid #333333; 
-}
-#divselect ul{width:184px;border:1px solid #333333; background-color:#ffffff; position:absolute; z-index:20000; margin-top:-1px; display:none;}
-#divselect ul li{height:24px; line-height:24px;}
-#divselect ul li a{display:block; height:24px; color:#333333; text-decoration:none; padding-left:10px; padding-right:10px;}
-	</style>
- 
+    <style type="text/css">
+        body,ul,li{ margin:0; padding:0; font-size:13px;}
+        ul,li{list-style:none;}
+        #divselect{width:186px; margin:80px auto; position:relative; z-index:10000;}
+        #divselect cite{width:150px; height:24px;line-height:24px; display:block; color:#807a62; cursor:pointer;font-style:normal;
+            padding:0 30px 0 4px;border:1px solid #333333; 
+        }
+        #divselect ul{width:184px;border:1px solid #333333; background-color:#ffffff; position:absolute; z-index:20000; margin-top:-1px; display:none;}
+        #divselect ul li{height:24px; line-height:24px;}
+        #divselect ul li a{display:block; height:24px; color:#333333; text-decoration:none; padding-left:10px; padding-right:10px;}
+    </style>
 </head>
 <body>
-	<div id="divselect">
-      <cite>请选择分类</cite>
-      <ul>
-         <li><a href="#1">ASP开发</a></li>
-         <li><a href="#2">.NET开发</a></li>
-         <li><a href="#3">PHP开发</a></li>
-         <li><a href="#4">Javascript开发</a></li>
-         <li><a href="#5">Java特效</a></li>
-      </ul>
+    <div id="divselect">
+        <cite>请选择分类</cite>
+        <ul>
+            <li><a href="#1">ASP开发</a></li>
+            <li><a href="#2">.NET开发</a></li>
+            <li><a href="#3">PHP开发</a></li>
+            <li><a href="#4">Javascript开发</a></li>
+            <li><a href="#5">Java特效</a></li>
+        </ul>
     </div>
-  <script type="text/javascript">
-window.onload=function(){
-  var box=document.getElementById('divselect'),
-      title=box.getElementsByTagName('cite')[0],
-      menu=box.getElementsByTagName('ul')[0],
-      ass=menu.getElementsByTagName('a'),
-        index=-1;
-   
-    // 点击可选框时
-    title.onclick=function(event){
-      // 执行脚本
-      menu.style.display="block";
-      event=event||window.event;
-      if(event.stopPropagation){
-          event.stopPropagation()
-      }else{
-          event.cancelBubble=true
-      }    
-    }  
-       // 点击页面空白处时
-       // 执行脚本
-    document.onclick=function(){
-        menu.style.display="none";
-    }
-    
-   // 滑过滑过、离开、点击每个选项时
-      // 执行脚本
-        document.onkeyup=function(event){
-        if(event.keyCode==40){//向下 
-          index++;
-        if(index>ass.length-1){
-              index=0;
-              }                     
-            if(index!=0){
-              ass[index].style.background="#e4e4e4";
-              ass[index-1].style.background="#fff";
-          }else{
-            // 如果第一步直接向下
-            ass[0].style.background="#e4e4e4";
-              ass[ass.length-1].style.background="#fff" 
-              }             
+    <script type="text/javascript">
+    window.onload = function(){
+        var box = document.getElementById('divselect'),
+        title = box.getElementsByTagName('cite')[0],
+        menu = box.getElementsByTagName('ul')[0],
+        ass = menu.getElementsByTagName('a'),
+        index = -1;
+
+        // 点击可选框时
+        title.onclick = function(event){
+            menu.style.display = "block";
+            event = event || window.event;
+            if(event.stopPropagation){
+                event.stopPropagation()
+            }else{
+                event.cancelBubble = true
+            }    
+        }  
+        // 点击页面空白处时
+        document.onclick = function(){
+            menu.style.display = "none";
+        }
+
+        // 滑过滑过、离开、点击每个选项时
+        document.onkeyup = function(event){
+            if(event.keyCode == 40){//向下 
+                index ++;
+                if(index > ass.length - 1){
+                    index = 0;
+                }                     
+                if(index != 0){
+                    ass[index].style.background = "#e4e4e4";
+                    ass[index - 1].style.background = "#fff";
+                }else{
+                // 如果第一步直接向下
+                ass[0].style.background="#e4e4e4";
+                ass[ass.length-1].style.background="#fff" 
+                }             
             }
-        if(event.keyCode==38){
-          index--;
-          if(index<0){
-                index=ass.length-1
+            if(event.keyCode == 38){
+                index --;
+                if(index < 0){
+                    index = ass.length-1
                 }
-            if(index!=ass.length-1){
-              ass[index].style.background="#e4e4e4";
-              ass[index+1].style.background="#fff";
-          }else{
-            // 如果第一步直接向上
-            ass[ass.length-1].style.background="#e4e4e4";
-              ass[0].style.background="#fff"  
-          }
+                if(index != ass.length-1){
+                    ass[index].style.background = "#e4e4e4";
+                    ass[index + 1].style.background = "#fff";
+                }else{
+                    // 如果第一步直接向上
+                    ass[ass.length - 1].style.background = "#e4e4e4";
+                    ass[0].style.background = "#fff"  
+                }
+            }
+            if(event.keyCode == 13){
+                menu.style.display = "none";
+                title.innerHTML = ass[index].innerHTML;
+                ass[index].click();
+            }            
         }
-        if(event.keyCode==13){
-          menu.style.display="none";
-          title.innerHTML=ass[index].innerHTML;
-          ass[index].click();
-        }            
+
+        for(var i = 0,l = ass.length;i < l; i++){
+            ass[i].onmouseover = function(){
+                this.style.background ="#e4e4e4";
+            }
+            ass[i].onmouseout = function(){
+                this.style.background = "#fff";
+            }
+            ass[i].onclick=function(){
+                title.innerHTML = this.innerHTML;
+            }
+        }
     }
-         
-    for(var i=0,l=ass.length;i<l;i++){
-        ass[i].onmouseover=function(){
-            this.style.background="#e4e4e4";
-        }
-        ass[i].onmouseout=function(){
-            this.style.background="#fff";
-        }
-        ass[i].onclick=function(){
-            title.innerHTML=this.innerHTML;
-        }
-    }
- }
-   </script>
+    </script>
 </body>
 </html>

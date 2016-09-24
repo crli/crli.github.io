@@ -12,11 +12,11 @@
 <body>
 	<div id="block"></div>
 <script type="text/javascript">
-window.onload=window.onresize=function(){
-	var oBlock=document.getElementById('block');
-	var oBx=oBy=oXm=oYm=oX=oY=0;
-	oBlock.style.left=(document.documentElement.clientWidth-oBlock.offsetWidth)/2+"px";
-	oBlock.style.top=(document.documentElement.clientHeight-oBlock.offsetHeight)/2+"px";
+window.onload = window.onresize = function(){
+	var oBlock = document.getElementById('block');
+	var oBx = oBy = oXm = oYm = oX = oY = 0;
+	oBlock.style.left = (document.documentElement.clientWidth - oBlock.offsetWidth)/2+"px";
+	oBlock.style.top = (document.documentElement.clientHeight - oBlock.offsetHeight)/2+"px";
 	oDrag(oBlock);
 }
 function oDrag(drag){

@@ -6,7 +6,7 @@
 <style type="text/css">
 *{margin:0;padding:0;}
 ul{list-style:none;}
-#banner{position:relative;width:800px;margin:20px auto;text-align:center;}
+#banner{position:relative;width:800px;height: 500; margin:20px auto;text-align:center;}
 #banner.loading{background:url(images/loading.gif) 50% 50% no-repeat;}
 #mask1,#mask2{position:absolute;top:0;width:400px;height:100%;cursor:pointer;}
 #mask1{left:0;}
@@ -16,6 +16,7 @@ ul{list-style:none;}
 #rt-btn{right:10px;background-position:-39px 0;}
 #tip{position:absolute;top:0;left:0;width:100%;background:#000;color:#fff;opacity:0.7;filter:alpha(opacity=70);font-size:20px;height:50px;}
 #tip span{line-height:50px;display:block;}
+.imgSize{width: 800px;height: 500px}
 </style>
 </head>
 <body>
@@ -27,32 +28,34 @@ ul{list-style:none;}
         <div id="tip"><span></span></div>
     </div>
 <script type="text/javascript">
-function getStyle(obj, attr){
-	if(obj.currentStyle){
-		return obj.currentStyle[attr]
-	}else{
-		return getComputedStyle(obj, null)[attr]
-	}
-}
+
 window.onload = function (){
-	var obanner = document.getElementById("banner");
-	var oMask1 = document.getElementById("mask1");
-	var oMask2 = document.getElementById("mask2");
-	var oBtnL = document.getElementById("lf-btn");
-	var oBtnR = document.getElementById("rt-btn");
-	var oTip = document.getElementById("tip");
-	var oSpan = oTip.getElementsByTagName("span")[0];
-	var index = 0;
-	var aData = [
-		{"src" : "images/13.jpg", "tip" : "6月0日，1111111111111111"},
-		{"src" : "images/2.jpg", "tip" : "6月0日，2222222222222"},
-		{"src" : "images/3.jpg", "tip" : "6月0日，333333333333333"},
-		{"src" : "images/7.jpg", "tip" : "6月0日，44444444444444"},
-		{"src" : "images/11.jpg", "tip" : "6月0日，55555555555555555"}
-	];
+	var obanner = document.getElementById("banner"),
+		oMask1 = document.getElementById("mask1"),
+		oMask2 = document.getElementById("mask2"),
+		oBtnL = document.getElementById("lf-btn"),
+		oBtnR = document.getElementById("rt-btn"),
+		oTip = document.getElementById("tip"),
+		oSpan = oTip.getElementsByTagName("span")[0],
+		index = 0,
+		aData = [
+			{"src" : "images/13.jpg", "tip" : "6月0日，1111111111111111"},
+			{"src" : "images/2.jpg", "tip" : "6月0日，2222222222222"},
+			{"src" : "images/3.jpg", "tip" : "6月0日，333333333333333"},
+			{"src" : "images/7.jpg", "tip" : "6月0日，44444444444444"},
+			{"src" : "images/11.jpg", "tip" : "6月0日，55555555555555555"}
+		];
 /**
  * 事件程序
  */
+ 	function getStyle(obj, attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr]
+		}else{
+			return getComputedStyle(obj, null)[attr]
+		}
+	}
+
 	function startMove(obj, attr, target, fn){
 		clearInterval(obj.timer);
 		obj.timer = setInterval(function (){
@@ -73,16 +76,12 @@ window.onload = function (){
 			if(fn){
 				fn()
 			}
-		}
-		else{
-			if (attr == "opacity"){
-				obj.style.filter = "alpha(opacity = " + (iCur + iSpeed) + ")";
-				obj.style.opacity = (iCur + iSpeed)	/ 100;
-			}
-			else{
-				obj.style[attr] = iCur + iSpeed + "px";	
-			}
-		}
+		}else if (attr == "opacity"){
+			obj.style.filter = "alpha(opacity = " + (iCur + iSpeed) + ")";
+			obj.style.opacity = (iCur + iSpeed)	/ 100;
+		}else{
+			obj.style[attr] = iCur + iSpeed + "px";	
+		}		
 	}
 /**
  * 初始化程序
@@ -92,7 +91,8 @@ window.onload = function (){
 		//切换之后初始化loading
 		
 		obanner.className = "loading";
-		oSpan.style.opacity = oTip.style.height = 0;
+		oTip.style.height = 0;
+		oSpan.style.opacity = 0;
 		oSpan.style.filter = "alpha(opacity=0)";
 
 		// 切换之后删除图片
@@ -108,8 +108,7 @@ window.onload = function (){
 		oNewImg.onload = function (){
 			obanner.className = "";			
 			obanner.appendChild(oNewImg);
-			oNewImg.style.width = 800 + "px";
-			obanner.style.height = oNewImg.style.height = 500+ "px";
+			oNewImg.className = "imgSize";
 			oSpan.innerHTML = aData[index].tip;
 			startMove(oTip, "height", 50, function (){
 				startMove(oTip.childNodes[0], "opacity", 100)	

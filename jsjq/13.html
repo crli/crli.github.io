@@ -11,7 +11,7 @@ body{font:700 24px/1.5 Arial;}
 #calc{position:relative;width:300px;background:#000;margin:80px auto;border:1px solid #000;}
 #calc .big{border:0;width:290px;height:84px;text-align:right;font:700 50px/84px Arial;padding:0 5px;background-color: #fff}
 #small{position:absolute;top:0;border:0;font:700 12px/1.5 Arial;width:280px;padding:3px 15px 0 5px;text-align:right;}
-#calc ul{position:relative;overflow:hidden;zoom:1;background-color: #123456;padding:0 0 17px 8px;}
+#calc ul{position:relative;overflow:hidden;zoom:1;background-color: #000;padding:0 0 17px 8px;}
 #calc ul li{float:left;width:63px;height:41px;margin:17px 10px 0 0;}
 #calc ul li span{display:block;width:63px;height:41px;line-height:41px;text-align:center;background-color: #f18111;border-radius: 10px;cursor: pointer;}
 #calc ul li.btn2{position:absolute;top:174px;right:0;height:99px;}
@@ -49,12 +49,12 @@ body{font:700 24px/1.5 Arial;}
 <script>
 window.onload = function (){
 	var calc = document.getElementById("calc"),
-		oSpan = calc.getElementsByTagName("span"),
+		aSpan = calc.getElementsByTagName("span"),
 		oInput = calc.getElementsByTagName("input")[0],
 		oSmall = document.getElementById("small"),
 		flag = false;
-	for (var i = 0; i < oSpan.length; i++){
-		oSpan[i].onclick = function (){
+	for (var i = 0; i < aSpan.length; i++){
+		aSpan[i].onclick = function (){
 			switch(this.innerHTML){
 				case "c":
 					oInput.value =  0;
@@ -79,6 +79,7 @@ window.onload = function (){
 					flag || (oSmall.value += oInput.value);
 					if(oSmall.value.search(/[\.\/\*\-\+]$/)>-1){
 						oInput.value="错误";
+						oSmall.value="错误";
 					}else if(oSmall.value.slice(-1)==="%"){
 						oSmall.value=0.01*eval(oSmall.value.slice(0,oSmall.value.length-2))
 						oInput.value=eval(oSmall.value)
@@ -91,31 +92,52 @@ window.onload = function (){
 					flag = true;
 					break;
 				case ".":
-					if(oInput.value.search(/[\.\%\/\*\-\+]/) != -1)//不能输入+.等样式
+					if(oInput.value.search(/[\.\%\/\*\-\+]/) != -1)//不能输入多个"."
 					break;
-				default:
-					flag && (oInput.value = 0, oSmall.value = "", flag = false);//如果等于后按数字则先清空
+				default:			
+					if(flag){//如果等于后按直接按数字则先清空
+						oInput.value = 0;
+						oSmall.value = ""; 
+						flag = false;
+					}
+					if(oSmall.value.match(/\d*\%/)){
+						return false
+					}
 					if(oInput.value.length < 10){
-						oInput.value = (oInput.value + this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/,"$1");//防止出现+6等样式出现在输入框
+						oInput.value = (oInput.value + this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/,"$1");
+						//防止出现+6,06等样式出现在输入框
+					}else{
+						return false
 					}
 			}
 		}
 	}
 	
 	function count(a){
+		//在等于成功之后第一次按".","%","/","*","-","+",
 		if(flag){
 			oSmall.value = oInput.value + a;
 			oInput.value = a;	
 			flag = false;
-		}else{
-			/[\%\/\*\-\+]$/.test(oInput.value) || (oSmall.value += oInput.value);
-			oInput.value = a;
-			if(/[\%\/\*\-\+]$/.test(oSmall.value)){
-				/[\%\/\*\-\+]$/.test(oSmall.value)
+			return false;
+		}
+		//直接点".","%","/","*","-","+",
+		if(oSmall.value.length ===0){
+			//避免出现11.+			
+			if(oInput.value.slice(-1)==="."){
+				return false
+			}else if (a==="%"&&oInput.value==0) {
+			//避免出现0%11
+				return false
 			}else{
-				(oSmall.value += oInput.value);
+				oSmall.value = oInput.value + a;
+				oInput.value = a;
 			}
 		}
+		//避免出现++
+		if(/[\%\/\*\-\+]$/.test(oSmall.value)){		
+			return false
+		}	
 	}
 }
 </script>

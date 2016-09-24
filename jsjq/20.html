@@ -24,6 +24,7 @@
 		<ul>
 			<li><a href="#item1" class="current">足球</a></li>
 			<li><a href="#item2">音乐</a></li>
+			<li><a href="#item3">足球</a></li>
 		</ul>
 	</div>
 	<div id="content">
@@ -56,81 +57,94 @@
 				<li><a href="#"><img src="images/12.jpg" alt=""></a></li>
 			</ul>	
 		</div>
+		<div id="item3" class="item">
+			<h2>C罗</h2>
+			<ul>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/8.jpg" alt=""></a></li>
+			</ul>	
+		</div>
 	</div>
 	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
-	function getByClassName(obj,cls){
-		var elements=obj.getElementsByTagName('*');
-		var result=[];
-		for(var i=0;i<elements.length;i++){
-			if(elements[i].className==cls){
-				result.push(elements[i]);
-			}
-		}
-		return result;
-	}
-	function hasClass(obj,cls){
-		return obj.className.match(new RegExp("(\\s*|^)"+cls+"(\\s|$)"));
-
-	}
-	function removeClass(obj,cls){
-		if(hasClass(obj,cls)){
-			obj.className=obj.className.replace(new RegExp("(\\s|^)"+cls+"(\\s|$)"),"");
-		}
-	}
-	function addClass(obj,cls){
-		if(!hasClass(obj,cls)){
-			obj.className+=' '+cls;
-		}	
-	}
-	window.onload=function(){
-		window.onscroll=function(){
-			var menus=document.getElementById("menu").getElementsByTagName("a");
-			var top=document.body.scrollTop+document.documentElement.scrollTop;
-			console.log(top);
-			var items=getByClassName(document.getElementById("content") ,"item");
-			var currentId="";
-			for(var i=0;i<items.length;i++){
-				var itm=items[i]
-				if(top>itm.offsetTop-300){
-					currentId=itm.id;  //item2
-				}
-			}
-
-			if(currentId){
-				for(i=0;i<menus.length;i++){
-					var mu=menus[i];
-					var currentLink=mu.href.split("#")[1];
-					if(currentId!=currentLink){
-						removeClass(mu,"current");						
-					}else{
-						addClass(mu,"current");						
-					}
-				}
-			}
-		}	
-	}
-		// $(function(){
-	// 	$(window).scroll(function(){
-	// 		var items=$("#content").find(".item"),
-	// 			menu=$("#menu"),
-	// 			top=$(document).scrollTop(),
-	// 			currentId="";
-	// 		items.each(function(){
-	// 			var $this=$(this);
-	// 			if(top>$this.offset().top- 300){
-	// 				currentId="#"+$this.attr("id")
-	// 			}else{
-	// 				return false;
-	// 			}
-	// 		});
-	// 		var currentLink=menu.find(".current");
-	// 		if (currentLink.attr("href")!=currentId){
-	// 			currentLink.removeClass("current");
-	// 			menu.find("[href=" + currentId + "]").addClass("current");
+	// function getByClassName(obj,cls){
+	// 	var elements=obj.getElementsByTagName('*');
+	// 	var result=[];
+	// 	for(var i=0;i<elements.length;i++){
+	// 		if(elements[i].className==cls){
+	// 			result.push(elements[i]);
 	// 		}
-	// 	})
-	// })
+	// 	}
+	// 	return result;
+	// }
+	// function hasClass(obj,cls){
+	// 	return obj.className.match(new RegExp("(^|\\s*)"+cls+"(\\s*|$)","g"));
+
+	// }
+	// function removeClass(obj,cls){
+	// 	console.log(hasClass(obj,cls));
+	// 	if(hasClass(obj,cls)){
+	// 		obj.className=obj.className.replace(new RegExp("(^|\\s*)" + cls + "(\\s*|$)"),"");
+	// 	}
+	// }
+	// function addClass(obj,cls){
+	// 	if(!hasClass(obj,cls)){
+	// 		obj.className+=' '+cls;
+	// 	}	
+	// }
+	// window.onscroll=function(){	
+	// 	var menus=document.getElementById("menu").getElementsByTagName("a");
+	// 	var top=document.body.scrollTop+document.documentElement.scrollTop;
+	// 	var items=getByClassName(document.getElementById("content") ,"item");
+	// 	var currentId="";
+	// 	//通过top找当前滚动条所对应item的currentId
+	// 	for(var i=0;i<items.length;i++){
+	// 		var itm=items[i]
+	// 		if(top>itm.offsetTop-300){
+	// 			currentId=itm.id;  //item2
+	// 		}
+	// 	}
+
+	// 	if(currentId){
+	// 		//找与currentId相同的a[href = #currentLink]中currentLink
+	// 		for(i=0;i<menus.length;i++){
+	// 			var mu=menus[i];
+	// 			var currentLink=mu.href.split("#")[1];
+	// 			if(currentId!=currentLink){
+	// 				removeClass(mu,"current");						
+	// 			}else{
+	// 				addClass(mu,"current");						
+	// 			}
+	// 		}
+	// 	}
+	// }	
+	
+	$(function(){
+		$(window).scroll(function(){
+			var items=$("#content").find(".item"),
+				menu=$("#menu"),
+				top=$(document).scrollTop(),
+				currentId="";
+			items.each(function(){
+				var $this=$(this);
+				if(top>$this.offset().top- 300){
+					currentId="#"+$this.attr("id")
+				}
+			});
+			var currentLink=menu.find(".current");
+			if (currentLink.attr("href")!=currentId){
+				currentLink.removeClass("current");
+				menu.find("[href=" + currentId + "]").addClass("current");
+			}
+		})
+	})
 </script>
 </body>
 </html>

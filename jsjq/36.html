@@ -2,273 +2,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>贪吃蛇（未完成）</title>
-<style type="text/css">
-  * {margin: 0;padding: 0}
-ol {list-style: none;}
-.content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  height: 600px;
-  width: 600px;
-}
-.oRow {
-  height: 30px;
-  width: 600px;
-  letter-spacing: -0.5em;
-  line-height: 30px;
-}
-.oRow li {
-  display: inline-block;
-  letter-spacing: 0;
-  width: 30px;
-  height: 10px;
-  text-align: center;
-}
-.oColumn {
-  height: 300px;
-  width: 600px;
-  border: 1px #000 solid;
-  background-color: #ccc;
-}
-.oColumn #block {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-top: 8px solid blue;
-  box-sizing: border-box;
-  background-color: red;
-  z-index: 2;
-  text-align: center;
-  transition: all .3s;
-  color: #fff;
-  font-size: 20px
-}
-/*.oColumn b {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: red;
-  z-index: 2;
-  transition: all .5s;
-}*/
-.oColumn li {
-  display: flex;
-  height: 30px;
-  line-height: 30px;
-  width: 600px;
-  background-color: #FFF;
-  box-sizing: border-box;
-  position: relative;
-  counter-increment: testname;
-}
-.oColumn li::before {
-  content: counter(testname);
-  position: absolute;
-  left: -30px;
-  width: 30px;
-  text-align: center;
-}
-.oColumn li div {
-  width: 30px;
-  height: 100%;
-  box-sizing: border-box;
-  outline: 1px #CCC solid;
-  background-color: #FFF;
-}
+    <meta charset="UTF-8">
+    <title>贪吃蛇（未完成）</title>
+    <style type="text/css">
+        * {margin: 0;padding: 0}
+        ol {list-style: none;}
+        .content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 600px;
+            width: 600px;
+        }
+        .oRow {
+            height: 30px;
+            width: 600px;
+            letter-spacing: -0.5em;
+            line-height: 30px;
+        }
+        .oRow li {
+            display: inline-block;
+            letter-spacing: 0;
+            width: 30px;
+            height: 10px;
+            text-align: center;
+        }
+        .oColumn {
+            height: 600px;
+            width: 600px;
+            border: 1px #000 solid;
+            background-color: #ccc;
+        }
+        .oColumn #block {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-top: 8px solid blue;
+            box-sizing: border-box;
+            background-color: red;
+            z-index: 2;
+            text-align: center;
+            transition: all .3s;
+            color: #fff;
+            font-size: 20px
+        }
+        .oColumn b {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            z-index: 2;
+            transition: all .5s;
+        }
+        .oColumn li {
+            display: flex;
+            height: 30px;
+            line-height: 30px;
+            width: 600px;
+            background-color: #FFF;
+            box-sizing: border-box;
+            position: relative;
+            counter-increment: testname;
+        }
+        .oColumn li::before {
+            content: counter(testname);
+            position: absolute;
+            left: -30px;
+            width: 30px;
+            text-align: center;
+        }
+        .oColumn li div {
+            width: 30px;
+            height: 100%;
+            box-sizing: border-box;
+            outline: 1px #CCC solid;
+            background-color: #FFF;
+        }
 
-span{position: absolute;top: 50px;left: 50px}
-</style>
+        span{position: absolute;top: 50px;left: 50px}null,
+
+    </style>
 </head>
 <body>
-<span>A S D W控制运动 身体还没有写</span>
-<span style="position: absolute;left: 50px;top: 200px;">第&nbsp;<b id="tip" style="color: red;font-weight: bold;"></b>&nbsp;关&nbsp;加油！！！</span>
-<span style="position: absolute;left: 50px;top: 250px;">时速&nbsp;<b id="kw" style="color: red">50</b>&nbsp;kw/h</span>
-<div class="content">
-  <ol class="oRow" id="oRow">
-  </ol>
-  <ol class="oColumn" id="oColumn">
-    <div id="block"></div>
-  </ol>
-</div>
+    <span>A S D W控制运动 身体还没有写</span>
+    <span style="position: absolute;left: 50px;top: 200px;">第&nbsp;<b id="tip" style="color: red;font-weight: bold;"></b>&nbsp;关&nbsp;加油！！！</span>
+    <span style="position: absolute;left: 50px;top: 250px;">时速&nbsp;<b id="kw" style="color: red">50</b>&nbsp;kw/h</span>
+    <div class="content">
+        <ol class="oRow" id="oRow">
+        </ol>
+        <ol class="oColumn" id="oColumn">
+            <div id="block"></div>
+        </ol>
+    </div>
 <script>
-var oRow = document.getElementById('oRow');
-var oColumn = document.getElementById('oColumn');
-var block = document.getElementById('block');
-var tip=document.getElementById('tip');
-var kwh=document.getElementById('kw');
-var timer=timer1=timer2=timer3=null;
-var lf=0,tp=0,index=0,k=0,num=1,kw=50;
-var speed=300;
-var move = {
+    var oRow = document.getElementById('oRow'),
+        oColumn = document.getElementById('oColumn'),
+        block = document.getElementById('block'),
+        tip = document.getElementById('tip'),
+        kwh = document.getElementById('kw'),
+        timer = null,
+        timer1 = null,
+        timer2 = null,
+        timer3 = null,
+        lf = 0,
+        tp = 0,
+        index = 0,
+        k = 0,
+        num = 1,
+        kw = 50,
+        speed = 300,
+        start = 0;//定时器标注
+    var move = {
 /**
- * 移动动画
- */
-  moveGo: function(){
-    var d = parseInt((block.style.transform).match(/[-]*\d+/g)[0]);
-    switch(d) {
-      case 0: {
-        clear();    
-        var timer=setInterval(function(){
-          if(block.style.top==='30px'){
-            clearInterval(timer);
-            alert("你输了");
-            creatBlock();
-            return false
-          } 
-          change(tp,lf,d);
-          block.style.top = (parseInt(block.style.top) - 30) +'px';
-          
-        },speed)  
-        break;
-      }
+* 移动动画
+*/
+        moveGo: function(){
+            var d = parseInt((block.style.transform).match(/[-]*\d+/g)[0]);
+            switch(d) {
+                case 0: {
+                    clear();    
+                    var timer = setInterval(function(){
+                        start = timer;
+                        if(block.style.top === '30px'){
+                            clearInterval(timer);
+                            alert("你输了");
+                            creatBlock();
+                            return false
+                        } 
+                        change(tp,lf,d);
+                        block.style.top = (parseInt(block.style.top) - 30) +'px';
 
-      case 90:{
-        clear();
-        var timer1=setInterval(function(){
-          if(block.style.left==='570px'){
-            clearInterval(timer1);
-            alert("你输了");
-            creatBlock();
-            return false
-          }
-          change(tp,lf,d);
-          block.style.left = (parseInt(block.style.left) + 30) +'px';
-        },speed)  
-        break;
-      }
+                    },speed)  
+                    break;
+                }
 
-      case 180:{
-        clear();
-        var timer2=setInterval(function(){
-          if(block.style.top==='600px'){
-            clearInterval(timer2);
-            alert("你输了");
-            creatBlock();
-            return false
-          }
-          change(tp,lf,d); 
-          block.style.top = (parseInt(block.style.top) + 30) +'px';
-        },speed)  
-        break;
-      }
+                case 90:{
+                    clear();
+                    var timer1 = setInterval(function(){
+                        start = timer1;
+                        if(block.style.left === '570px'){
+                            clearInterval(timer1);
+                            alert("你输了");
+                            creatBlock();
+                            return false
+                        }
+                        change(tp,lf,d);
+                        block.style.left = (parseInt(block.style.left) + 30) +'px';
+                    },speed)  
+                    break;
+                }
 
-      case -90: {
-        clear();
-        var timer3=setInterval(function(){
-          if(block.style.left==='0px'){
-            clearInterval(timer3);
-            alert("你输了");
-            creatBlock();
-            return false
-          } 
-          change(tp,lf,d);
-          block.style.left = (parseInt(block.style.left) - 30) +'px';
-        },speed) 
-        break;
-      }
+                case 180:{
+                    clear();
+                    var timer2 = setInterval(function(){
+                        start = timer2;
+                        if(block.style.top === '600px'){
+                            clearInterval(timer2);
+                            alert("你输了");
+                            creatBlock();
+                            return false
+                        }
+                        change(tp,lf,d); 
+                        block.style.top = (parseInt(block.style.top) + 30) +'px';
+                    },speed)  
+                    break;
+                }
+
+                case -90: {
+                    clear();
+                    var timer3 = setInterval(function(){
+                        start = timer3;
+                        if(block.style.left === '0px'){
+                            clearInterval(timer3);
+                            alert("你输了");
+                            creatBlock();
+                            return false
+                        } 
+                        change(tp,lf,d);
+                        block.style.left = (parseInt(block.style.left) - 30) +'px';
+                    },speed) 
+                    break;
+                }
+            }
+        },
+/**
+* 调整方向
+*/
+        moveLeft: function(){
+            block.style.transform = 'rotateZ('+(-90)+'deg)';
+            move.moveGo();
+        },
+
+        moveTop: function(){
+            block.style.transform = 'rotateZ('+0+'deg)';
+            move.moveGo();
+        },
+
+        moveRight: function(){
+            block.style.transform = 'rotateZ('+(90)+'deg)';
+            move.moveGo();
+        },
+
+        moveBottom: function(){
+            block.style.transform = 'rotateZ('+(180)+'deg)';
+            move.moveGo();
+        }
+    };
+
+/**
+* 事件绑定
+*/
+    document.onkeyup = function(event){
+        var e = event || window.event;
+        switch(e.keyCode){
+            case 87: 
+            return move.moveTop();
+            break;
+            case 65:
+            return move.moveLeft();
+            break;
+            case 68:
+            return move.moveRight();
+            break;
+            case 83:
+            return move.moveBottom();
+            break;
+        }
     }
-  },
 /**
- * 调整方向
- */
-  moveLeft: function(){
-    block.style.transform = 'rotateZ('+(-90)+'deg)';
-    move.moveGo();
-  },
-
-  moveTop: function(){
-    block.style.transform = 'rotateZ('+0+'deg)';
-    move.moveGo();
-  },
-
-  moveRight: function(){
-    block.style.transform = 'rotateZ('+(90)+'deg)';
-    move.moveGo();
-  },
-
-  moveBottom: function(){
-    block.style.transform = 'rotateZ('+(180)+'deg)';
-    move.moveGo();
-  }
-}
-
-/**
- * 事件绑定
- */
-document.onkeyup = function(event){
-  var e = event || window.event;
-  switch(e.keyCode){
-    case 87: 
-      return move.moveTop();
-      break;
-    case 65:
-      return move.moveLeft();
-      break;
-    case 68:
-      return move.moveRight();
-      break;
-    case 83:
-      return move.moveBottom();
-      break;
-  }
-}
-/**
- * [clear description]清除所有定时器
- */
-function clear(){
-  var end = setTimeout(function(){},0);
-  var start = 0;
-  for(var i=start;i<=end;i++){
-    clearTimeout(i);
-  }
-}
-
-/**
- * [init description]初始化表格
- */
-function init(){
-  for(var n=0;n<20;n++){
-    var oRli=document.createElement("li");
-    oRli.innerHTML=n+1;
-    oRow.appendChild(oRli);
-    var oLi=document.createElement("li");
-    oColumn.appendChild(oLi);
-  }
-  var row = oColumn.getElementsByTagName('li');
-  for(var i=0;i<20;i++){
-    for(var j=0;j<20;j++){
-      var div = document.createElement('div');
-      row[i].appendChild(div);
+* [clear description]清除所有定时器
+*/
+    function clear(){
+        var end = setTimeout(function(){},0);
+        for(var i = start; i < end;i++){
+            clearInterval(i);
+        }
+        clearTimeout(end)
     }
-  }
-  creatBlock();
-}
-function creatBlock() {
-  num=1;
-  kw=50;
-  speed=300;
-  k=0;
-  tip.innerHTML=num;
-  kwh.innerHTML=kw;
-  block.innerHTML=k;
-  speed=300;
-  block.style.left = Math.ceil(Math.random()*19)*30+"px";
-  block.style.top = Math.ceil(Math.random()*19)*30+"px";
-  block.style.transform = "rotateZ(0deg)"; 
-  creat();
-}
 
 /**
- * 增加身体
- */
-function change(tp,lf,d){
-  if((parseInt(block.style.top) - 30)==tp&&block.style.left==lf+'px'){
+* [init description]初始化表格
+*/
+    function init(){
+        for(var n = 0;n < 20; n++){
+            var oRli = document.createElement("li");
+            oRli.innerHTML = n+1;
+            oRow.appendChild(oRli);
+            var oLi = document.createElement("li");
+            oColumn.appendChild(oLi);
+        }
+        var row = oColumn.getElementsByTagName('li');
+        for(var i = 0;i < 20; i++){
+            for(var j = 0; j < 20;j++){
+                var div = document.createElement('div');
+                row[i].appendChild(div);
+            }
+        }
+        creatBlock();
+    }
+
+    function creatBlock() {
+        num = 1;
+        kw = 50;
+        speed = 300;
+        k = 0;
+        tip.innerHTML = num;
+        kwh.innerHTML = kw;
+        block.innerHTML = k;
+        speed = 300;
+        block.style.left = Math.ceil(Math.random()*19)*30+"px";
+        block.style.top = Math.ceil(Math.random()*19)*30+"px";
+        block.style.transform = "rotateZ(0deg)"; 
+        creat();
+    }
+
+/**
+* 增加身体
+*/
+    function change(tp,lf,d){
+        if((parseInt(block.style.top) - 30) == tp && block.style.left == lf + 'px'){
     // var newBlock=document.createElement("b");
     // if(d==0){
     //   newBlock.style.top=tp+30+"px";
@@ -290,44 +305,44 @@ function change(tp,lf,d){
 
     // // 身体动画
     // aBody();
-    k++;
-    block.innerHTML=k;
-    if(k==4){
-      block.innerHTML=0;
-      speed-=50;
-      num++;
-      kw+=50;
-      tip.innerHTML=num;
-      kwh.innerHTML=kw;
-      k=0;
-      clear();  
+            k++;
+            block.innerHTML=k;
+            if(k==4){
+                block.innerHTML=0;
+                speed-=50;
+                num++;
+                kw+=50;
+                tip.innerHTML=num;
+                kwh.innerHTML=kw;
+                k=0;
+                clear();  
+            }
+            creat();
+        } 
     }
-    creat();
-  } 
-}
 
 // function aBody(){
-  
+
 // }
 
 
 /**
- * 随机创建食物
- */
-function creat(){
-  var aDiv=oColumn.getElementsByTagName('div');
-  for(var k=1;k<aDiv.length;k++){
-    aDiv[k].style.backgroundColor="#fff";
-  }
-  var num=Math.floor(Math.random()*400);
-  aDiv[num+1].style.backgroundColor="#000";
-  var countRow=Math.floor((num-1)/20);//排数
-  var countCol=(num)%20;//列数
-  lf=countCol*30;
-  tp=(countRow)*30;
-}
+* 随机创建食物
+*/
+    function creat(){
+        var aDiv=oColumn.getElementsByTagName('div');
+        for(var k=1;k<aDiv.length;k++){
+            aDiv[k].style.backgroundColor="#fff";
+        }
+        var num=Math.floor(Math.random()*400);
+        aDiv[num+1].style.backgroundColor="#000";//不包括block
+        var countRow=Math.floor((num-1)/20);//排数
+        var countCol=(num)%20;//列数
+        lf=countCol*30;
+        tp=(countRow)*30;
+    }
 
-init();
+    init();
 </script>
 </body>
 </html>

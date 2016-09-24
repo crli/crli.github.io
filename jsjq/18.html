@@ -16,78 +16,75 @@
 </style>
 </head>
 <body>
-  <div id="wrap">
-    <form action="">
-      <div class="item">
-        <label for="userName" class="user">用户名：</label><input name="userName" id="userName"/><span></span>
-      </div>
-      <div class="item">
-        <label for="userPwd" class="user">密码：</label><input type="password" id="userPwd" name="userPwd"/><span></span>
-      </div>
-      <div class="item1">
-        <input type="button" id="resetForm" value="重置"/>
-        <input type="button" id="submitForm" value="提交"/>
-      </div>
-    </form>
-  </div>
+    <div id="wrap">
+        <form action="">
+            <div class="item">
+                <label for="userName" class="user">用户名：</label><input name="userName" id="userName"/><span></span>
+            </div>
+            <div class="item">
+                <label for="userPwd" class="user">密码：</label><input type="password" id="userPwd" name="userPwd"/><span></span>
+            </div>
+            <div class="item1">
+                <input type="button" id="resetForm" value="重置"/>
+                <input type="button" id="submitForm" value="提交"/>
+            </div>
+        </form>
+    </div>
 <script>
-  var submitForm=document.querySelector("#submitForm"),
-      resetForm=document.querySelector('#resetForm'),
-      userName=document.querySelector('#userName'),
-      userPwd=document.querySelector('#userPwd');
-  submitForm.onclick = function(){
-    var unInput  = document.querySelector('#userName');
-    if(unInput.value.trim().length<2){
-      unInput.nextSibling.innerHTML = '用户名长度不合法';
-      unInput.nextSibling.className = 'err';
-      unInput.focus();
-    }else{
-      var pwdInput  = document.querySelector('#userPwd');
-      if(pwdInput.value.trim().length<6){
-        pwdInput.nextSibling.innerHTML='密码长度不足6位';
-        pwdInput.nextSibling.className='err';
-        pwdInput.focus();
-      }else{
-        document.forms[0].submit();
-      }
+    var submitForm=document.querySelector("#submitForm"),
+        resetForm=document.querySelector('#resetForm'),
+        userName=document.querySelector('#userName'),
+        userPwd=document.querySelector('#userPwd');
+    submitForm.onclick = function(){
+        if(userName.value.trim().length<2){
+            userName.nextSibling.innerHTML = '用户名长度不合法';
+            userName.nextSibling.className = 'err';
+            userName.focus();
+        }else if(userPwd.value.trim().length<6){
+            userPwd.nextSibling.innerHTML='密码长度不足6位';
+            userPwd.nextSibling.className='err';
+            userPwd.focus();
+        }else{
+            document.forms[0].submit();
+        }
     }
-  }
-  resetForm.onclick = function(){
-    userName.value="";
-    userPwd.value="";
-  }
-  userName.onblur = function(){
-    var uname = this.value.trim();
-    if(uname.length<2 || uname.length>6){
-      this.nextSibling.innerHTML = '用户名长度必须在2~6之间';
-      this.nextSibling.className = 'err';
-      this.focus();
-    }else{
-      this.nextSibling.innerHTML = '用户名合法';
-      this.nextSibling.className = 'ok';
+    resetForm.onclick = function(){
+        userName.value="";
+        userPwd.value="";
+        userName.nextSibling.innerHTML = ""; 
+        userPwd.nextSibling.innerHTML="";
     }
-    
-  }
-  userPwd.onkeyup = function(){
-    var pwd = this.value.trim();
-    if(pwd.length<6){
-      this.nextSibling.innerHTML = '密码长度不足6位';
-      this.nextSibling.className = 'err';
-    }else{
-      var strength = pwdStrength(pwd);
-      if(strength == 1){
-        this.nextSibling.innerHTML = '密码强度不足';
-        this.nextSibling.className = 'err';
-      }else if(strength == 2){
-        this.nextSibling.innerHTML = '密码强度一般';
-        this.nextSibling.className = 'warn';
-      }else if(strength == 3){
-        this.nextSibling.innerHTML = '密码强度很好';
-        this.nextSibling.className = 'ok';
-      }
+    userName.onblur = function(){
+        var uname = this.value.trim();
+        if(uname.length<2 || uname.length>6){
+            this.nextSibling.innerHTML = '用户名长度必须在2~6之间';
+            this.nextSibling.className = 'err';
+            this.focus();
+        }else{
+            this.nextSibling.innerHTML = '用户名合法';
+            this.nextSibling.className = 'ok';
+        }
     }
-  }
-  function pwdStrength(pwd){
+    userPwd.onkeyup = function(){
+        var pwd = this.value.trim();
+        if(pwd.length<6){
+            this.nextSibling.innerHTML = '密码长度不足6位';
+            this.nextSibling.className = 'err';
+        }else{
+            var strength = pwdStrength(pwd);
+            if(strength == 1){
+                this.nextSibling.innerHTML = '密码强度不足';
+                this.nextSibling.className = 'err';
+            }else if(strength == 2){
+                this.nextSibling.innerHTML = '密码强度一般';
+                this.nextSibling.className = 'warn';
+            }else if(strength == 3){
+                this.nextSibling.innerHTML = '密码强度很好';
+                this.nextSibling.className = 'ok';
+            }
+        }
+    }
+    function pwdStrength(pwd){
         if(/[a-zA-Z]+/.test(pwd) && /[0-9]+/.test(pwd) && /\W+\D+/.test(pwd)) {
            return 3;
         }else if(/[a-zA-Z]+/.test(pwd) || /[0-9]+/.test(pwd) || /\W+\D+/.test(pwd)) {
@@ -101,7 +98,7 @@
                 return 1;
             }
         }
-  }
+    }
 </script>
 </body>
 </html>

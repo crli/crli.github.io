@@ -18,16 +18,20 @@
   <ul>
   </ul>
 <script type="text/javascript">
-  	var oRand=document.getElementById("random"),
-		oSort=document.getElementById("sortdata"),
-		add=document.getElementById("add"),
-		oInput=document.getElementsByTagName('input')[0],
-		oSpped=document.getElementsByTagName('input')[1],
-		oUl=document.getElementsByTagName('ul')[0],
-		n=j=len=0,
-		k=1,
-		aLi=timer=null,
-		flag=true;
+	var oRand = document.getElementById("random"),
+		oSort = document.getElementById("sortdata"),
+		add = document.getElementById("add"),
+		oInput = document.getElementsByTagName('input')[0],
+		oSpped = document.getElementsByTagName('input')[1],
+		oUl = document.getElementsByTagName('ul')[0],
+		n = 0,
+		j = 0,
+		len = 0,
+		spped = 0,
+		k = 1,
+		aLi = null,
+		timer = null,
+		flag = true;
 	function addEvent(elem,type,hander){
 		if(elem.addEventListener){
 			elem.addEventListener(type,hander,false)
@@ -61,9 +65,15 @@
 
 	function upcolor(n){
 		aLi=document.getElementsByTagName("li");
-		aLi[n+1].style.backgroundColor="blue";
+		aLi[n+1].style.backgroundColor="blue";		
 	}
-
+	function colorClear() {
+		if(flag){
+			for(var i = 0;i<aLi.length ;i++){
+				aLi[i].style.backgroundColor = "#ff4545";
+			}
+		}
+	}
 /**
  * 删除被选li数据
  */
@@ -92,6 +102,7 @@
 	    	if(oInput.value>100||oInput.value<10){
 	      		alert("请输入10-100之间整数")
 	      		oInput.value='';
+	      		oInput.focus();
 	      		return
 	    	}else{
 	      		data.unshift(oInput.value)
@@ -106,46 +117,50 @@
 	function oChange(){
 	  	oInput.value = oInput.value.replace(/[^\d]/,"");
 	}
+	
 /**
  * 排序运算
  */
 	function sort(){
-		flag=false;
-		var spped=oSpped.value.split("ms")[0];
-		add.disabled=true;
-		oSort.disabled=true;
-		oRand.disabled=true;
+		flag = false;
+		spped = oSpped.value.split("ms")[0];
+		add.disabled = true;
+		oSort.disabled = true;
+		oRand.disabled = true;
 		clearInterval(timer);
 		len = data.length;
 		timer = setInterval(run,spped);
-		function run() {
-			if (k < len) {
-				if (n < len-k) {
-					if (data[n] > data[n+1]) {
-						j = data[n];
-						data[n] = data[n+1];
-						data[n+1] = j;
-						updata();
-						upcolor(n);
-					}
-					n++;
-				} else {
-					k++;
-					n=0;
+	}
+
+	function run() {
+		if (k < len) {
+			if (n < len-k) {
+				if (data[n] > data[n+1]) {
+					j = data[n];
+					data[n] = data[n+1];
+					data[n+1] = j;
+					updata();
+					upcolor(n);
 				}
+				n++;
 			} else {
-				clearInterval(timer);
-				k=0;
-				oSort.disabled=false;
-				oRand.disabled=false;
-				add.disabled=false;
-				flag=true;
-				return;
-			}		
-		}
+
+				k++;
+				n=0;
+			}
+		} else {
+			clearInterval(timer);
+			k=0;
+			oSort.disabled=false;
+			oRand.disabled=false;
+			add.disabled=false;
+			flag=true;
+			colorClear();
+			return;
+		}		
 	}
 /**
- * 事件绑定
+ * 	事件绑定
  */
 	addEvent(oRand,"click",randomData);
 	addEvent(oSort,"click",sort);

@@ -28,18 +28,14 @@ window.onload = function (){
 
 	function play (){
 		pl = setInterval(function () {
-			if(flag){
-				index++
-			}else{
-				index--
+			flag ? index++ : index--;
+			if(index == aImg.length){
+				index = aImg.length-2;
+				flag = false
 			}
-			if(index==aImg.length){
-				index=aImg.length-2;
-				flag=false
-			}
-			if(index==0){
-				index=0;
-				flag=true
+			if(index == 0){
+				index = 0;
+				flag = true
 			}
 			show(index)
 		},2000);	
@@ -56,7 +52,7 @@ window.onload = function (){
 	}	
 	//鼠标划过关闭定时器
 	oBox.onmouseover = function (){
-		clearInterval(pl)	
+		clearInterval(pl);	
 	};
 	
 	//鼠标离开启动自动播放
@@ -66,14 +62,14 @@ window.onload = function (){
 	
 	//图片切换, 淡入淡出效果
 	function show (a){
+		clearInterval(timer);
 		index = a;
 		var alpha = 0;
 		for (i = 0; i < aNum.length; i++){
 			aNum[i].className = "";
 		}
 		aNum[index].className = "current";
-		clearInterval(timer);			
-		
+							
 		for (i = 0; i < aImg.length; i++){
 			aImg[i].style.opacity = 0;
 			aImg[i].style.filter = "alpha(opacity=0)";	
@@ -82,13 +78,11 @@ window.onload = function (){
 		timer = setInterval(function () {
 			alpha+=3;
 			if(alpha > 100){
-				alpha =100
+				alpha =100;
+				clearInterval(timer)
 			}
 			aImg[index].style.opacity = alpha / 100;
 			aImg[index].style.filter = "alpha(opacity = " + alpha + ")";
-			if(alpha==100){
-				clearInterval(timer)
-			}
 		},20);
 	}
 };

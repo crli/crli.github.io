@@ -43,7 +43,7 @@
 // js方法
     var tbody=document.getElementsByTagName('tbody')[0],
         btn=document.getElementById('btn'),
-        trs=document.getElementsByTagName('tr');
+        trs=tbody.getElementsByTagName('tr');
         btn.onclick=function(){
             tbody.innerHTML="";
             for (var key in json){

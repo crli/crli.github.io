@@ -40,44 +40,44 @@
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
  <script type="text/javascript">  
   // jq方法
- $("#ul1 li").on('mouseover',function(){
-    $(".active").removeClass("active");
-    $(this).attr("class","active");
-    $("#ul1").nextAll().attr("class","hide");
-    $("#tab-list div").eq($(this).index()).attr("class","show");
- })
+ // $("#ul1 li").on('mouseover',function(){
+ //    $(".active").removeClass("active");
+ //    $(this).attr("class","active");
+ //    $("#ul1").nextAll().attr("class","hide");
+ //    $("#tab-list div").eq($(this).index()).attr("class","show");
+ // })
 
  // js方法    
- //    window.onload = function() {
- //        var oLi = document.getElementById("ul1"),
- //        	aLi = oLi.getElementsByTagName("li"),
- //        	aDiv = document.getElementById("tab-list").getElementsByTagName("div");
- //        for(var i = 0; i < aLi.length; i++) {
- //            aLi[i].index = i;
- //            aLi[i].onmouseover = function() {
- //            	var act=getClass("active",oLi,"li")[0].removeAttribute("class");   
- //                this.className = "active";
- //                for(var j = 0; j < aDiv.length; j++) {
- //                    aDiv[j].className = "hide";
- //                }
- //                aDiv[this.index].className = "show";
- //            }        
- //        }
- //    }
- //   	function getClass(cls,parent,elm){
- //   		var parent=parent||document;
- //   		if(parent.getElementsByClassName(cls)){
- //   			return parent.getElementsByClassName(cls);
- //   		}else{
- //   			var arrelm=[],elms=parent.getElementsByTagName(elm);
- //   			for(var i=0; i<elms.length;i++){
- //   				if(elms[i].className==cls){
- //   					arrelm.push(elms[i])
- //   				}
- //   			}
- //   			return arrelm;
- //   		}
- //   	}
+    window.onload = function() {
+        var oLi = document.getElementById("ul1"),
+        	aLi = oLi.getElementsByTagName("li"),
+        	aDiv = document.getElementById("tab-list").getElementsByTagName("div");
+        for(var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function() {
+            	getClass("active",oLi,"li")[0].removeAttribute("class");   
+                this.className = "active";
+                for(var j = 0; j < aDiv.length; j++) {
+                    aDiv[j].className = "hide";
+                }
+                aDiv[this.index].className = "show";
+            }        
+        }
+    }
+   	function getClass(cls,parent,elm){
+   		var parent=parent||document;
+   		if(parent.getElementsByClassName(cls)){
+   			return parent.getElementsByClassName(cls);
+   		}else{
+   			var arrelm=[],elms=parent.getElementsByTagName(elm);
+   			for(var i=0; i<elms.length;i++){
+   				if(elms[i].className==cls){
+   					arrelm.push(elms[i])
+   				}
+   			}
+   			return arrelm;
+   		}
+   	}
 
 </script>
 </body>

@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>字符匹配(正则样式)</title>
+    <meta charset="UTF-8" />
+    <title>字符匹配(正则样式)</title>
 </head>
 <style type="text/css">
-  #wrap{width: 500px;margin: 20px auto}
-  textarea{width: 500px;height: 200px;margin: 10px 0}
-  input{height: 30px;width: 300px}
-  button{width: 180px;height: 30px; margin-left: 10px}
-  #client{width: 500px;height: 200px;margin-top: 10px; background-color: #f2f2f2}
-  #client div{background-color: #ff9999;display: inline-block;height: 20px;text-align: center;line-height: 20px;margin: 0 5px}
-  span{display: inline-block;background-color: red;width: 10px}
+    #wrap{width: 500px;margin: 20px auto}
+    textarea{width: 500px;height: 200px;margin: 10px 0}
+    input{height: 30px;width: 300px}
+    button{width: 180px;height: 30px; margin-left: 10px}
+    #client{width: 500px;height: 200px;margin-top: 10px; background-color: #f2f2f2}
+    #client div{background-color: #ff9999;display: inline-block;height: 20px;text-align: center;line-height: 20px;margin: 0 5px}
+    span{display: inline-block;background-color: red;}
 </style>
 <body>
-<div id="wrap">
-  <textarea placeholder="输入字符"></textarea>
-  <input type="text" placeholder="所查字符"><button>查询</button>
-  <div id="client"></div>
-</div>
+    <div id="wrap">
+        <textarea placeholder="输入字符(非数字,字母,汉字,自动形成间隔)"></textarea>
+        <input type="text" placeholder="所查字符"><button>查询</button>
+        <div id="client"></div>
+    </div>
 <script type="text/javascript">
-  var oIn=document.getElementsByTagName('textarea')[0],
-      oFind=document.getElementsByTagName("input")[0],
-      oClient=document.getElementById('client'),
-      oBtn=document.getElementsByTagName('button')[0];
+var oIn = document.getElementsByTagName('textarea')[0],
+    oFind = document.getElementsByTagName("input")[0],
+    oClient = document.getElementById('client'),
+    oBtn = document.getElementsByTagName('button')[0];
 
-        var addData=[];
-        oBtn.onclick=function(){
-          var str=oIn.value.trim();
-          var arr=str.split(/[^0-9a-zA-Z\u4e00-\u9fa5]+/).filter(function(e) {
-            //避免非字符形式查找
-            if (e != null && e.length > 0) {
-                return true;
-            } else {
-                return false;
-            }
-          });
-          addData=arr;
-          render();//先狂渲染颜色
-          var strF=oFind.value.trim();
-          render(strF);//在渲染颜色
+var addData = [];
+oBtn.onclick = function(){
+    var str = oIn.value.trim();
+    var arr = str.split(/[^0-9a-zA-Z\u4e00-\u9fa5]+/).filter(function(e) {
+        //避免非字符形式查找
+        if (e != null && e.length > 0) {
+            return true;
         }
-       function render(strF){
-          oClient.innerHTML=addData.map(function(s){
-            if(strF!=null&&strF.length>0){
-              s=s.replace(new RegExp(strF,"g"),"<span>"+strF+"</span>");
-              return '<div>'+s+'</div>';
-            }else{
-              return
-            }
-          }).join('')
-       }  
-      
+    });
+    addData = arr;
+    var strF = oFind.value.trim();
+    render(strF);
+}
+function render(strF){
+    oClient.innerHTML = addData.map(function(s){
+        if(strF != null && strF.length > 0){
+            s = s.replace(new RegExp(strF,"g"),"<span>"+ strF +"</span>");
+            return '<div>'+s+'</div>';
+        }
+    }).join('')
+}  
+
 </script>
 </body>
 </html>

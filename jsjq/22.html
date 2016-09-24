@@ -154,10 +154,10 @@ var get={
     	if(oParent.getElementsByClass){
       		retuen (oParent||document).getElementsByClass(sClass);
     	}else{
-      		var aClass=[];
-      		var reClass=new  RegExp("(^| )"+sClass+"( |$)");
-      		var aElem=this.byTag(oParent,"*");
-      		for(var i=0;i<aElem.length;i++){
+      		var aClass = [];
+      		var reClass = new RegExp("(^|\\s*)"+ sClass +"(\\s*|$)");
+      		var aElem = this.byTag(oParent,"*");
+      		for(var i = 0; i < aElem.length; i++){
         		if(reClass.test(aElem[i].className)){
           			aClass.push(aElem[i]);
         		}
@@ -169,8 +169,7 @@ var get={
     	return (obj||document).getElementsByTagName(elem);
  	}
 }
-window.onload = function ()
-{
+window.onload = function (){
 	var oNav = get.byId("nav");
 	var aLi = get.byTag(oNav, "li");
 	var aSubNav = get.byClass(oNav,"subnav");
