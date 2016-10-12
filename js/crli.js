@@ -54,7 +54,7 @@ $(function(){
                 });
             }
             if(index==3){
-                var arr=[90,85,90,85,80,85,75,50];
+                var arr=[85,85,80,85,75,55,35];
                 for(var key in arr){
                     var color='#'+Math.floor(Math.random()*0xffffff).toString(16);
                     $(".proBar").eq(key).attr('style','width:'+arr[key]+'%').css('background-Color',color).html(arr[key]+'%'); 
