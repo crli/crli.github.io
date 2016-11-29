@@ -55,9 +55,16 @@ $(function(){
             }
             if(index==3){
                 var arr=[85,85,80,85,75,55,35];
+                var aCo=['#000000','#8B0000','blue','green','#8B4513','#800080','#FF4500'];
+                var aColor = [];
+                for(var i = 0,len = aCo.length;i<len;i++){
+                    var j = Math.floor(Math.random()*aCo.length);
+                    aColor[i] = aCo[j];
+                    aCo.splice(j,1);
+                }
+                
                 for(var key in arr){
-                    var color='#'+Math.floor(Math.random()*0xffffff).toString(16);
-                    $(".proBar").eq(key).attr('style','width:'+arr[key]+'%').css('background-Color',color).html(arr[key]+'%'); 
+                    $(".proBar").eq(key).attr('style','width:'+arr[key]+'%').css('background-Color',aColor[key]).html(arr[key]+'%'); 
                 };
             }
             if(index==4){

@@ -233,6 +233,13 @@ nav a{
 	width: 140px;
 	height: 140px;
 	border-radius: 70px;
+	transform: rotate3d(0, 0, 0 );
+	-webkit-transition: 1s all ease-in-out;
+	-moz-transition: 1s all ease-in-out;
+	transition: 1s all ease-in-out;
+}
+#img1:hover{
+	transform: rotateY(180deg)
 }
 
 /* about */
