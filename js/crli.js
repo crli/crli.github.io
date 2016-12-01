@@ -132,7 +132,9 @@ window.applicationCache.addEventListener('updateready',function(e){
 //demo swiper
 var swiper = new Swiper('.swiper-container', {
     pagination: '.swiper-pagination',
-    paginationClickable: true
+    paginationClickable: true,
+    spaceBetween: 60,
+    loop: true
 }); 
 
 //fadeIn
