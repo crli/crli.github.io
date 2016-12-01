@@ -27,17 +27,7 @@ $(function(){
             $("#home-motto").css({'opacity':'1'});
             $("#home-motto").next().animate({'opacity':'1'},700);
             $("#header").animate({'opacity':'1'},700,function(){
-                $("#lining").fadeIn(450,function(){
-                    $(this).next().fadeIn(450,function(){
-                        $(this).next().fadeIn(450,function(){
-                            $(this).next().fadeIn(450,function(){
-                                $(this).next().fadeIn(450,function(){
-                                    $("#fp-nav").fadeIn(300)
-                                })
-                            });
-                        });
-                    });
-                });
+                myFade($("#lining"),450)
             });
         },
         afterLoad:function(anchorLink,index){
@@ -137,8 +127,24 @@ window.applicationCache.addEventListener('updateready',function(e){
     if(window.applicationCache.status == window.applicationCache.UPDATEREADY){
         window.applicationCache.swapCache();       
     }
-},false)   
+},false)
 
-   
+//demo swiper
+var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true
+}); 
+
+//fadeIn
+var myFade = function (posts,speed,fn){
+    posts.fadeIn (speed, function (){
+        var nextOne = $ (this).next();
+        if (nextOne.length > 0){
+            myFade (nextOne,speed);
+        }else{
+            $("#fp-nav").fadeIn(300)
+        }
+    });
+}
 
 

@@ -8,6 +8,7 @@
     <meta name="baidu-site-verification" content="A8qpV1H7dj" />
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
     <link rel="stylesheet" type="text/css" href="css/crli.css">
     <title>前端工程师个人简历</title>
 </head>
@@ -148,25 +149,38 @@ var _hmt = _hmt || [];
                     <h2>我的作品</h2>
                 </div>
                 <div id="demo-box">
-                    <div class="demo-item">
-                        <i class="iconfont icon1">&#xe619;</i>
-                        <span class="icon1-info">html+css3画C罗</span>
-                        <a class="demo-img1" href="cr7.html" target="_blank"></a>
-                    </div>
-                    <div class="demo-item">
-                        <i class="iconfont icon1">&#xe619;</i>
-                        <span class="icon1-info">js原生demo列表</span>
-                        <a class="demo-img2" href="jsjq/jsjq.html" target="_blank"></a>
-                    </div>
-                    <div class="demo-item">
-                        <i class="iconfont icon1">&#xe6ad;</i>
-                        <span class="icon1-info">响应式网站</span>
-                        <a class="demo-img3"  href="jsjq/rmh5.html" target="_blank"></a>
-                    </div>
-                    <div class="demo-item">
-                        <i class="iconfont icon1">&#xe6ad;</i>
-                        <span class="icon1-info">模仿网页</span>
-                        <a class="demo-img4" href="jsjq/xiaomi/app/index.html" target="_blank"></a>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <h3 class="demo-title"><a href="jsjq/jsjq.html" target="_blank">原生js作品集<b> (地址)</b></a></h3>
+                                <p class="demo-text">原生js作品，练习demo，部分使用jq实现一遍</p>
+                                <div class="demo1 demo-img-wrap">
+                                    <img src="images/jsys.png" alt="js原生demo列表" class="demo1-img demo-img-ani"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <h3 class="demo-title"><a href="cr7.html" target="_blank">C罗卡通图<b> (地址)</b></a></h3>
+                                <p class="demo-text">仅使用html、css 的描绘C罗卡通图案，运用js+jQuery+ajax渲染绘画过程。</p>
+                                <div class="demo2 demo-img-wrap">
+                                    <img src="images/cl.png" alt="html-css3-drawing-CR7" class="demo2-img demo-img-ani"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <h3 class="demo-title"><a href="jsjq/rmh5.html" target="_blank">响应式网站<b> (地址)</b></a></h3>
+                                <p class="demo-text">应用原生JS+jQuery+fullpage.js+Canvas+css3，完成的兼容移动端、pc端的响应式网站及h5页面</p>
+                                <div class="demo3 demo-img-wrap">
+                                    <img src="images/xys.png" alt="响应式网站" class="demo3-img demo-img-ani"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <h3 class="demo-title"><a href="jsjq/xiaomi/app/index.html" target="_blank">仿小米网首页<b> (地址)</b></a></h3>
+                                <p class="demo-text">应用原生JS+jQuery+h5+css3开发(未使用插件)，独立完成网站前端页面布局及动态特效的实现。</p>
+                                <div class="demo4 demo-img-wrap demo-img-ani">                                 
+                                    <img src="images/xm.png" alt="" class="demo4-img"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
             </div>
@@ -209,6 +223,7 @@ var _hmt = _hmt || [];
 </div>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/jquery.fullPage.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
 <script type="text/javascript" src="js/crli.js"></script>
 </body>
 </html>
