@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#version 0.2.5
+#version 0.2.6
 
 CACHE:
 css/reset.css
@@ -17,7 +17,7 @@ images/xm.png
 images/demo4.jpg
 images/me11.jpg
 images/slide.jpg
-
+images/app.png
 
 NETWORK:
 *

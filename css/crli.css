@@ -429,14 +429,20 @@ nav a{
 
 .demo4{
 	margin:0 auto;
-	background: #e1e1e1;
 }
 
 .demo4-img{
-	width: 940px;
+	background: #e1e1e1;
+
+	width: 800px;
 	height: 300px;
-	margin-top: 10px;
 }
+.demo5-img{
+	width: 640px;
+	height: 330px;
+	background: #e1e1e1;
+}
+
 
 /* resume */
 

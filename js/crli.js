@@ -44,7 +44,7 @@ $(function(){
                 });
             }
             if(index==3){
-                var arr=[85,85,80,90,85,60,35];
+                var arr=[85,85,80,90,85,65,35];
                 var aCo=['#000000','#8B0000','blue','green','#8B4513','#800080','#FF4500'];
                 var aColor = [];
                 for(var i = 0,len = aCo.length;i<len;i++){
