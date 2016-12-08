@@ -111,12 +111,16 @@ $(function(){
 })(document, window);
 if (window.SIZE == 'S') {
    $(function(){
-        $("#home-content").css('padding-top',($('.active').height()-$("#home-content").height())/6);
-        $("#about-content").css('padding-top',($('.active').height()-$("#about-content").height())/6);
-        $("#skill-content").css('padding-top',($('.active').height()-$("#skill-content").height())/6);
-        $("#demo-content").css('padding-top',($('.active').height()-$("#demo-content").height())/6);
-        $("#resume-content").css('padding-top',($('.active').height()-$("#resume-content").height())/6);
-        $("#contact-content").css('padding-top',($('.active').height()-$("#contact-content").height())/12);
+        var sizer = function(ele,num){
+            var $ele = $(ele);
+            $ele.css('padding-top',($('.active').height()-$ele.height())/num);
+        } 
+        sizer("#home-content",6);
+        sizer("#about-content",6);
+        sizer("#skill-content",6);
+        sizer("#demo-content",6);
+        sizer("#resume-content",6);
+        sizer("#contact-content",12);
         $("#downpdf").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#downpdf").css('top')));
         $("#contact-panel").css('top',parseInt($("#contact-content").css('padding-top'))+parseInt($("#contact-panel").css('top')));
     });
