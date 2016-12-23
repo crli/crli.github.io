@@ -1,12 +1,15 @@
 CACHE MANIFEST
-#version 0.2.9
+#version 0.3.0
 
 CACHE:
 
 dist/js/index-dcc6fa16.js
 dist/js/common-6b3dc61e.js
 dist/js/webpackAssets-d4d9ea69.js
+
 dist/783a2990c27c6713937bba2fecd8cc72.ttf
+dist/css/index-dcc6fa16.css
+
 dist/xm-9f6c14e8.png
 dist/xys-1b678a00.png
 dist/crli-efab231c.jpg
