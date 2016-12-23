@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#version 0.3.0
+#version 0.3.1
 
 CACHE:
 
@@ -10,14 +10,14 @@ dist/js/webpackAssets-d4d9ea69.js
 dist/783a2990c27c6713937bba2fecd8cc72.ttf
 dist/css/index-dcc6fa16.css
 
-dist/xm-9f6c14e8.png
-dist/xys-1b678a00.png
-dist/crli-efab231c.jpg
-dist/demo4-7a6a2786.jpg
-dist/jsys-ffdf0517.png
-dist/me11-110d34b7.jpg
-dist/slide-3878f7b5.jpg
-dist/cl-2dd2828b.png
-dist/app-311ffa22.jpg
+dist/imgs/xm-9f6c14e8.png
+dist/imgs/xys-1b678a00.png
+dist/imgs/crli-efab231c.jpg
+dist/imgs/demo4-7a6a2786.jpg
+dist/imgs/jsys-ffdf0517.png
+dist/imgs/me11-110d34b7.jpg
+dist/imgs/slide-3878f7b5.jpg
+dist/imgs/cl-2dd2828b.png
+dist/imgs/app-311ffa22.jpg
 NETWORK:
 *
