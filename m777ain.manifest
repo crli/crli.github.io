@@ -1,0 +1,24 @@
+CACHE MANIFEST
+#version 0.2.8
+
+CACHE:
+css/reset.css
+css/jquery.fullPage.css
+css/swiper.min.css
+css/iconfont.woff
+js/jquery-1.8.3.min.js
+js/jquery.fullPage.min.js
+js/swiper.min.js
+
+dist/xm-9f6c14e8.png
+dist/xys-1b678a00.png
+images/cl.png
+images/xys.png
+images/xm.png
+images/demo4.jpg
+images/me11.jpg
+images/slide.jpg
+images/app.png
+
+NETWORK:
+*

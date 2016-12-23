@@ -1,23 +1,20 @@
 CACHE MANIFEST
-#version 0.2.8
+#version 0.2.9
 
 CACHE:
-css/reset.css
-css/jquery.fullPage.css
-css/swiper.min.css
-css/iconfont.woff
-js/jquery-1.8.3.min.js
-js/jquery.fullPage.min.js
-js/swiper.min.js
-images/crli.png
-images/jsys.png
-images/cl.png
-images/xys.png
-images/xm.png
-images/demo4.jpg
-images/me11.jpg
-images/slide.jpg
-images/app.png
 
+dist/js/index-dcc6fa16.js
+dist/js/common-6b3dc61e.js
+dist/js/webpackAssets-d4d9ea69.js
+dist/783a2990c27c6713937bba2fecd8cc72.ttf
+dist/xm-9f6c14e8.png
+dist/xys-1b678a00.png
+dist/crli-efab231c.jpg
+dist/demo4-7a6a2786.jpg
+dist/jsys-ffdf0517.png
+dist/me11-110d34b7.jpg
+dist/slide-3878f7b5.jpg
+dist/cl-2dd2828b.png
+dist/app-311ffa22.jpg
 NETWORK:
 *
