@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#version 0.3.1
+#version 0.3.2
 
 CACHE:
 
@@ -10,7 +10,7 @@ dist/js/webpackAssets-d4d9ea69.js
 dist/783a2990c27c6713937bba2fecd8cc72.ttf
 dist/css/index-dcc6fa16.css
 
-dist/imgs/xm-9f6c14e8.png
+dist/imgs/xm-9f6c14e89.jpg
 dist/imgs/xys-1b678a00.png
 dist/imgs/crli-efab231c.jpg
 dist/imgs/demo4-7a6a2786.jpg
