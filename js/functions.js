@@ -128,5 +128,7 @@ function showHua() {
   $("#showHua").fadeIn(500)
 };
 function showThreeYears() {
-  alert(111)
+    $("#showHua").fadeOut(500)
+    $("#snow").style.zIndex = 10
+    showSnow()
 }
