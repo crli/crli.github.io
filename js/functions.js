@@ -132,4 +132,10 @@ function showHua() {
 function showThreeYears() {
     $("#showHua").fadeOut(500)
     showSnow()
+    setTimeout(() => {
+        $("#swiperDom").fadeIn(500)
+        var swiper = new Swiper('.swiper-container',{
+            loop: true
+        });	
+    }, 1000)
 }
