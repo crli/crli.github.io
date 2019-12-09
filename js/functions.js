@@ -78,7 +78,7 @@ function startHeartAnimation() {
                 console.log(b, c.length)
                 if (b >= c.length) {
                     clearInterval(e)
-                    if (new Date().getTime() > new Date('2019/12/12').getTime() && new Date().getTime() < new Date('2019/12/13').getTime()) {
+                    if (new Date().getTime() > new Date('2019/12/09').getTime() && new Date().getTime() < new Date('2019/12/10').getTime()) {
                         showHua()
                     }
                 }
@@ -131,6 +131,5 @@ function showHua() {
 };
 function showThreeYears() {
     $("#showHua").fadeOut(500)
-    $("#snow").style.zIndex = 10
     showSnow()
 }
