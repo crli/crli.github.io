@@ -78,7 +78,7 @@ function startHeartAnimation() {
                 console.log(b, c.length)
                 if (b >= c.length) {
                     clearInterval(e)
-                    if (new Date().getTime() > new Date('2019/12/09').getTime() && new Date().getTime() < new Date('2019/12/10').getTime()) {
+                    if (new Date().getTime() > new Date('2019/12/10').getTime() && new Date().getTime() < new Date('2019/12/11').getTime()) {
                         showHua()
                     }
                     // showHua()
