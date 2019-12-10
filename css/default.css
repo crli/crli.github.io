@@ -170,7 +170,7 @@ body {
 .slideimg{
   width:auto;
   height:auto;
-  max-width:100%;
+  max-width:500px;
   max-height:375px;
 }
 .slide-msg{
