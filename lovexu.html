@@ -25,29 +25,6 @@
 		<div id="content">
 			<div id="code">
 				<span class="comments">/**</span><br />
-				<span class="space"/><span class="comments">* I am a programmer,</span><br />
-				<span class="space"/><span class="comments">* so I write some code as The first gift in 2017.</span><br />
-				<span class="space"/><span class="comments">*/</span><br />
-				Boy i = <span class="keyword">new</span> Boy(<span class="string">"Prince of Dama"</span>);<br />
-				Girl u = <span class="keyword">new</span> Girl(<span class="string">"Princess of Xipeng"</span>);<br />
-				<span class="comments">// Sep 7, 2016, I fall in love with you. </span><br />
-				i.love(u);<br />
-				<span class="comments">// Dec 12, 2016, We were together. </span><br />
-				<span class="comments">// you accepted and became my girlfriend eversince.</span><br />
-				u.accepted();<br />
-				<span class="comments">// I miss u every day.</span><br />
-				i.miss(u);<br />
-				<span class="comments">// And Try to take care of you and our love.</span><br />
-				i.takeCareOf(u);<br />
-				<span class="comments">// I'm not good at lip service, </span><br />
-				<span class="comments">// but I'll be there when you need me.</span><br />
-				i.notGoodAt(sweet);<br />
-				<span class="comments">// I'm not romantic, </span><br />
-				<span class="comments">// But I'll be nice to you.</span><br />
-				i.notGoodAt(romantic);<br />
-				<span class="comments">// And I hope to hold your hand and grow old together with you.</span><br />
-				i.hope();<br />
-				i.liveHappilyWith(u);<br />
 			</div>
 			<div id="loveHeart">
 				<canvas id="garden"></canvas>
@@ -63,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="showHua">
+		<div id="showHua" onclick="showThreeYears()">
 			<img src="./img/hua.png" alt="">
 		</div>
 		<div id="swiperDom">
@@ -71,7 +48,7 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<img src="./img/threeYears/1.jpg" class="slideimg" alt="">
-						<p class="slide-msg">这一年经历了骨科康复训练</p>
+						<p class="slide-msg">这一年经历了骨科康复训练,多亏媳妇照顾的好，我才能恢复神速</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/2.jpg" class="slideimg" alt="">
@@ -79,7 +56,7 @@
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/3.jpg" class="slideimg" alt="">
-						<p class="slide-msg">我出院了后的第一次出去溜达</p>
+						<p class="slide-msg">我出院了后的第一次出去溜达，我手机只有那天的一张美照。。</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/4.jpg" class="slideimg" alt="">
@@ -87,34 +64,34 @@
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/5.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去选地板</p>
+						<p class="slide-msg">一起去选地板，选了好几趟才选好</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/6.jpg" class="slideimg" alt="">
-						<p class="slide-msg">我上班了，楼下有了练腿器材</p>
+						<p class="slide-msg">我开始上班了，楼下有了练腿器材</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/7.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去买灯</p>
+						<p class="slide-msg">一起去买灯，为了买灯，你闹了几次小情趣</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/8.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去买沙发</p>
+						<p class="slide-msg">一起去买沙发，最终还是在网上买了</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/9.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起监工装家具</p>
+						<p class="slide-msg">一起监工装家具，感觉家里家具真好看</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/10.jpg" class="slideimg" alt="">
-						<p class="slide-msg">第一次新房简单开荒</p>
+						<p class="slide-msg">第一次新房简单开荒，累的腰疼</p>
 					</div><div class="swiper-slide">
 						<img src="./img/threeYears/11.jpg" class="slideimg" alt="">
 						<p class="slide-msg">你有时候也很可爱的生气</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/12.jpg" class="slideimg" alt="">
-						<p class="slide-msg">又一次新房吃饭</p>
+						<p class="slide-msg">又一次新房吃饭，在新家叫的第一次外卖</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/13.jpg" class="slideimg" alt="">
@@ -122,7 +99,7 @@
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/14.jpg" class="slideimg" alt="">
-						<p class="slide-msg">为我偷偷准备了生日惊喜</p>
+						<p class="slide-msg">为我偷偷准备了生日惊喜，还偷偷录了视频</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/15.jpg" class="slideimg" alt="">
@@ -130,47 +107,75 @@
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/16.jpg" class="slideimg" alt="">
-						<p class="slide-msg">开始做小买卖</p>
+						<p class="slide-msg">开始做小买卖，每天都是我卖的多。。</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/17.jpg" class="slideimg" alt="">
-						<p class="slide-msg">第一次一起坐飞机出去玩</p>
+						<p class="slide-msg">第一次一起坐飞机出去玩，为了这次出行，你规划了好久</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/18.jpg" class="slideimg" alt="">
-						<p class="slide-msg">在桂林的桥洞</p>
+						<p class="slide-msg">在桂林的桥洞，桂林真的好热</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/19.jpg" class="slideimg" alt="">
-						<p class="slide-msg">在登龙脊梯田的路上</p>
+						<p class="slide-msg">在登龙脊梯田的路上,后来我脱掉了上衣，因为太热。。</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h1.jpg" class="slideimg" alt="">
+						<p class="slide-msg">看日落</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h2.jpg" class="slideimg" alt="">
+						<p class="slide-msg">我们乘车去了阳朔，先去了十里画廊</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/20.jpg" class="slideimg" alt="">
-						<p class="slide-msg">为了这个桥骑了半天小摩托</p>
+						<p class="slide-msg">为了去这个工农桥，骑了半天小摩托</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h3.jpg" class="slideimg" alt="">
+						<p class="slide-msg">夜晚的西街人的很多，还有遍地的啤酒鱼</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/21.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去游漓江</p>
+						<p class="slide-msg">我们去了兴坪古镇，去游漓江</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h4.jpg" class="slideimg" alt="">
+						<p class="slide-msg">去看20元人民币背面图</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/22.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去看演出</p>
+						<p class="slide-msg">一起去看桂林千古情的演出</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h5.png" class="slideimg" alt="">
+						<p class="slide-msg">第二天我们飞到了大理</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h6.jpg" class="slideimg" alt="">
+						<p class="slide-msg">骑行大理，顶着小雨很早就出门了，早上很冷，我的可爱帅气的小帽子还丢了</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/23.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去大理</p>
+						<p class="slide-msg">美丽大方可爱迷人的你</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/24.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去大理</p>
+						<p class="slide-msg">苍山洱海是真的美，300公里的骑行真的很爽</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/25.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去泸沽湖</p>
+						<p class="slide-msg">在泸沽湖四川和云南的交界处</p>
 					</div>
 					<div class="swiper-slide">
-						<img src="./img/threeYears/26.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起去泸沽湖</p>
+						<img src="./img/threeYears/h7.png" class="slideimg" alt="">
+						<p class="slide-msg">泸沽湖是真的美</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h8.png" class="slideimg" alt="">
+						<p class="slide-msg">媳妇拍到的美照</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/27.jpg" class="slideimg" alt="">
@@ -185,21 +190,26 @@
 						<p class="slide-msg">在丽江的古城</p>
 					</div>
 					<div class="swiper-slide">
-						<img src="./img/threeYears/30.jpg" class="slideimg" alt="">
-						<p class="slide-msg">备战双11买买买</p>
+						<img src="./img/threeYears/h8.jpg" class="slideimg" alt="">
+						<p class="slide-msg">一起去买家电，电视最终换成了媳妇喜欢的65寸大彩电</p>
+					</div>
+					<div class="swiper-slide">
+						<img src="./img/threeYears/h9.png" class="slideimg" alt="">
+						<p class="slide-msg">备战双11买买买。。。</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/31.jpg" class="slideimg" alt="">
-						<p class="slide-msg">一起仪式满满的泡面</p>
+						<p class="slide-msg">一起在新家的仪式满满的泡面</p>
 					</div>
 					<div class="swiper-slide">
 						<img src="./img/threeYears/32.jpg" class="slideimg" alt="">
-						<p class="slide-msg">三周年快乐，期待一起的30周年,300周年</p>
+						<p class="slide-msg">时间过得好快，转眼已经三年了，你还是那么美，我还是那么帅，哈哈哈，永远爱你呦隔壁老孟</p>
 					</div>
 				</div>
 				<div class="swiper-pagination"></div>
 			</div>
 		</div>
+		<audio src="./audio/lovexu.mp3" id="audio"></audio>
 		<div id="copyright">
 			Copyright © 2016 <a href='javascript:void(0)'>LN</a> 2016-2019
 		</div>

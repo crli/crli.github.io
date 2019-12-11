@@ -78,7 +78,7 @@ function startHeartAnimation() {
                 console.log(b, c.length)
                 if (b >= c.length) {
                     clearInterval(e)
-                    if (new Date().getTime() > new Date('2019/12/10').getTime() && new Date().getTime() < new Date('2019/12/11').getTime()) {
+                    if (new Date().getTime() > new Date('2019/12/11').getTime() && new Date().getTime() < new Date('2019/12/12').getTime()) {
                         showHua()
                     }
                     // showHua()
@@ -131,12 +131,20 @@ function showHua() {
   $("#showHua").fadeIn(500)
 };
 function showThreeYears() {
+    let audio = $("#audio")[0]
+    audio.play()
+    audio.addEventListener('ended', function () {
+        setTimeout(function () { 
+            audio.play()
+        }, 500)
+    }, false) 
     $("#showHua").fadeOut(500)
     showSnow()
     setTimeout(() => {
         $("#swiperDom").fadeIn(500)
         var swiper = new Swiper('.swiper-container',{
-            loop: true
+            loop: true,
+            autoplay: 5000
         });	
     }, 1000)
 }

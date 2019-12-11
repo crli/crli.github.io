@@ -115,16 +115,13 @@ body {
 }
 
 #showHua {
+  position: absolute;
+	top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: none;
   width: 300px;
   height: 313px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin-left: 550px;
-  margin-top: 170px;
   cursor: pointer;
 }
 #showHua img {
@@ -141,7 +138,8 @@ body {
   width: 500px;
   height: 500px;
   position: absolute;
-  top: 50px;
+	top: 50%;
+  transform: translateY(-50%);
   left: 55px;
   z-index: 2;
 }
@@ -171,11 +169,12 @@ body {
   width:auto;
   height:auto;
   max-width:500px;
-  max-height:375px;
+  max-height:375px;margin-bottom: 10px;
 }
 .slide-msg{
   position: absolute;
   bottom: 0;
   left: 0;
   color: #fff;
+  
 }
